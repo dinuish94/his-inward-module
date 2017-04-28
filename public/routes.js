@@ -9,10 +9,10 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
 
     $routeProvider
         .when('/view1',{
-            templateUrl:'views/wards/test.html'
+            templateUrl:'components/ward/test.html'
         })
         .when('/view2', {
-            templateUrl: 'views/wards/state1.html'
+            templateUrl: 'components/ward/test2.html'
         })
         .otherwise({redirectTo: '/view1'});
 }]);
