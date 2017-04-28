@@ -1,1 +1,1 @@
-var inward = angular.module('dashboard', []);
+var inward = angular.module('inward', []);
