@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="inward">
+
+<head>
+
+  <title>Inward System Dashboard</title>
+  <base href="/app/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="./assets/css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/flat-admin.css">
+
+  <!-- Theme -->
+  <link rel="stylesheet" type="text/css" href="./assets/css/theme/blue-sky.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/theme/blue.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/theme/red.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/theme/yellow.css">
+  <script src="./modules/angular/angular.js"></script>
+  <script src="./modules/angular-route/angular-route.js"></script>
+  <script type="text/javascript" src="./routes.js"></script>
+  <!--<script src="main.js"></script>-->
+</head>
+
+<body>
+  
+  <div class="app app-blue-sky">
+    <div ng-include src="'./includes/sidebar.html'"></div>
+    <div class="app-container">
+      <nav ng-include="'./includes/navbar.html'"></nav>
+      <!--<div ui-view></div>-->
+        <!--&lt;!&ndash; We'll also add some navigation: &ndash;&gt;-->
+        <!--<a ui-sref="app.home">home</a> &#45;&#45;-->
+        <!--<a ui-sref="app.settings">settings</a>-->
+
+      <!--</div>-->
+      <div ng-view></div>
+      <div ng-include="'./includes/footer.html'"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="./assets/js/vendor.js"></script>
+  <script type="text/javascript" src="./assets/js/app.js"></script>
+  <!--<script type="text/javascript" src="./controllers/wards/WardController.js"></script>-->
+
+</body>
+</html>
