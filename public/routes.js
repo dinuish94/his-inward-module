@@ -1,15 +1,13 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
-angular.module('inward', [
-    'ngRoute'
-]).
+angular.module('inward').
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
     $routeProvider
-        .when('/view1',{
-            templateUrl:'components/ward/test.html'
+        .when('/ward',{
+            templateUrl:'components/ward/addWard.html',
+            controller: 'GreetingController'
         })
         .when('/view2', {
             templateUrl: 'components/ward/test2.html'
