@@ -6,7 +6,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
 
     $routeProvider
         .when('/ward',{
-            templateUrl:'components/ward/addWard.html',
+            templateUrl:'components/ward/allWards.html',
             controller: 'GreetingController'
         })
         .when('/view2', {

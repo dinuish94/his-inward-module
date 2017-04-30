@@ -1,0 +1,21 @@
+<div class="col-xs-12">
+    <div class="card">
+        <div class="card-body" ng-controller="AngularWayCtrl as showCase">
+            <table datatable="ng" class="datatable table table-striped primary dataTable no-footer" cellspacing="0" width="100%" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
+                <thead>
+                <tr role="row">
+                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 142px;">ID</th>
+                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 223px;">First Name</th>
+                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 105px;">Last Name</th>
+                </thead>
+                <tbody>
+                <tr role="row" ng-repeat="person in showCase.persons">
+                    <td>{{ person.id }}</td>
+                    <td>{{ person.firstName }}</td>
+                    <td>{{ person.lastName }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

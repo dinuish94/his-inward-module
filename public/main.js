@@ -1,5 +1,7 @@
 
 // Registering the module
 var inward = angular.module('inward', [
-    'ngRoute'
+    'ngRoute',
+    'datatables',
+    'ngResource'
 ]);
