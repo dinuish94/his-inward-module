@@ -19,6 +19,7 @@ app.use('/app/modules',express.static(__dirname + "/bower_components"));
 mongoose.Promise = global.Promise;
 
 require('./server/ward/ward.model.js');
+require('./server/bed/bed.model.js');
 const WardRouter = require('./server/ward/ward.route.js');
 
 app.get('/', function(req,res){

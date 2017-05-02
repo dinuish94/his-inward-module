@@ -12,12 +12,15 @@ const wardSchema = new Schema({
     bedCount: Number,
     description: String,
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    beds: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Bed'
+    }]
 });
 
 wardSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
-// the schema is useless so far
 // create a model to start using the schema
 const Ward = mongoose.model('Ward', wardSchema);
 

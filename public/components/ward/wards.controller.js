@@ -3,12 +3,13 @@
  */
 
 angular.module('inward').controller('WardController',
-    ['WardService', '$location', '$scope', 'ngNotify', 'sharedProperties', function( WardService, $location, $scope, ngNotify, sharedProperties) {
+    ['WardService', '$location', '$scope', 'ngNotify', 'sharedProperties','$mdDialog', function( WardService, $location, $scope, ngNotify, sharedProperties, $mdDialog) {
     var vm = this;
 
     function getWards() {
 
         WardService.get().then(wards =>{
+            console.log(wards);
             vm.wards = wards;
         })
     }
@@ -20,6 +21,7 @@ angular.module('inward').controller('WardController',
 
     $scope.deleteWard = (id) =>{
         "use strict";
+    
         WardService.delete(id).then(()=>{
             ngNotify.set('Ward Deleted!','error');
             getWards();

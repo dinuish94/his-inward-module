@@ -1,0 +1,24 @@
+/**
+ * Created by dinukshakandasamanage on 5/2/17.
+ */
+'use strict';
+
+const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence');
+
+const Schema = mongoose.Schema;
+
+const BedSchema = new Schema({
+    type: String,
+    added_at: Date,
+    ward: {
+        type: Schema.Types.ObjectId,
+        ref: 'Ward'
+    }
+});
+
+BedSchema.plugin(AutoIncrement, {inc_field: 'bId'});
+
+const Bed = mongoose.model('Bed', BedSchema);
+
+module.exports = Bed;
