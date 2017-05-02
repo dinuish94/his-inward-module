@@ -1,36 +1,27 @@
 /**
  * Created by dinukshakandasamanage on 4/29/17.
  */
-var myApp = angular.module('inward');
 
-myApp.controller('GreetingController', ['$scope', function($scope) {
-    $scope.greeting = 'Hola!';
-}]);
-
-myApp.controller('AngularWayCtrl', getData);
-
-function getData() {
+angular.module('inward').controller('WardController', ['WardService', '$location', '$scope', function( WardService, $location, $scope) {
     var vm = this;
-    var persons = [{
-        "id": 860,
-        "firstName": "Mary",
-        "lastName": "Jane"
-    }, {
-        "id": 870,
-        "firstName": "Tony",
-        "lastName": "Stark"
-    }, {
-        "id": 590,
-        "firstName": "Darth",
-        "lastName": "Wader"
-    }, {
-        "id": 803,
-        "firstName": "Bruce",
-        "lastName": "Wayne"
-    }, {
-        "id": 857,
-        "firstName": "Matthew",
-        "lastName": "Murdock"
-    }];
-    vm.persons = persons;
-}
+
+    function getWards() {
+
+        WardService.get().then(wards =>{
+            vm.wards = wards;
+        })
+    }
+    getWards();
+    
+    $scope.goToAdd = () => {
+        $location.path('/addWard');
+    }
+    
+    $scope.addWard = (ward) => {
+        WardService.add(ward).then(() => {
+            getWards();
+            $scope.ward = {};
+        });
+        $location.path('/ward');
+    };
+}]);

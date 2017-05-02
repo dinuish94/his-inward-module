@@ -16,6 +16,8 @@
     "bower": "^1.8.0",
     "express": "^4.15.2",
     "lodash": "^4.17.4",
+    "mongoose": "^4.9.7",
+    "mongoose-sequence": "^3.2.0",
     "nodemon": "^1.11.0",
     "path": "^0.12.7"
   }
