@@ -1,36 +1,43 @@
 /**
  * Created by dinukshakandasamanage on 4/29/17.
  */
-var myApp = angular.module('inward');
 
-myApp.controller('GreetingController', ['$scope', function($scope) {
-    $scope.greeting = 'Hola!';
-}]);
-
-myApp.controller('AngularWayCtrl', getData);
-
-function getData() {
+angular.module('inward').controller('WardController',
+    ['WardService', '$location', '$scope', 'ngNotify', 'sharedProperties','$mdDialog', function( WardService, $location, $scope, ngNotify, sharedProperties, $mdDialog) {
     var vm = this;
-    var persons = [{
-        "id": 860,
-        "firstName": "Mary",
-        "lastName": "Jane"
-    }, {
-        "id": 870,
-        "firstName": "Tony",
-        "lastName": "Stark"
-    }, {
-        "id": 590,
-        "firstName": "Darth",
-        "lastName": "Wader"
-    }, {
-        "id": 803,
-        "firstName": "Bruce",
-        "lastName": "Wayne"
-    }, {
-        "id": 857,
-        "firstName": "Matthew",
-        "lastName": "Murdock"
-    }];
-    vm.persons = persons;
-}
+
+    function getWards() {
+
+        WardService.get().then(wards =>{
+            console.log(wards);
+            vm.wards = wards;
+        })
+    }
+    getWards();
+    
+    $scope.goToAdd = () => {
+        $location.path('/addWard');
+    }
+
+    $scope.deleteWard = (id) =>{
+        "use strict";
+    
+        WardService.delete(id).then(()=>{
+            ngNotify.set('Ward Deleted!','error');
+            getWards();
+        })
+    }
+
+    $scope.goToAddBed = (id) => {
+        $location.path('/beds');
+        sharedProperties.setWardNo(id);
+    }
+
+    $scope.addWard = (ward) => {
+        WardService.add(ward).then(() => {
+            getWards();
+        });
+        $location.path('/ward');
+        ngNotify.set('Ward added successfully!','success');
+    };
+}]);
