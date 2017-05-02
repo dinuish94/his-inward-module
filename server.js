@@ -14,28 +14,6 @@ app.get('/app/*', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
-app.get('/data', function (req, res) {
-    $x = [{
-        "id": 860,
-        "firstName": "Superman",
-        "lastName": "Yoda"
-    }, {
-        "id": 870,
-        "firstName": "Foo",
-        "lastName": "Whateveryournameis"
-    }, {
-        "id": 590,
-        "firstName": "Toto",
-        "lastName": "Titi"
-    }, {
-        "id": 803,
-        "firstName": "Luke",
-        "lastName": "Kyle"
-    }];
-    res.send($x);
-})
-
-
 app.listen(3000);
 
 console.log("App is running on port 3000");
