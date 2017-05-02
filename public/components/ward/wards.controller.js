@@ -2,7 +2,8 @@
  * Created by dinukshakandasamanage on 4/29/17.
  */
 
-angular.module('inward').controller('WardController', ['WardService', '$location', '$scope', function( WardService, $location, $scope) {
+angular.module('inward').controller('WardController',
+    ['WardService', '$location', '$scope', 'ngNotify', 'sharedProperties', function( WardService, $location, $scope, ngNotify, sharedProperties) {
     var vm = this;
 
     function getWards() {
@@ -16,12 +17,25 @@ angular.module('inward').controller('WardController', ['WardService', '$location
     $scope.goToAdd = () => {
         $location.path('/addWard');
     }
-    
+
+    $scope.deleteWard = (id) =>{
+        "use strict";
+        WardService.delete(id).then(()=>{
+            ngNotify.set('Ward Deleted!','error');
+            getWards();
+        })
+    }
+
+    $scope.goToAddBed = (id) => {
+        $location.path('/beds');
+        sharedProperties.setWardNo(id);
+    }
+
     $scope.addWard = (ward) => {
         WardService.add(ward).then(() => {
             getWards();
-            $scope.ward = {};
         });
         $location.path('/ward');
+        ngNotify.set('Ward added successfully!','success');
     };
 }]);

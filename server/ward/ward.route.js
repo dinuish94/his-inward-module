@@ -33,7 +33,7 @@ Router.post('/', (req, res) => {
 });
 
 Router.delete('/:id', (req, res) => {
-    WardModel.findByIdAndRemove(req.params.id).then(() => {
+    WardModel.deleteOne({'id':req.params.id}).then(() => {
         res.sendStatus(200);
     }).catch(err => {
         console.error(err);
