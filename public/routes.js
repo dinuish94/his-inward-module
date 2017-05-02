@@ -5,15 +5,15 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     $locationProvider.hashPrefix('!');
 
     $routeProvider
-        .when('/', {
-            templateUrl: 'components/dashboard/dashboard.html'
-        })
+        // .when('/', {
+        //     templateUrl: 'components/dashboard/dashboard.html'
+        // })
         .when('/ward',{
-            templateUrl:'components/ward/allWards.html',
+            templateUrl:'components/ward/allWards.view.html',
             controller: 'GreetingController'
         })
         .when('/view2', {
-            templateUrl: 'components/ward/addWard.html'
+            templateUrl: 'components/ward/addWard.view.html'
         })
         .otherwise({redirectTo: '/view1'});
 }]);

@@ -7,30 +7,30 @@ myApp.controller('GreetingController', ['$scope', function($scope) {
     $scope.greeting = 'Hola!';
 }]);
 
-myApp.controller('AngularWayCtrl', AngularWayCtrl);
+myApp.controller('AngularWayCtrl', getData);
 
-function AngularWayCtrl() {
+function getData() {
     var vm = this;
     var persons = [{
         "id": 860,
-        "firstName": "Superman",
-        "lastName": "Yoda"
+        "firstName": "Mary",
+        "lastName": "Jane"
     }, {
         "id": 870,
-        "firstName": "Foo",
-        "lastName": "Whateveryournameis"
+        "firstName": "Tony",
+        "lastName": "Stark"
     }, {
         "id": 590,
-        "firstName": "Toto",
-        "lastName": "Titi"
+        "firstName": "Darth",
+        "lastName": "Wader"
     }, {
         "id": 803,
-        "firstName": "Luke",
-        "lastName": "Kyle"
+        "firstName": "Bruce",
+        "lastName": "Wayne"
     }, {
         "id": 857,
-        "firstName": "Test",
-        "lastName": "Kyle"
+        "firstName": "Matthew",
+        "lastName": "Murdock"
     }];
     vm.persons = persons;
 }
