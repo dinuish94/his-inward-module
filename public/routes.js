@@ -5,12 +5,20 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     $locationProvider.hashPrefix('!');
 
     $routeProvider
+        // .when('/', {
+        //     templateUrl: 'components/dashboard/dashboard.html'
+        // })
         .when('/ward',{
-            templateUrl:'components/ward/allWards.html',
-            controller: 'GreetingController'
+            templateUrl:'components/ward/allWards.view.html',
+            controller: 'WardController'
         })
-        .when('/view2', {
-            templateUrl: 'components/ward/test2.html'
+        .when('/addWard', {
+            templateUrl: 'components/ward/addWard.view.html',
+            controller: 'WardController'
+        })
+        .when('/beds', {
+            templateUrl: 'components/bed/beds.view.html',
+            controller: 'BedController'
         })
         .when('/view3', {
             templateUrl: 'components/BHT/feverChart.html',

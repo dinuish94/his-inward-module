@@ -4,5 +4,8 @@ var inward = angular.module('inward', [
     'ngRoute',
     'datatables',
     'ngResource',
-    'chart.js'
+    'chart.js',
+    'ngNotify',
+    'ngMaterial',
+    'ngMessages'
 ]);
