@@ -12,5 +12,12 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .when('/view2', {
             templateUrl: 'components/ward/test2.html'
         })
+        .when('/view3', {
+            templateUrl: 'components/BHT/feverChart.html',
+            controller: 'lineChartController'
+        })
+        .when('/view4', {
+            templateUrl: 'components/BHT/datatables.html'
+        })
         .otherwise({redirectTo: '/view1'});
 }]);

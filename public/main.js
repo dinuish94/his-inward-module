@@ -3,5 +3,6 @@
 var inward = angular.module('inward', [
     'ngRoute',
     'datatables',
-    'ngResource'
+    'ngResource',
+    'chart.js'
 ]);

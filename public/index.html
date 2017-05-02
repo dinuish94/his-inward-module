@@ -15,6 +15,8 @@
   <link rel="stylesheet" type="text/css" href="./assets/css/theme/blue.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/theme/red.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/theme/yellow.css">
+    <!--<link rel="stylesheet" type="text/scss" href="./assets/css/datatable.sass">-->
+
 
   <script src="./modules/jQuery/dist/jquery.min.js"></script>
   <script src="./modules/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -27,6 +29,11 @@
   <script type="text/javascript" src="./main.js"></script>
   <script type="text/javascript" src="./routes.js"></script>
 
+  <script src="./modules/chart.js/dist/Chart.min.js"></script>
+  <script src="./modules/angular-chart.js/dist/angular-chart.min.js"></script>
+  <script src="./components/BHT/charts.controller.js"></script>
+  <script src="./components/BHT/datatables.controller.js"></script>
+
 </head>
 
 <body>
@@ -35,7 +42,9 @@
     <div ng-include src="'./includes/sidebar.html'"></div>
     <div class="app-container">
       <nav ng-include="'./includes/navbar.html'"></nav>
+      <div class="row">
       <div ng-view></div>
+      </div>
       <div ng-include="'./includes/footer.html'"></div>
     </div>
   </div>
