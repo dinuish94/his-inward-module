@@ -9,7 +9,6 @@ angular.module('inward').controller('WardController',
     function getWards() {
 
         WardService.get().then(wards =>{
-            console.log(wards);
             vm.wards = wards;
         })
     }

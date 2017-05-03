@@ -2,10 +2,10 @@
  * Created by dinuksha on 5/2/17.
  */
 angular.module('inward').controller('BedController',
-    ['$location', '$scope', 'ngNotify', 'sharedProperties', 'WardService', function($location, $scope, ngNotify, sharedProperties, WardService) {
+    ['$location', '$scope', 'ngNotify', 'sharedProperties', 'BedService', function($location, $scope, ngNotify, sharedProperties, BedService) {
     "use strict";
     var vm = this;
-
+    //TODO: Append bed ID to the URL
     var wardId = sharedProperties.getWardNo();
     $scope.id = wardId;
 
@@ -13,12 +13,20 @@ angular.module('inward').controller('BedController',
 
     function getBeds(wardId) {
 
-        WardService.getBeds(wardId).then(ward =>{
-            // console.log(ward.beds[]);
-            console.log(ward.beds);
+        BedService.getBeds(wardId).then(ward =>{
             vm.beds = ward.beds;
         })
     }
     getBeds(wardId);
+
+    $scope.addBed = (bed) => {
+        BedService.add($scope.id, bed).then(() => {
+            getBeds($scope.id);
+        });
+        // $location.path('/ward');
+        ngNotify.set('Bed added successfully!','success');
+    };
+
+
 
 }]);
