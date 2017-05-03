@@ -3,7 +3,7 @@
  */
 
 angular.module('inward').controller('WardController',
-    ['WardService', '$location', '$scope', 'ngNotify', 'sharedProperties','$mdDialog', function( WardService, $location, $scope, ngNotify, sharedProperties, $mdDialog) {
+    ['WardService', '$location', '$scope', 'ngNotify', 'sharedProperties','$mdDialog','SweetAlert', function( WardService, $location, $scope, ngNotify, sharedProperties, $mdDialog, SweetAlert) {
     var vm = this;
 
     function getWards() {
@@ -20,11 +20,26 @@ angular.module('inward').controller('WardController',
 
     $scope.deleteWard = (id) =>{
         "use strict";
-    
-        WardService.delete(id).then(()=>{
-            ngNotify.set('Ward Deleted!','error');
-            getWards();
-        })
+        SweetAlert.swal({
+            title: "Are you sure you want to delete?", 
+            text: "Your will not be able to recover this record!", 
+            type: "warning", 
+            showCancelButton: true, 
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Delete",
+            closeOnConfirm: false,
+            closeOnCancel: true
+        }, 
+        function(isConfirm){
+            if(isConfirm){
+                WardService.delete(id).then(()=>{
+                    ngNotify.set('Ward Deleted!','error');
+                    getWards();
+                })
+                SweetAlert.swal("Deleted!");
+            }
+        });
+        
     }
 
     $scope.goToAddBed = (id) => {

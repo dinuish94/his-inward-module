@@ -6,5 +6,6 @@ var inward = angular.module('inward', [
     'ngResource',
     'ngNotify',
     'ngMaterial',
-    'ngMessages'
+    'ngMessages',
+    'oitozero.ngSweetAlert'
 ]);
