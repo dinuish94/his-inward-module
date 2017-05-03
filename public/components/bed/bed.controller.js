@@ -2,14 +2,12 @@
  * Created by dinuksha on 5/2/17.
  */
 angular.module('inward').controller('BedController',
-    ['$location', '$scope', 'ngNotify', 'sharedProperties', 'BedService', function($location, $scope, ngNotify, sharedProperties, BedService) {
+    ['$location', '$scope', 'ngNotify', 'BedService', '$routeParams', function($location, $scope, ngNotify, BedService, $routeParams) {
     "use strict";
     var vm = this;
-    //TODO: Append bed ID to the URL
-    var wardId = sharedProperties.getWardNo();
-    $scope.id = wardId;
 
-    var vm = this;
+    let wardId = $routeParams.wardId;
+    $scope.id = wardId;
 
     function getBeds(wardId) {
 
@@ -20,10 +18,9 @@ angular.module('inward').controller('BedController',
     getBeds(wardId);
 
     $scope.addBed = (bed) => {
-        BedService.add($scope.id, bed).then(() => {
-            getBeds($scope.id);
+        BedService.add(wardId, bed).then(() => {
+            getBeds(wardId);
         });
-        // $location.path('/ward');
         ngNotify.set('Bed added successfully!','success');
     };
 
