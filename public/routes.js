@@ -12,5 +12,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .when('/view2', {
             templateUrl: 'components/ward/test2.html'
         })
+        .when('/patient', {
+            templateUrl: 'components/patient/patient.html'
+        })
         .otherwise({redirectTo: '/view1'});
 }]);
