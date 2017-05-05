@@ -3,16 +3,16 @@
  */
 'use strict';
 angular.module('inward').controller('diabeticChartController',function($scope){
-    $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+    $scope.labels = ["Monday", "Tuesday", "Wednesday", "Friday", "Saturday", "Sunday"];
     $scope.series = ['Series A', 'Series B'];
     $scope.data = [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90]
+        [95, 97, 94, 100, 101, 98],
+        [96, 98, 93, 98, 96, 102]
     ];
     $scope.onClick = function (points, evt) {
         console.log(points, evt);
     };
-    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
     $scope.options = {
         scales: {
             yAxes: [
@@ -21,12 +21,6 @@ angular.module('inward').controller('diabeticChartController',function($scope){
                     type: 'linear',
                     display: true,
                     position: 'left'
-                },
-                {
-                    id: 'y-axis-2',
-                    type: 'linear',
-                    display: true,
-                    position: 'right'
                 }
             ]
         }
