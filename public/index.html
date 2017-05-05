@@ -20,8 +20,6 @@
   <script src="./modules/jQuery/dist/jquery.min.js"></script>
   <script src="./modules/datatables.net/js/jquery.dataTables.min.js"></script>
   <script src="https://use.fontawesome.com/d53aadf2f9.js"></script>
-
-  <!--Angular-->
   <script src="./modules/angular/angular.js"></script>
 
   <!--Angular Datatables-->
@@ -52,6 +50,11 @@
   <script type="text/javascript" src="./main.js"></script>
   <script type="text/javascript" src="./routes.js"></script>
 
+  <script src="./modules/chart.js/dist/Chart.min.js"></script>
+  <script src="./modules/angular-chart.js/dist/angular-chart.min.js"></script>
+  <script src="./components/BHT/charts.controller.js"></script>
+  <script src="./components/BHT/datatables.controller.js"></script>
+
 </head>
 
 <body>
@@ -60,7 +63,9 @@
     <div ng-include src="'./includes/sidebar.html'"></div>
     <div class="app-container">
       <nav ng-include="'./includes/navbar.html'"></nav>
+      <div class="row">
       <div ng-view></div>
+      </div>
       <div ng-include="'./includes/footer.html'"></div>
     </div>
   </div>
