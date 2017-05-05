@@ -37,5 +37,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/BHT/diabeticChart.view.html',
             controller: 'diabeticChartController'
         })
+        .when('/bhtOptions', {
+            templateUrl: 'components/BHT/bhtOptions.view.html',
+        })
         .otherwise({redirectTo: '/view1'});
 }]);
