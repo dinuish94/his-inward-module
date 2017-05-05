@@ -7,5 +7,6 @@ var inward = angular.module('inward', [
     'chart.js',
     'ngNotify',
     'ngMaterial',
-    'ngMessages'
+    'ngMessages',
+    'oitozero.ngSweetAlert'
 ]);

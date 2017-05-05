@@ -16,7 +16,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/ward/addWard.view.html',
             controller: 'WardController'
         })
-        .when('/beds', {
+        .when('/wards/:wardId/beds', {
             templateUrl: 'components/bed/beds.view.html',
             controller: 'BedController'
         })
