@@ -4,14 +4,14 @@ const bodyParser = require('body-parser'),
 const app =  express();
 
 app.use(bodyParser.json());
-
+/*
 mongoose.connect('mongodb://localhost:27017/wards', err => {
     if (err) {
         console.log(err);
         process.exit(1);
     }
 });
-
+*/
 app.use('/app',express.static(__dirname + "/public"));
 app.use('/app/modules',express.static(__dirname + "/node_modules"));
 app.use('/app/modules',express.static(__dirname + "/bower_components"));

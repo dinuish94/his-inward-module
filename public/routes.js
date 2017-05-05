@@ -30,5 +30,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .when('/patient', {
             templateUrl: 'components/patient/patient.html'
         })
+        .when('/addLabTest', {
+            templateUrl: 'components/BHT/addLaboratoryTest.view.html'
+        })
         .otherwise({redirectTo: '/view1'});
 }]);
