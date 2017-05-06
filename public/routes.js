@@ -31,7 +31,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/patient/patient.html'
         })
         .when('/addLabTest', {
-            templateUrl: 'components/BHT/addLaboratoryTest.view.html'
+            templateUrl: 'components/BHT/addLaboratoryTest.view.html',
+            controller: 'laboratoryTestCtrl'
         })
         .when('/diabeticChart', {
             templateUrl: 'components/BHT/diabeticChart.view.html',
