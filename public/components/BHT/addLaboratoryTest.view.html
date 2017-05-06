@@ -1,7 +1,7 @@
-<div class="row" style="margin-top:4%;">
+<div class="row">
     <div class="col-md-12">
-        <div class="row">
-            <div class="col-xs-7">
+        <div class="row" style="margin-top:1%;">
+            <div class="col-md-7">
                 <div class="card">
                     <div class="card-header">
                         Patient Laboratory Test Information
@@ -10,15 +10,19 @@
                         <table datatable="ng" class="datatable table table-striped primary dataTable no-footer" cellspacing="0" width="100%" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="width:100%;">
                             <thead>
                             <tr role="row">
-                                <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 142px;">ID</th>
-                                <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 223px;">First Name</th>
-                                <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 105px;">Last Name</th>
+                                <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 142px;">Test ID</th>
+                                <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 223px;">Test Type</th>
+                                <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 223px;">Priority</th>
+                                <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 223px;">Due Date</th>
+                                <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 105px;">Status</th>
                             </thead>
                             <tbody>
-                            <tr role="row" ng-repeat="person in showCase.persons">
+                            <tr role="row" ng-repeat="person in showCase.persons" data-toggle="modal" data-target="#testInfo">
                                 <td>{{ person.id }}</td>
                                 <td>{{ person.firstName }}</td>
-                                <td>{{ person.lastName }}</td>
+                                <td><span class="badge badge-warning badge-icon"><i class="fa fa-times" aria-hidden="true"></i><span>{{ person.priority }}</span></span></td>
+                                <td>{{ person.date }}</td>
+                                <td><span class="badge badge-warning badge-icon"><i class="fa fa-times" aria-hidden="true"></i><span>{{ person.lastName }}</span></span></td>
                             </tr>
                             </tbody>
                         </table>
@@ -27,8 +31,30 @@
             </div>
             <div class="col-xs-5">
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body app-heading">
+                                <div class="icon">
+                                    <i class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
+                                </div>
+                                <div class="app-title">
+                                    <div class="row">
+                                        <div class="col-lg-5 col-lg-offset-1">
+                                            <div class="title"><span class="highlight">Patient ID :</span><span class="highlight">1</span></div>
+                                        </div>
+                                        <div class="col-lg-6 col-lg-offset-0">
+                                            <div class="title"><span class="highlight">BHT No :</span><span class="highlight">201562</span></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-xs-12">
-                        <div class="alert alert-default alert-dismissible fade in" role="alert">
+                        <div class="alert alert-info alert-dismissible fade in" role="alert">
                             <button type="button" class="close" data-dismiss="alert"></button>
                             <h4>Schedule Laboratory Tests!</h4>
                             <p>Schedule Patient Laboratory Tests, Lab Test Availability is listed below! </p>
@@ -40,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="margin-top:1% ">
                     <div class="col-xs-12">
                         <div class="card">
                             <div class="card-header">
@@ -83,7 +109,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" style="display: block; width: 760px; margin-left: -380px; margin-top: 100px;">
         <div class="modal-content">
@@ -110,14 +135,6 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <div class="input-group">
-                                <span class="input-group-addon">Patient ID&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
-                                <input type="text" class="form-control" aria-label="Patient Name" placeholder="Patient ID">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="input-group">
                                 <span class="input-group-addon">Priority&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                                 <select class="form-control" id="exampleSelect322">
                                     <option>1</option>
@@ -133,7 +150,7 @@
                         <div class="col-md-12">
                             <div class="input-group">
                                 <span class="input-group-addon">Due date&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
-                                <input type="text" class="form-control" aria-label="Patient Name" placeholder="Due date">
+                                <input type="date" class="form-control" aria-label="Patient Name" placeholder="Due date">
                             </div>
                         </div>
                     </div>
@@ -145,12 +162,27 @@
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-sm btn-success">Schedule Test</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="testInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" style="display: block; width: 760px; margin-left: -380px; margin-top: 100px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Test Details</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

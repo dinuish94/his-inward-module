@@ -24,24 +24,58 @@ function AngularWayCtrl($scope) {
      ];*/
     var persons = [{
         "id": 860,
-        "firstName": "Superman",
-        "lastName": "Yoda"
+        "firstName": "Diabetic",
+        "lastName": "Pending",
+        "priority": "Pending",
+        "date": "2017-05-04"
     }, {
         "id": 870,
-        "firstName": "Foo",
-        "lastName": "Whateveryournameis"
+        "firstName": "Glucose",
+        "lastName": "Complete",
+        "priority": "Pending",
+        "date": "2017-05-04"
     }, {
         "id": 590,
-        "firstName": "Toto",
-        "lastName": "Titi"
+        "firstName": "Diabetic",
+        "lastName": "Pending",
+        "priority": "Pending",
+        "date": "2017-05-04"
     }, {
         "id": 803,
-        "firstName": "Luke",
-        "lastName": "Kyle"
+        "firstName": "Blood",
+        "lastName": "passed",
+        "priority": "Pending",
+        "date": "2017-05-04"
     }, {
         "id": 857,
         "firstName": "Test",
-        "lastName": "Kyle"
+        "lastName": "failed",
+        "priority": "Pending",
+        "date": "2017-05-04"
+    },{
+        "id": 803,
+        "firstName": "Blood",
+        "lastName": "passed",
+        "priority": "Pending",
+        "date": "2017-05-04"
+    },{
+        "id": 803,
+        "firstName": "Blood",
+        "lastName": "passed",
+        "priority": "Pending",
+        "date": "2017-05-04"
+    },{
+        "id": 803,
+        "firstName": "Blood",
+        "lastName": "passed",
+        "priority": "Pending",
+        "date": "2017-05-04"
+    },{
+        "id": 803,
+        "firstName": "Blood",
+        "lastName": "passed",
+        "priority": "Pending",
+        "date": "2017-05-04"
     }];
     vm.persons = persons;
 }
