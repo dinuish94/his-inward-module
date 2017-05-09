@@ -20,13 +20,16 @@ mongoose.Promise = global.Promise;
 
 require('./server/ward/ward.model.js');
 require('./server/bed/bed.model.js');
+require('./server/doctor/doctor.model.js');
 const WardRouter = require('./server/ward/ward.route.js');
+const DoctorRouter = require('./server/doctor/doctor.route.js');
 
 app.get('/', function(req,res){
     res.sendFile(__dirname + '/public/index.html');
 });
 
 app.use('/wards', WardRouter);
+app.use('/doctors',DoctorRouter);
 
 app.get('/app/*', function(req,res){
     res.sendFile(__dirname + '/public/index.html');

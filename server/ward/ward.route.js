@@ -9,12 +9,13 @@ const express = require('express'),
 mongoose.set('debug', false);
 
 const WardModel = mongoose.model('Ward'),
-    BedModel = mongoose.model('Bed');
+    BedModel = mongoose.model('Bed'),
+    DoctorModel = mongoose.model('Doctor');
 
 const Router = express.Router();
 
 Router.get('/', (req, res) => {
-    WardModel.find().populate('beds').exec().then(wards => {
+    WardModel.find().populate('beds').populate('head').exec().then(wards => {
         res.json(wards);
     }).catch(err => {
         console.error(err);
