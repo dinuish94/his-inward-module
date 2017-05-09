@@ -53,4 +53,8 @@ angular.module('inward').controller('WardController',
         $location.path('/ward');
         ngNotify.set('Ward added successfully!','success');
     };
+
+    WardService.getDoctors().then(doctors =>{
+        $scope.doctors = doctors;
+    })
 }]);
