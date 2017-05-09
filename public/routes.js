@@ -32,7 +32,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         })
         .when('/addLabTest', {
             templateUrl: 'components/BHT/addLaboratoryTest.view.html',
-            controller: 'laboratoryTestCtrl'
+            controller: 'LabTestController'
         })
         .when('/diabeticChart', {
             templateUrl: 'components/BHT/diabeticChart.view.html',

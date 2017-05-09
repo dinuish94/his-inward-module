@@ -2,80 +2,60 @@
  * Created by Jonathan on 5/6/2017.
  */
 
-var myApp = angular.module('inward');
+angular.module('inward').controller('LabTestController',
+    ['LabTestService', '$location', '$scope', 'ngNotify', '$mdDialog', function( LabTestService, $location, $scope, ngNotify, $mdDialog) {
 
-myApp.controller('GreetingController', ['$scope', function($scope) {
-    $scope.greeting = 'Hola!';
-}]);
+        var vm = this;
 
-myApp.controller('laboratoryTestCtrl', AngularWayCtrl);
-AngularWayCtrl.$inject = ['$scope'];
+        function getLabTests() {
+            LabTestService.get().then(labTests =>{
+                //console.log(labTests);
+                vm.labTests = labTests;
+        })
+        }
+        getLabTests();
 
-function AngularWayCtrl($scope) {
-    var vm = this;
-    /*  vm.dtOptions = DTOptionsBuilder.newOptions()
-     .withPaginationType('full_numbers')
-     .withDisplayLength(2)
-     .withDOM('pitrfl');
-     vm.dtColumns = [
-     DTColumnBuilder.newColumn('id').withTitle('ID'),
-     DTColumnBuilder.newColumn('title').withTitle('First name'),
-     DTColumnBuilder.newColumn('lastName').withTitle('Last name').notVisible()
-     ];*/
-    var persons = [{
-        "id": 860,
-        "firstName": "Diabetic",
-        "lastName": "Pending",
-        "priority": "Pending",
-        "date": "2017-05-04"
-    }, {
-        "id": 870,
-        "firstName": "Glucose",
-        "lastName": "Complete",
-        "priority": "Pending",
-        "date": "2017-05-04"
-    }, {
-        "id": 590,
-        "firstName": "Diabetic",
-        "lastName": "Pending",
-        "priority": "Pending",
-        "date": "2017-05-04"
-    }, {
-        "id": 803,
-        "firstName": "Blood",
-        "lastName": "passed",
-        "priority": "Pending",
-        "date": "2017-05-04"
-    }, {
-        "id": 857,
-        "firstName": "Test",
-        "lastName": "failed",
-        "priority": "Pending",
-        "date": "2017-05-04"
-    },{
-        "id": 803,
-        "firstName": "Blood",
-        "lastName": "passed",
-        "priority": "Pending",
-        "date": "2017-05-04"
-    },{
-        "id": 803,
-        "firstName": "Blood",
-        "lastName": "passed",
-        "priority": "Pending",
-        "date": "2017-05-04"
-    },{
-        "id": 803,
-        "firstName": "Blood",
-        "lastName": "passed",
-        "priority": "Pending",
-        "date": "2017-05-04"
-    },{
-        "id": 803,
-        "firstName": "Blood",
-        "lastName": "passed",
-        "priority": "Pending",
-        "date": "2017-05-04"
-    }];
-    vm.persons = persons;
-}
+
+        $scope.addLab = (lab) => {
+            LabTestService.add(lab).then(() => {
+                getLabTests();
+        });
+
+            ngNotify.set('Laboratory Test added successfully!','success');
+        };
+
+        $scope.deleteLab = (testId) => {
+
+            LabTestService.delete(testId).then(() => {
+                getLabTests();
+        });
+            ngNotify.set('Laboratory Test Deleted successfully!','error');
+           // setTimeout(function(){ window.location.reload(); }, 3000);
+
+        };
+
+        function test(){
+            console.log("fcdsavds");
+        }
+
+
+        $scope.getLab = (testId) => {
+            LabTestService.getLab(testId).then(lab => {
+            $scope.labEdit = lab;
+        });
+
+        };
+
+        // lab test names to load in add new lab schedule modal
+        getLabTestType = () => {
+            LabTestService.getLabTypes().then(labTypes => {
+               // $scope.labNames = labTypes;
+                console.log(labTypes);
+        });
+
+        };
+        getLabTestType();
+
+
+
+    }]);
