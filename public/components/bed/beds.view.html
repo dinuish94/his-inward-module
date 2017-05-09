@@ -1,6 +1,6 @@
 <!--Add New Bed-->
 
-<div class="col-md-12">
+<div class="col-md-12 col-sm-12">
     <div class="card">
         <div class="card-body">
             <form class="form form-horizontal">
@@ -21,7 +21,7 @@
                             <div class="col-md-9">
                                 <md-content>
                                     <md-datepicker 
-                                    ng-model="myDate" 
+                                    ng-model="bed.added_at" 
                                     md-placeholder="Enter date">
                                     </md-datepicker>
                                 </md-content>
@@ -34,12 +34,12 @@
                                 <p class="control-label-help"></p>
                             </div>
                             <div class="col-md-9">
-                                <select class="form-control" type="text" class="form-control" placeholder="">
-                                    <!--<option>Option 1 </option>
-                                    <option>Option 2 </option>
-                                    <option>Option 3 </option>
-                                    <option>Option 4 </option>-->
-                                    <input type="text" class="form-control" placeholder="" ng-model="bed.type">
+                                <select class="form-control" type="text" class="form-control" placeholder="" ng-model="bed.type">
+                                    <option disabled selected>Select Bed Type </option>
+                                    <option>Electric Bed </option>
+                                    <option>Semi-electric Bed</option>
+                                    <option>Home care bed</option>
+                                    <option>Regular bed</option>
                                 </select>
                             </div>
                         </div>
@@ -57,26 +57,30 @@
         </div>
     </div>
 </div>
-
 <!--All bed information-->
 
-<div class="col-xs-12">
+<div class="col-md-12 col-xs-12">
     <div class="card">
         <div class="card-body" ng-controller="BedController as showCase">
             <table datatable="ng" class="datatable table table-striped primary dataTable no-footer" cellspacing="0" width="100%" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
                 <thead>
                 <tr role="row">
-                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">ID</th>
                     <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Bed ID</th>
                     <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Date Added</th>
                     <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Bed Type</th>
+                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Availability</th>
+                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 105px;"></th>
                 </thead>
                 <tbody>
                 <tr role="row" ng-repeat="bed in showCase.beds">
                     <td>{{ bed.bId }}</td>
-                    <td>{{ bed.text }}</td>
-                    <td>{{ bed.text }}</td>
+                    <td>{{ bed.added_at | date : "dd-MM-y" }}</td>
                     <td>{{ bed.type }}</td>
+                    <td>
+                        <span ng-if= "bed.available" class="badge badge-success badge-icon"><i class="fa fa-check" aria-hidden="true"></i><span>Availabile </span></span>
+                        <span ng-if= "!bed.available" class="badge badge-danger badge-icon"><i class="fa fa-check" aria-hidden="true"></i><span>Availabile </span></span>
+                    </td>
+                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="deleteBed(bed.bId)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                 </tr>
                 </tbody>
             </table>
