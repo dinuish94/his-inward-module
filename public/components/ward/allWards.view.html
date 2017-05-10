@@ -1,0 +1,28 @@
+<div class="col-xs-12">
+    <div class="card">
+        <div class="card-body" ng-controller="WardController as showCase">
+            <button type="button" class="btn btn-primary" ng-click="goToAdd()">Add new ward</button>
+            <table datatable="ng" class="datatable table table-striped primary dataTable no-footer" cellspacing="0" width="100%" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
+                <thead>
+                <tr role="row">
+                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">ID</th>
+                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Ward Name</th>
+                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Bed Count</th>
+                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Ward Description</th>
+                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 105px;"></th>
+                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 105px;"></th>
+                </thead>
+                <tbody>
+                <tr role="row" ng-repeat="ward in showCase.wards">
+                    <td>{{ ward.id }}</td>
+                    <td>{{ ward.name }}</td>
+                    <td>{{ ward.bedCount }}</td>
+                    <td>{{ ward.description }}</td>
+                    <td><button type="button" class="btn btn-danger" ng-click="deleteWard(ward.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                    <td><button type="button" class="btn btn-success" ng-click="goToAddBed(ward.id)"><i class="fa fa-bed" aria-hidden="true"></i></button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -6,6 +6,13 @@ var inward = angular.module('inward', [
     'ngTable',
     'ngResource',
     'chart.js',
+<<<<<<< HEAD
     'angularUtils.directives.dirPagination',
     'ui.bootstrap'
+=======
+    'ngNotify',
+    'ngMaterial',
+    'ngMessages',
+    'oitozero.ngSweetAlert'
+>>>>>>> master
 ]);
