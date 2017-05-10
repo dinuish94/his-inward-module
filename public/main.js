@@ -3,6 +3,9 @@
 var inward = angular.module('inward', [
     'ngRoute',
     'datatables',
+    'ngTable',
     'ngResource',
-    'chart.js'
+    'chart.js',
+    'angularUtils.directives.dirPagination',
+    'ui.bootstrap'
 ]);

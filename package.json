@@ -18,6 +18,9 @@
     "chart.js": "^2.5.0",
     "express": "^4.15.2",
     "lodash": "^4.17.4",
+    "mongoose": "^4.9.7",
+    "ng-table": "^3.0.1",
+    "ng2-smart-table": "^1.1.0",
     "nodemon": "^1.11.0",
     "path": "^0.12.7"
   }

@@ -18,6 +18,6 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         })
         .when('/view4', {
             templateUrl: 'components/BHT/datatables.html'
-        })
-        .otherwise({redirectTo: '/view1'});
+        });
+        // .otherwise({redirectTo: '/view1'});
 }]);

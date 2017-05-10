@@ -20,6 +20,8 @@
   <script src="./modules/datatables.net/js/jquery.dataTables.min.js"></script>
   <script src="https://use.fontawesome.com/d53aadf2f9.js"></script>
   <script src="./modules/angular/angular.js"></script>
+  <link rel="stylesheet" ; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+  <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
   <script src="./modules/angular-resource/angular-resource.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.6/angular-datatables.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.6/css/angular-datatables.css"></link>
@@ -30,19 +32,35 @@
 
   <script src="./modules/chart.js/dist/Chart.min.js"></script>
   <script src="./modules/angular-chart.js/dist/angular-chart.min.js"></script>
+
+  <script src="./modules/angularUtils-pagination/dirPagination.js"></script>
+  <script src="./modules/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="./components/BHT/charts.controller.js"></script>
   <script src="./components/BHT/datatables.controller.js"></script>
+   <script src="./components/BHT/drugs.controller.js"></script>
+
+  <script src="./components/BHT/prescription.service.js"></script>
+
+  <!--<style>
+    input {
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+      border: solid 1px black;
+      padding: 5px;
+    }
+  </style>-->
+
 
 </head>
 
 <body>
-  
+
   <div class="app app-blue-sky">
     <div ng-include src="'./includes/sidebar.html'"></div>
     <div class="app-container">
       <nav ng-include="'./includes/navbar.html'"></nav>
       <div class="row">
-      <div ng-view></div>
+        <div ng-view></div>
       </div>
       <div ng-include="'./includes/footer.html'"></div>
     </div>
@@ -53,4 +71,5 @@
   <script type="text/javascript" src="./components/ward/testController.js"></script>
 
 </body>
+
 </html>
