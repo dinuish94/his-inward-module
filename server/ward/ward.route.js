@@ -14,6 +14,9 @@ const WardModel = mongoose.model('Ward'),
 
 const Router = express.Router();
 
+/**
+ * Retrieve all ward records
+ */
 Router.get('/', (req, res) => {
     WardModel.find().populate('beds').populate('head').exec().then(wards => {
         res.json(wards);
@@ -23,17 +26,27 @@ Router.get('/', (req, res) => {
     });
 });
 
+/**
+ * Add new ward and assign doctor to ward
+ */
 Router.post('/', (req, res) => {
     const newWard = new WardModel(req.body);
     newWard.created_at = new Date();
-    newWard.save().then(wards => {
-        res.json(wards);
+    newWard.save().then(ward => {
+        DoctorModel.findOne({'docId':req.body.docId}).then(docDb=>{
+            return WardModel.findByIdAndUpdate(ward._id, {$set: {'head': docDb._id}});
+        }).then((addedWard) =>{
+            res.json(addedWard);
+        })
     }).catch(err => {
         console.error(err);
         res.sendStatus(500);
     });
 });
 
+/**
+ * Delete ward
+ */
 Router.delete('/:id', (req, res) => {
     WardModel.deleteOne({'id':req.params.id}).then(() => {
         res.sendStatus(200);
@@ -43,6 +56,9 @@ Router.delete('/:id', (req, res) => {
     });
 });
 
+/**
+ * Get ward by unique ID
+ */
 Router.get('/:id', (req, res) => {
     WardModel.findOne({'id':req.params.id}).populate('beds').exec().then(ward => {
         res.json(ward || {});
@@ -52,6 +68,9 @@ Router.get('/:id', (req, res) => {
     });
 });
 
+/**
+ * Add new bed to ward
+ */
 Router.post('/:id/beds', (req, res) => {
     let bed = new BedModel(req.body);
     bed.save().then(bedDb => {
@@ -66,6 +85,9 @@ Router.post('/:id/beds', (req, res) => {
     });
 });
 
+/**
+ * Delete bed
+ */
 Router.delete('/:id/beds/:bedId', (req, res) => {
     const wardId = req.params.id;
     const bedId = req.params.bedId;
