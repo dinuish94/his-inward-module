@@ -22,8 +22,13 @@ angular.module('inward').controller('BedController',
             getBeds(wardId);
         });
         ngNotify.set('Bed added successfully!','success');
-    };
+    }
 
-
+    $scope.deleteBed = (bedId) => {
+        BedService.delete(wardId, bedId).then(() => {
+            getBeds(wardId);
+        });
+        ngNotify.set('Bed deleted successfully!','error');
+    }
 
 }]);

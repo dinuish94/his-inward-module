@@ -35,11 +35,8 @@
                                 <p class="control-label-help"></p>
                             </div>
                             <div class="col-md-9">
-                                <select class="form-control" type="text" class="form-control" placeholder="">
-                                    <option>Option 1 </option>
-                                    <option>Option 2 </option>
-                                    <option>Option 3 </option>
-                                    <option>Option 4 </option>
+                                <select class="form-control" type="text" class="form-control" placeholder="" >
+                                    <option ng-repeat="doctor in doctors"> {{doctor.name}}</option>
                                 </select>
                             </div>
                         </div>

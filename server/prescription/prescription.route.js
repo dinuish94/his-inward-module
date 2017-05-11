@@ -10,10 +10,12 @@ mongoose.set('debug', false);
 
 const prescriptionModel = mongoose.model('Prescription');
 
+const drugModel = mongoose.model('Drug');
+
 const Router = express.Router();
 
 Router.get('/', (req, res) => {
-    prescriptionModel.find().then(prescription => {
+    prescriptionModel.find().populate('drug').exec().then(prescription => {
         res.json(prescription);
     }).catch(err => {
         console.error(err);
@@ -22,7 +24,9 @@ Router.get('/', (req, res) => {
 });
 
 Router.post('/', (req, res) => {
-    const newPresc = new prescriptionModel(req.body);
+    var pres = req.body;
+    console.log(pres);
+    const newPresc = new prescriptionModel(pres);
     newPresc.created_at = new Date();
     newPresc.save().then(prescription => {
         res.json(prescription);
@@ -32,38 +36,13 @@ Router.post('/', (req, res) => {
     });
 });
 
-// Router.delete('/:id', (req, res) => {
-//     WardModel.deleteOne({'id':req.params.id}).then(() => {
-//         res.sendStatus(200);
-//     }).catch(err => {
-//         console.error(err);
-//         res.sendStatus(500);
-//     });
-// });
-
-// Router.get('/:id', (req, res) => {
-//     WardModel.findOne({'id':req.params.id}).populate('beds').exec().then(ward => {
-//         res.json(ward || {});
-//     }).catch(err => {
-//         console.error(err);
-//         res.sendStatus(500);
-//     });
-// });
-
-// Router.post('/:id/beds', (req, res) => {
-//     let bed = new BedModel(req.body);
-//     const wardId = req.params.id;
-//     bed.id = wardId;
-//     bed.save().then(bedDb => {
-//         return WardModel.findOneAndUpdate({'id':req.params.id}, {$push: {"beds": bedDb._id}})
-//     }).then(() => {
-//         return WardModel.findOne({'id':req.params.id}).populate('beds').exec();
-//     }).then(wardDb => {
-//         res.json(wardDb);
-//     }).catch(err => {
-//         console.error(err);
-//     res.sendStatus(500);
-//     });
-// });
+Router.put('/:id',(req,res)=>{
+    console.log("the id is "+req.params.id);
+    console.log('data are');
+    console.log(req.body);
+    prescriptionModel.update(req.params.id,req.body).then(prescription=>{
+        res.send(prescription);
+    });
+});
 
 module.exports = Router;

@@ -9,12 +9,13 @@ const express = require('express'),
 mongoose.set('debug', false);
 
 const WardModel = mongoose.model('Ward'),
-    BedModel = mongoose.model('Bed');
+    BedModel = mongoose.model('Bed'),
+    DoctorModel = mongoose.model('Doctor');
 
 const Router = express.Router();
 
 Router.get('/', (req, res) => {
-    WardModel.find().populate('beds').exec().then(wards => {
+    WardModel.find().populate('beds').populate('head').exec().then(wards => {
         res.json(wards);
     }).catch(err => {
         console.error(err);
@@ -53,8 +54,6 @@ Router.get('/:id', (req, res) => {
 
 Router.post('/:id/beds', (req, res) => {
     let bed = new BedModel(req.body);
-    const wardId = req.params.id;
-    bed.id = wardId;
     bed.save().then(bedDb => {
         return WardModel.findOneAndUpdate({'id':req.params.id}, {$push: {"beds": bedDb._id}})
     }).then(() => {
@@ -64,6 +63,18 @@ Router.post('/:id/beds', (req, res) => {
     }).catch(err => {
         console.error(err);
     res.sendStatus(500);
+    });
+});
+
+Router.delete('/:id/beds/:bedId', (req, res) => {
+    const wardId = req.params.id;
+    const bedId = req.params.bedId;
+    
+    BedModel.findOneAndRemove({'bId':bedId}).then(bed =>{
+        res.sendStatus(200);
+    }).catch(err => {
+        console.error(err);
+        res.sendStatus(500);
     });
 });
 

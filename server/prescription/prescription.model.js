@@ -3,13 +3,16 @@ const autoIncrement = require('mongoose-sequence');
 const Schema = mongoose.Schema;
 
 const prescriptionSchema = new Schema ({
-    drug: String,
+    drug: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Drug'
+    }],
     dosage: Number,
     frequency: String
 
 });
 
-prescriptionSchema.plugin(autoIncrement, {inc_field: 'id'});
+prescriptionSchema.plugin(autoIncrement, {inc_field: 'presId'});
 
 var prescription = mongoose.model('Prescription',prescriptionSchema);
 

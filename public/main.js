@@ -3,16 +3,17 @@
 var inward = angular.module('inward', [
     'ngRoute',
     'datatables',
-    'ngTable',
     'ngResource',
     'chart.js',
-<<<<<<< HEAD
     'angularUtils.directives.dirPagination',
-    'ui.bootstrap'
-=======
+    'ui.bootstrap',
     'ngNotify',
     'ngMaterial',
     'ngMessages',
-    'oitozero.ngSweetAlert'
->>>>>>> master
+    'oitozero.ngSweetAlert',
+    'xeditable'
 ]);
+
+inward.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
