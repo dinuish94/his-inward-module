@@ -28,7 +28,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/BHT/datatables.html'
         })
         .when('/patient', {
-            templateUrl: 'components/patient/patient.html'
+            templateUrl: 'components/patient/patient.html',
+            controller: 'patientController'
         })
         .otherwise({redirectTo: '/view1'});
 }]);
