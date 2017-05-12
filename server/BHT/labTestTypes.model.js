@@ -9,7 +9,7 @@ const labTestTypeSchema = new Schema({
     testType: String
 });
 
-labTestTypeSchema.plugin(AutoIncrement, {inc_field: 'id'});
+labTestTypeSchema.plugin(AutoIncrement, {inc_field: 'typeId'});
 
 // create a model to start using the schema
 const LabTypes = mongoose.model('LabTypes', labTestTypeSchema);
