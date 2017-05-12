@@ -23,12 +23,15 @@ require('./server/bed/bed.model.js');
 require('./server/patient/patient.model.js');
 const WardRouter = require('./server/ward/ward.route.js');
 const patientRouter = require('./server/patient/patient.route.js');
+require('./server/doctor/doctor.model.js');
+const DoctorRouter = require('./server/doctor/doctor.route.js');
 
 app.get('/', function(req,res){
     res.sendFile(__dirname + '/public/index.html');
 });
 
 app.use('/wards', WardRouter);
+app.use('/doctors',DoctorRouter);
 
 app.use('/patients',patientRouter);
 

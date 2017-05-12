@@ -16,7 +16,11 @@ const wardSchema = new Schema({
     beds: [{
         type: Schema.Types.ObjectId,
         ref: 'Bed'
-    }]
+    }],
+    head: {
+        type: Schema.Types.ObjectId,
+        ref: 'Doctor'
+    }
 });
 
 wardSchema.plugin(AutoIncrement, {inc_field: 'id'});

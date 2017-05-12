@@ -2,23 +2,33 @@
  * Created by dinuksha on 5/2/17.
  */
 angular.module('inward').controller('BedController',
-    ['$location', '$scope', 'ngNotify', 'sharedProperties', 'WardService', function($location, $scope, ngNotify, sharedProperties, WardService) {
+    ['$location', '$scope', 'ngNotify', 'BedService', '$routeParams', function($location, $scope, ngNotify, BedService, $routeParams) {
     "use strict";
     var vm = this;
 
-    var wardId = sharedProperties.getWardNo();
+    let wardId = $routeParams.wardId;
     $scope.id = wardId;
-
-    var vm = this;
 
     function getBeds(wardId) {
 
-        WardService.getBeds(wardId).then(ward =>{
-            // console.log(ward.beds[]);
-            console.log(ward.beds);
+        BedService.getBeds(wardId).then(ward =>{
             vm.beds = ward.beds;
         })
     }
     getBeds(wardId);
+
+    $scope.addBed = (bed) => {
+        BedService.add(wardId, bed).then(() => {
+            getBeds(wardId);
+        });
+        ngNotify.set('Bed added successfully!','success');
+    }
+
+    $scope.deleteBed = (bedId) => {
+        BedService.delete(wardId, bedId).then(() => {
+            getBeds(wardId);
+        });
+        ngNotify.set('Bed deleted successfully!','error');
+    }
 
 }]);
