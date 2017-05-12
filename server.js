@@ -1,3 +1,4 @@
+
 const bodyParser = require('body-parser'),
     express = require('express'),
     mongoose = require('mongoose');
@@ -20,11 +21,17 @@ mongoose.Promise = global.Promise;
 
 require('./server/ward/ward.model.js');
 require('./server/bed/bed.model.js');
+require('./server/doctor/doctor.model.js');
+require('./server/prescription/prescription.model.js');
+require('./server/drug/drug.model.js');
+const WardRouter = require('./server/ward/ward.route.js');
+const presRouter = require('./server/prescription/prescription.route.js');
 require('./server/patient/patient.model.js');
 const WardRouter = require('./server/ward/ward.route.js');
 const patientRouter = require('./server/patient/patient.route.js');
 require('./server/doctor/doctor.model.js');
 const DoctorRouter = require('./server/doctor/doctor.route.js');
+const drugRouter = require('./server/drug/drug.route.js');
 
 app.get('/', function(req,res){
     res.sendFile(__dirname + '/public/index.html');
@@ -32,6 +39,8 @@ app.get('/', function(req,res){
 
 app.use('/wards', WardRouter);
 app.use('/doctors',DoctorRouter);
+app.use('/prescriptions', presRouter);
+app.use('/drugs',drugRouter);
 
 app.use('/patients',patientRouter);
 

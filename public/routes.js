@@ -25,11 +25,16 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             controller: 'lineChartController'
         })
         .when('/view4', {
-            templateUrl: 'components/BHT/datatables.html'
+            templateUrl: 'components/BHT/prescription/prescription.html',
+            controller: "prescriptionController"
         })
         .when('/patient', {
             templateUrl: 'components/patient/patient.html',
             controller: 'patientController'
         })
+        .when('/modal',{
+            templateUrl:'components/BHT/prescription/modal.html'
+        })
         .otherwise({redirectTo: '/view1'});
 }]);
+
