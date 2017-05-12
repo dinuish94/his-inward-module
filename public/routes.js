@@ -29,7 +29,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             controller: "prescriptionController"
         })
         .when('/patient', {
-            templateUrl: 'components/patient/patient.html'
+            templateUrl: 'components/patient/patient.html',
+            controller: 'patientController'
         })
         .when('/modal',{
             templateUrl:'components/BHT/prescription/modal.html'
