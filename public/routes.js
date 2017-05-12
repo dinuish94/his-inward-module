@@ -16,7 +16,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/ward/addWard.view.html',
             controller: 'WardController'
         })
-        .when('/beds', {
+        .when('/wards/:wardId/beds', {
             templateUrl: 'components/bed/beds.view.html',
             controller: 'BedController'
         })
@@ -25,10 +25,15 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             controller: 'lineChartController'
         })
         .when('/view4', {
-            templateUrl: 'components/BHT/datatables.html'
+            templateUrl: 'components/BHT/prescription/prescription.html',
+            controller: "prescriptionController"
         })
         .when('/patient', {
-            templateUrl: 'components/patient/patient.html'
+            templateUrl: 'components/patient/patient.html',
+            controller: 'patientController'
+        })
+        .when('/modal',{
+            templateUrl:'components/BHT/prescription/modal.html'
         })
         .when('/addLabTest', {
             templateUrl: 'components/BHT/addLaboratoryTest.view.html',
@@ -43,3 +48,4 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         })
         .otherwise({redirectTo: '/view1'});
 }]);
+

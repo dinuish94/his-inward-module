@@ -5,7 +5,15 @@ var inward = angular.module('inward', [
     'datatables',
     'ngResource',
     'chart.js',
+    'angularUtils.directives.dirPagination',
+    'ui.bootstrap',
     'ngNotify',
     'ngMaterial',
-    'ngMessages'
+    'ngMessages',
+    'oitozero.ngSweetAlert',
+    'xeditable'
 ]);
+
+inward.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});

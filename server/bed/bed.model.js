@@ -11,6 +11,10 @@ const Schema = mongoose.Schema;
 const BedSchema = new Schema({
     type: String,
     added_at: Date,
+    available: {
+        type: Boolean,
+        default: true
+    },
     ward: {
         type: Schema.Types.ObjectId,
         ref: 'Ward'
