@@ -11,6 +11,7 @@ const labSchema = new Schema({
     patientId : String,
     priority : String,
     dueDate : Date,
+    status : String,
     comment: String,
 });
 

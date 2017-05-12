@@ -17,6 +17,7 @@ angular.module('inward').controller('LabTestController',
 
 
         $scope.addLab = (lab) => {
+            lab.status="Pending";
             LabTestService.add(lab).then(() => {
                 getLabTests();
         });
@@ -25,37 +26,27 @@ angular.module('inward').controller('LabTestController',
         };
 
         $scope.deleteLab = (testId) => {
-
             LabTestService.delete(testId).then(() => {
                 getLabTests();
-        });
+            });
             ngNotify.set('Laboratory Test Deleted successfully!','error');
            // setTimeout(function(){ window.location.reload(); }, 3000);
-
         };
 
-        function test(){
-            console.log("fcdsavds");
+        function getLabTestTypes() {
+            LabTestService.getLabTestTypes().then(labTestTypes =>{
+                $scope.labTestTypes = labTestTypes;
+            })
         }
+        getLabTestTypes();
 
 
         $scope.getLab = (testId) => {
             LabTestService.getLab(testId).then(lab => {
             $scope.labEdit = lab;
-        });
-
+            });
         };
 
         // lab test names to load in add new lab schedule modal
-        getLabTestType = () => {
-            LabTestService.getLabTypes().then(labTypes => {
-               // $scope.labNames = labTypes;
-                console.log(labTypes);
-        });
-
-        };
-        getLabTestType();
-
-
 
     }]);
