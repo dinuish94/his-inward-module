@@ -35,6 +35,17 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .when('/modal',{
             templateUrl:'components/BHT/prescription/modal.html'
         })
+        .when('/addLabTest', {
+            templateUrl: 'components/BHT/addLaboratoryTest.view.html',
+            controller: 'LabTestController'
+        })
+        .when('/diabeticChart', {
+            templateUrl: 'components/BHT/diabeticChart.view.html',
+            controller: 'diabeticChartController'
+        })
+        .when('/bhtOptions', {
+            templateUrl: 'components/BHT/bhtOptions.view.html',
+        })
         .otherwise({redirectTo: '/view1'});
 }]);
 

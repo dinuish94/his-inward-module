@@ -19,6 +19,7 @@ app.use('/app/modules',express.static(__dirname + "/bower_components"));
 
 mongoose.Promise = global.Promise;
 
+
 require('./server/ward/ward.model.js');
 require('./server/bed/bed.model.js');
 require('./server/doctor/doctor.model.js');
@@ -33,10 +34,17 @@ require('./server/doctor/doctor.model.js');
 const DoctorRouter = require('./server/doctor/doctor.route.js');
 const drugRouter = require('./server/drug/drug.route.js');
 
+require('./server/BHT/labTest.model.js');
+require('./server/BHT/labTestTypes.model.js');
+const LabRouter = require('./server/BHT/labTest.route.js');
+
+
+
 app.get('/', function(req,res){
     res.sendFile(__dirname + '/public/index.html');
 });
 
+app.use('/labTests', LabRouter);
 app.use('/wards', WardRouter);
 app.use('/doctors',DoctorRouter);
 app.use('/prescriptions', presRouter);
