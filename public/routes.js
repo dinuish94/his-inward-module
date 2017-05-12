@@ -46,6 +46,9 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .when('/bhtOptions', {
             templateUrl: 'components/BHT/bhtOptions.view.html',
         })
+        .when('/viewAvailableTests', {
+            templateUrl: 'components/BHT/labTestTypes.view.html',
+        })
         .otherwise({redirectTo: '/view1'});
 }]);
 

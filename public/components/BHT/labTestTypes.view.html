@@ -26,11 +26,11 @@
                             </thead>
                             <tbody>
                             <tr role="row" ng-repeat="lab in showCase.labTestTypes">
-                                <td  data-toggle="modal" data-target="#testInfo">{{ lab.id }}</td>
+                                <td  data-toggle="modal" data-target="#testInfo">{{ lab.testTypeId }}</td>
                                 <td  data-toggle="modal" data-target="#testInfo">{{ lab.testType }}</td>
                                 <td>
 
-                                    <button type="button" class="btn btn-danger" data-target="" ng-click="deleteLabType(lab.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-danger" data-target="" ng-click="deleteLabType(lab.testTypeId)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </td>
                             </tr>
                             </tbody>

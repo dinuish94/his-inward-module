@@ -23,7 +23,7 @@ Router.get('/', (req, res) => {
     });
 });
 
-Router.get('/labTypes', (req, res) => {
+Router.get('/LabTestTypes', (req, res) => {
     LabTypeModel.find().then(labTypes => {
     res.json(labTypes);
 }).catch(err => {
@@ -31,6 +31,31 @@ Router.get('/labTypes', (req, res) => {
 res.sendStatus(500);
 });
 });
+
+Router.post('/LabTestTypes', (req, res) => {
+    const newLabType = new LabTypeModel(req.body);
+    newLabType.created_at = new Date();
+    newLabType.save().then(labTypes => {
+        res.json(labTypes);
+    }).catch(err => {
+        console.error(err);
+        res.sendStatus(500);
+    });
+});
+
+Router.delete('/LabTestTypes/:id',(req,res) => {
+    LabTypeModel.deleteOne({'id':req.params.id}).then(()=>{
+    res.sendStatus(200);
+}).catch(err => {
+    console.error(err);
+res.sendStatus(500);
+});
+
+});
+
+
+
+
 
 Router.get('/:testId',(req,res) =>  {
     LabModel.findOne({'testId':req.params.testId}).then(lab=>{
