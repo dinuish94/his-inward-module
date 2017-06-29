@@ -10,7 +10,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         // })
         .when('/ward',{
             templateUrl:'components/ward/allWards.view.html',
-            controller: 'WardController'
+            controller: 'WardController'    
         })
         .when('/addWard', {
             templateUrl: 'components/ward/addWard.view.html',
@@ -30,6 +30,10 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         })
         .when('/patient', {
             templateUrl: 'components/patient/patient.html',
+            controller: 'patientController'
+        })
+        .when('/viewPatient', {
+            templateUrl: 'components/patient/viewPatient.html',
             controller: 'patientController'
         })
         .when('/modal',{

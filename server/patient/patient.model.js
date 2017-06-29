@@ -8,8 +8,12 @@ const patientSchema = new Schema({
     age: Number,
     gender:String,
     phoneNumber:String,
-    altrPhoneNumber:String,
-    allergies: String
+    // altrPhoneNumber:String,
+    allergies: String,
+    gName:String,
+    gContactNumber:Number,
+    gRelationship:String,
+    gAddress:String
 });
 
 patientSchema.plugin(AutoIncrement, {inc_field: 'pid'});

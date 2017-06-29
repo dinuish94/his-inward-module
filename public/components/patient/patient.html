@@ -9,12 +9,6 @@
           <div class="section-title">Patient Details</div>
           <div class="section-body">
             <div class="form-group">
-              <label class="col-md-3 control-label">PID</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="">
-              </div>
-            </div>
-            <div class="form-group">
               <label class="col-md-3 control-label">Patient Name</label>
               <div class="col-md-9">
                 <input type="text" class="form-control" placeholder="" ng-model="patient.name">
@@ -50,12 +44,6 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-3 control-label">Alternative Phone Number</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="" ng-model="patient.altrPhoneNumber">
-              </div>
-            </div>
-            <div class="form-group">
               <div class="col-md-3">
                 <label class="control-label">Allergies</label>
                 <p class="control-label-help">( description )</p>
@@ -81,19 +69,19 @@
             <div class="form-group">
               <label class="col-md-3 control-label">Guardian Name</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="">
+                <input type="text" class="form-control" placeholder="" ng-model="patient.gName">
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label">Emergency Contact Number</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="">
+                <input type="text" class="form-control" placeholder="" ng-model="patient.gContactNumber">
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label">Relationship to Patient</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="">
+                <input type="text" class="form-control" placeholder="" ng-model="patient.gRelationship"> 
               </div>
             </div>
             <div class="form-group">
@@ -101,7 +89,7 @@
                 <label class="control-label">Address</label>
               </div>
               <div class="col-md-9">
-                <textarea class="form-control"></textarea>
+                <textarea class="form-control" ng-model="patient.gAddress"></textarea>
               </div>
             </div>
             <!--<div class="form-group">
