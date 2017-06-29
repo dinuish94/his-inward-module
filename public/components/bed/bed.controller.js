@@ -13,6 +13,8 @@ angular.module('inward').controller('BedController',
 
         BedService.getBeds(wardId).then(ward =>{
             vm.beds = ward.beds;
+            $scope.wardName = ward.name;
+            $scope.beds = ward.beds;
         })
     }
     getBeds(wardId);
@@ -29,6 +31,10 @@ angular.module('inward').controller('BedController',
             getBeds(wardId);
         });
         ngNotify.set('Bed deleted successfully!','error');
+    }
+
+    $scope.completedFilter = (object) => {
+        return object.available === true;
     }
 
 }]);

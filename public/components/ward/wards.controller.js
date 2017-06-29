@@ -10,9 +10,14 @@ angular.module('inward').controller('WardController',
 
         WardService.get().then(wards =>{
             vm.wards = wards;
+            $scope.wards = wards;
         })
     }
     getWards();
+
+    $scope.completedFilter = (object) => {
+        return object.available === true;
+    }
     
     $scope.goToAdd = () => {
         $location.path('/addWard');
@@ -57,4 +62,14 @@ angular.module('inward').controller('WardController',
     WardService.getDoctors().then(doctors =>{
         $scope.doctors = doctors;
     })
+
+    $scope.getWard = (id) => {
+        WardService.getWardById(id).then(ward => {
+            $scope.editWard = ward;
+        })
+    }
+
+     $scope.goToAssignPatient = (id) => {
+         $location.path('/assignPatient/'+id);
+     }
 }]);

@@ -10,6 +10,7 @@ angular.module('inward').factory('WardService', ['$http',
             delete: id => $http.delete('/wards/' + id).then(response => response.data),
             getDoctors: () => $http.get('/doctors').then(response => response.data),
             getDoctor: (id) => $http.get('/doctors/'+id).then(response => response.data),
+            getWardById: (id) => $http.get('/wards/'+id).then(response => response.data)
         };
     }
 ])

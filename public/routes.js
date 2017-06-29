@@ -20,6 +20,13 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/bed/beds.view.html',
             controller: 'BedController'
         })
+        .when('/availability', {
+            templateUrl: 'components/ward/availability.view.html',
+            controller: 'WardController'
+        })
+        .when('/assignPatient/:wardId', {
+            templateUrl: 'components/bed/patientBed.view.html'
+        })
         .when('/view3', {
             templateUrl: 'components/BHT/feverChart.html',
             controller: 'lineChartController'
