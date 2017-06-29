@@ -9,7 +9,11 @@ const patientSchema = new Schema({
     gender:String,
     phoneNumber:String,
     altrPhoneNumber:String,
-    allergies: String
+    allergies: String,
+    bed: {
+        type: Schema.Types.ObjectId,
+        ref: 'Bed'
+    }
 });
 
 patientSchema.plugin(AutoIncrement, {inc_field: 'pid'});
