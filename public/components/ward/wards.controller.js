@@ -69,7 +69,17 @@ angular.module('inward').controller('WardController',
         })
     }
 
-     $scope.goToAssignPatient = (id) => {
-         $location.path('/assignPatient/'+id);
-     }
+    $scope.goToAssignPatient = (id) => {
+        $location.path('/assignPatient/'+id);
+    }
+
+    $scope.patientFilter = (object) => {
+        return object.patient != null;
+    }
+
+    $scope.update = (ward) => {
+        WardService.getPatients(ward.id).then(beds => {
+            $scope.beds = beds;
+        })
+    }
 }]);

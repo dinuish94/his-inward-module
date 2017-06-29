@@ -32,6 +32,7 @@ require('./server/BHT/labTestTypes.model.js');
 const WardRouter = require('./server/ward/ward.route.js');
 const presRouter = require('./server/prescription/prescription.route.js');
 const patientRouter = require('./server/patient/patient.route.js');
+const BedRouter = require('./server/bed/bed.route.js');
 const DoctorRouter = require('./server/doctor/doctor.route.js');
 const drugRouter = require('./server/drug/drug.route.js');
 const LabRouter = require('./server/BHT/labTest.route.js');
@@ -45,8 +46,8 @@ app.use('/wards', WardRouter);
 app.use('/doctors',DoctorRouter);
 app.use('/prescriptions', presRouter);
 app.use('/drugs',drugRouter);
-
 app.use('/patients',patientRouter);
+app.use('/beds', BedRouter);
 
 app.get('/app/*', function(req,res){
     res.sendFile(__dirname + '/public/index.html');

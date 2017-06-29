@@ -25,7 +25,12 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             controller: 'WardController'
         })
         .when('/assignPatient/:wardId', {
-            templateUrl: 'components/bed/patientBed.view.html'
+            templateUrl: 'components/bed/patientBed.view.html',
+            controller: 'BedController'
+        })
+        .when('/allocations', {
+            templateUrl: 'components/bed/allocations.view.html',
+            controller: 'WardController'
         })
         .when('/view3', {
             templateUrl: 'components/BHT/feverChart.html',
