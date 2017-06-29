@@ -11,12 +11,9 @@ patient.controller('patientController', function(patientService, sharedPropertie
     }
 
     $scope.addPatient = (data) => {
-        console.log(data);
         patientService.add(data).then(data=>{
             ngNotify.set('successful','success');
-        })
-        sharedProperties.setPid(pid).then(function(pid){
-            console.log("dta is:"+pid);
+            sharedProperties.setPid(data.pid);
         })
     }
 

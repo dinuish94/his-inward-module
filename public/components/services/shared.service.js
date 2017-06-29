@@ -10,7 +10,7 @@ angular.module('inward')
                 wardNo= value;
             },
             setPid: function(pid) {
-                patientId= value;
+                patientId= pid;
             },
             getPid: function () {
                 return patientId;
