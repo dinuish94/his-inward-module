@@ -16,40 +16,40 @@
             </div>-->
                 <form>
                     <div>
-                        <label class="col-md-3 control-label">Patient</label>
-                        <input type="text" value="{{selectedPatient.name}}" /><br>
+                        <label class="col-md-1 control-label">Patient</label>
+                        <input type="text" class="form-control" value="{{selectedPatient.name}}" /><br>
                     </div>
                     <div>
-                        <label class="col-md-2 control-label">Age</label>
-                        <input type="text" value="{{selectedPatient.age}}" /><br>
+                        <label class="col-md-1 control-label">Age</label>
+                        <input type="text" class="form-control" value="{{selectedPatient.age}}" /><br>
                     </div>
                     <div>
-                        <label class="col-md-2 control-label">Gender</label>
-                        <input type="text" value="{{selectedPatient.gender}}" /><br>
+                        <label class="col-md-1 control-label">Gender</label>
+                        <input type="text" class="form-control" value="{{selectedPatient.gender}}" /><br>
                     </div>
                     <div>
-                        <label class="col-md-2 control-label">Phone Number</label>
-                        <input type="text" value="{{selectedPatient.phoneNumber}}" /><br>
+                        <label class="col-md-1 control-label">PhoneNo</label>
+                        <input type="text" class="form-control" value="{{selectedPatient.phoneNumber}}" /><br>
                     </div>
                     <div>
-                        <label class="col-md-2 control-label">Allergies</label>
-                        <input type="text" value="{{selectedPatient.allergies}}" /><br>
+                        <label class="col-md-1 control-label">Allergies</label>
+                        <input type="text" class="form-control" value="{{selectedPatient.allergies}}" /><br>
                     </div>
                     <div>
-                        <label class="col-md-2 control-label">GName</label>
-                        <input type="text" value="{{selectedPatient.gName}}" /><br>
+                        <label class="col-md-1 control-label">GName</label>
+                        <input type="text" class="form-control" value="{{selectedPatient.gName}}" /><br>
                     </div>
                     <div>
-                        <label class="col-md-2 control-label">GContactNumber</label>
-                        <input type="text" value="{{selectedPatient.gContactNumber}}" /><br>
+                        <label class="col-md-1 control-label">GContactNumber</label>
+                        <input type="text" class="form-control" value="{{selectedPatient.gContactNumber}}" /><br>
                     </div>
                     <div>
-                        <label class="col-md-2 control-label">GRelationship</label>
-                        <input type="text" value="{{selectedPatient.gRelationship}}" /><br>
+                        <label class="col-md-1 control-label">GRelationship</label>
+                        <input type="text" class="form-control" value="{{selectedPatient.gRelationship}}" /><br>
                     </div>
                     <div>
-                        <label class="col-md-2 control-label">GAddress</label>
-                        <input type="text" value="{{selectedPatient.gAddress}}" /><br>
+                        <label class="col-md-1 control-label">GAddress</label>
+                        <input type="text" class="form-control" value="{{selectedPatient.gAddress}}" /><br>
                     </div>
             </div>
             <div class="ngdialog-buttons">
@@ -61,7 +61,7 @@
 
         <div class="card-body" ng-controller="patientController as showCase">
 
-            <button type="button" class="btn btn-primary" ng-click="goToAdd()">Add new ward</button>
+            <button type="button" class="btn btn-primary" ng-click="goToAdd()">Add new Patient</button>
             <table datatable="ng" class="datatable table table-striped primary dataTable no-footer" cellspacing="0" width="100%" id="DataTables_Table_0"
                 role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
                 <thead>

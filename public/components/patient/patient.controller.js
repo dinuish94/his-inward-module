@@ -14,6 +14,7 @@ patient.controller('patientController', function(patientService, sharedPropertie
         data.status = 'in';
         patientService.add(data).then(data=>{
             ngNotify.set('successful','success');
+             data = {};
             sharedProperties.setPid(data.pid);
         })
     }
@@ -24,13 +25,13 @@ patient.controller('patientController', function(patientService, sharedPropertie
 
         ngDialog.openConfirm({
             template: 'templateUpdate',
-            className: 'ngdialog-theme-default dialogwidth800',
+            className: 'ngdialog-theme-default dialogwidth1000',
             scope: $scope
             // appendClassName: 'ngdialog-custom',
             // width:'800px'
         }).then(
         function (value) {
-
+            //patientService.update()
             console.log("confirm");
         }, function (reason) {
             console.log('Modal promise rejected. Reason: ', reason);

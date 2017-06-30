@@ -63,7 +63,7 @@ Router.get('/:id', (req, res) => {
     });
 });
 
-Router.put('/:id',(req,res)=>{
+Router.put('/updatePatient/:id',(req,res)=>{
     console.log("the id is "+req.params.id);
     console.log('data are');
     console.log(req.body);
