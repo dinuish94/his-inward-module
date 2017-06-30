@@ -22,6 +22,8 @@ app.use('/app/modules',express.static(__dirname + "/bower_components"));
 mongoose.Promise = global.Promise;
 
 require('./server/ward/ward.model.js');
+require('./server/ward/internalTransfer.model.js');
+require('./server/ward/externalTransfer.model.js');
 require('./server/bed/bed.model.js');
 require('./server/doctor/doctor.model.js');
 require('./server/prescription/prescription.model.js');
@@ -73,6 +75,8 @@ app.get('/app/*', function(req,res){
 app.listen(3000);
 
 console.log("App is running on port 3000");
+
+module.exports = app;
 
 
 
