@@ -3,6 +3,7 @@
 
 const express = require('express'),
     mongoose = require('mongoose');
+const moment=require('moment');
 
 mongoose.set('debug', false);
 
@@ -45,6 +46,7 @@ Router.put('/:id', (req, res) => {
         console.log(reponse.data);
         var patient = new patientModel(reponse);
         patient.status = "out";
+        patient.dischargeDate=moment().format('MM/DD/YYYY');
         patient.save().then(patients => {
             res.json(patients);
         }).catch(err => {
