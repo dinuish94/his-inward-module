@@ -13,7 +13,7 @@ const patientSchema = new Schema({
     labTests : [{
         type : Schema.Types.ObjectId,
         ref : 'Lab'
-    }]
+    }],
     bed: {
         type: Schema.Types.ObjectId,
         ref: 'Bed'
