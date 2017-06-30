@@ -11,7 +11,8 @@ var inward = angular.module('inward', [
     'ngMaterial',
     'ngMessages',
     'oitozero.ngSweetAlert',
-    'xeditable'
+    'xeditable',
+    'ngDialog'
 ]);
 
 inward.run(function(editableOptions) {
