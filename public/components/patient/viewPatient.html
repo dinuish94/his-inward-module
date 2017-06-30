@@ -1,10 +1,9 @@
 <div class="col-xs-12">
-    
+
     <div class="card">
 
-        
 
-          <script type="text/ng-template" id="templateUpdate">
+        <script type="text/ng-template" id="templateUpdate">
             <div class="ngdialog-message">
                 <h3>Do you want to remove this ?</h3>
                 <p>All data will be lost.</p>
@@ -15,23 +14,43 @@
                 <input type="text" class="form-control" placeholder="" ng-model="patient.name">
               </div>
             </div>-->
-            <form>
-                <div>
-                <label class="col-md-2 control-label">Patient Name</label>
-                <input type="text" value="{{selectedPatient.name}}"/> 
-                </div>
-                <div>
-                <label class="col-md-2 control-label">Age</label>
-                <input type="text" value="{{selectedPatient.age}}"/> 
-                </div>
-                <input type="text" value="{{selectedPatient.gender}}"/><br>
-                <input type="text" value="{{selectedPatient.phoneNumber}}"/><br>
-                <input type="text" value="{{selectedPatient.allergies}}"/><br>
-                <input type="text" value="{{selectedPatient.gName}}"/><br>
-                <input type="text" value="{{selectedPatient.gContactNumber}}"/><br>
-                <input type="text" value="{{selectedPatient.gRelationship}}"/><br>
-                <input type="text" value="{{selectedPatient.gAddress}}"/><br>
-                
+                <form>
+                    <div>
+                        <label class="col-md-3 control-label">Patient</label>
+                        <input type="text" value="{{selectedPatient.name}}" /><br>
+                    </div>
+                    <div>
+                        <label class="col-md-2 control-label">Age</label>
+                        <input type="text" value="{{selectedPatient.age}}" /><br>
+                    </div>
+                    <div>
+                        <label class="col-md-2 control-label">Gender</label>
+                        <input type="text" value="{{selectedPatient.gender}}" /><br>
+                    </div>
+                    <div>
+                        <label class="col-md-2 control-label">Phone Number</label>
+                        <input type="text" value="{{selectedPatient.phoneNumber}}" /><br>
+                    </div>
+                    <div>
+                        <label class="col-md-2 control-label">Allergies</label>
+                        <input type="text" value="{{selectedPatient.allergies}}" /><br>
+                    </div>
+                    <div>
+                        <label class="col-md-2 control-label">GName</label>
+                        <input type="text" value="{{selectedPatient.gName}}" /><br>
+                    </div>
+                    <div>
+                        <label class="col-md-2 control-label">GContactNumber</label>
+                        <input type="text" value="{{selectedPatient.gContactNumber}}" /><br>
+                    </div>
+                    <div>
+                        <label class="col-md-2 control-label">GRelationship</label>
+                        <input type="text" value="{{selectedPatient.gRelationship}}" /><br>
+                    </div>
+                    <div>
+                        <label class="col-md-2 control-label">GAddress</label>
+                        <input type="text" value="{{selectedPatient.gAddress}}" /><br>
+                    </div>
             </div>
             <div class="ngdialog-buttons">
                 <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('OK')">Confirm</button>
@@ -40,19 +59,21 @@
             </form>
         </script>
 
-        
         <div class="card-body" ng-controller="patientController as showCase">
 
             <button type="button" class="btn btn-primary" ng-click="goToAdd()">Add new ward</button>
-            <table datatable="ng" class="datatable table table-striped primary dataTable no-footer" cellspacing="0" width="100%" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
+            <table datatable="ng" class="datatable table table-striped primary dataTable no-footer" cellspacing="0" width="100%" id="DataTables_Table_0"
+                role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
                 <thead>
-                <tr role="row">
-                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">ID</th>
-                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Patient Name</th>
-                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Allergies</th>
-                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Gender</th>
-                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Gender</th>
-                    <!--<th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Phone Number</th>
+                    <tr role="row">
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">ID</th>
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Patient Name</th>
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Gender</th>
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Age</th>
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Allergies</th>
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Update</th>
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Discharge</th>
+                        <!--<th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Phone Number</th>
                     <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 105px;">Gurdian Name</th>
                     <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 105px;">Gurdian contactNo.</th>
                     <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">gRelationship</th>
@@ -61,21 +82,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tr role="row" ng-repeat="patient in showCase.patients">
-                    <td>{{ patient.pid }}</td>
-                    <td>{{ patient.name }}</td>
-                    <td>{{ patient.allergies }}</td>
-                    <!--<td>{{ patient.age }}</td>
-                    <td>{{ patient.gender }}</td>
+                    <tr role="row" ng-repeat="patient in showCase.patients">
+                        <td>{{ patient.pid }}</td>
+                        <td>{{ patient.name }}</td>
+                        <td>{{ patient.gender }}</td>
+                        <td>{{ patient.age }}</td>
+                        <td>{{ patient.allergies }}</td>
+                        <!--
                     <td>{{ patient.phoneNumber }}</td>
                     <td>{{ patient.gName }}</td>
                     <td>{{ patient.gContactNumber }}</td>
                     <td>{{ patient.gRelationship }}</td>
                     <td>{{ patient.gAddress }}</td>-->
-                    <!--<td><button type="button" class="btn btn-danger" ng-click="deletePatient(patient.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>-->
-                    <td><button type="button" class="btn btn-danger" ng-click="clickToOpen(patient)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-                    <td><button type="button" class="btn btn-success" ng-click="deletePatient(patient.pid)"><i class="fa fa-bed" aria-hidden="true"></i></button></td>
-                </tr>
+                        <!--<td><button type="button" class="btn btn-danger" ng-click="deletePatient(patient.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>-->
+                        <td><button type="button" class="btn btn-success" ng-click="clickToOpen(patient)"><i class="fa fa-bed" aria-hidden="true"></i></button></td>
+                        <td><button type="button" class="btn btn-danger" ng-click="dischargePatient(patient.pid)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

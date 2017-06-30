@@ -30,6 +30,7 @@ patient.controller('patientController', function(patientService, sharedPropertie
             // width:'800px'
         }).then(
         function (value) {
+
             console.log("confirm");
         }, function (reason) {
             console.log('Modal promise rejected. Reason: ', reason);
@@ -49,7 +50,7 @@ patient.controller('patientController', function(patientService, sharedPropertie
         $location.path('/viewPatient');
     }
 
-    $scope.deletePatient = (id) =>{
+    $scope.dischargePatient = (id) =>{
         console.log('hjhjhjhjahsjhajsh')
         "use strict";
         SweetAlert.swal({
