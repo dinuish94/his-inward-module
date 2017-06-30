@@ -53,14 +53,6 @@ Router.put('/:id', (req, res) => {
         });
     });
 });
-// Router.get('/:id', (req, res) => {
-//     patientModel.findOne({'id':req.params.id}).then(patient => {
-//         res.json(patient || {});
-//     }).catch(err => {
-//         console.error(err);
-//         res.sendStatus(500);
-//     });
-// });
 
 Router.get('/:id', (req, res) => {
     patientModel.findById(req.params.id).populate('labTests').populate('operations').populate({ 
@@ -77,12 +69,15 @@ Router.get('/:id', (req, res) => {
     });
 });
 
-Router.put('/updatePatient/:id',(req,res)=>{
-    console.log("the id is "+req.params.id);
-    console.log('data are');
-    console.log(req.body);
-    patientModel.update(req.params.id,req.body).then(patients=>{
-        res.send(patients);
+Router.put('/updatePatient/:id', (req, res) => {
+    const data = req.body;
+    //delete data._id;
+    const query = {"pid":req.params.id};
+    patientModel.findOneAndUpdate(query, {$set: data}).then(dataDb => {
+        res.status(201).json({success:true});
+    }).catch(err => {
+        console.error(err);
+        res.sendStatus(500);
     });
 });
 
