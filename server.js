@@ -7,7 +7,7 @@ const app =  express();
 app.use(bodyParser.json());
 
 
-mongoose.connect('localhost:27017/wardss', err => {
+mongoose.connect('localhost:27017/wards', err => {
     if (err) {
         console.log(err);
         process.exit(1);
