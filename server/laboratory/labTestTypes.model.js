@@ -6,7 +6,8 @@ const AutoIncrement = require('mongoose-sequence');
 const Schema = mongoose.Schema;
 
 const labTestTypeSchema = new Schema({
-    testType: String
+    testType: String,
+    activeFlag : Number
 });
 
 labTestTypeSchema.plugin(AutoIncrement, {inc_field: 'testTypeId'});

@@ -1,0 +1,27 @@
+
+<div class="row">
+<table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="patient in patients">
+                <td>{{patient._id}}</td>
+                <td>{{patient.name}}</td>
+
+                <td><a ng-href="/#!/bht/{{patient._id}}"><button class="btn btn-warning" >+</button> </a></td>
+
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-warning" ng-click="downloadPDF()">PDF</button>
+</div>
+
+<div id="exportthis">
+    hellooooooo
+</div>

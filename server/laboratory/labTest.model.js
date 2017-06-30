@@ -13,6 +13,12 @@ const labSchema = new Schema({
     dueDate : Date,
     status : String,
     comment: String,
+    remarks:String,
+    activeFlag:Number,
+    patient : {
+        type : Schema.Types.ObjectId,
+        ref : 'Patient'
+    }
 });
 
 labSchema.plugin(AutoIncrement, {inc_field: 'testId'});
