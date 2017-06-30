@@ -28,8 +28,24 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/bed/patientBed.view.html',
             controller: 'BedController'
         })
+        .when('/assignPatient/:wardId/beds/:bedId', {
+            templateUrl: 'components/bed/assignPatient.view.html',
+            controller: 'BedController'
+        })
         .when('/allocations', {
             templateUrl: 'components/bed/allocations.view.html',
+            controller: 'WardController'
+        })
+        .when('/transfers', {
+            templateUrl: 'components/bed/transfer.view.html',
+            controller: 'WardController'
+        })
+        .when('/transfers#profile', {
+            templateUrl: 'components/bed/internalTransfer.view.html',
+            controller: 'WardController'
+        })
+        .when('/externalTransfers', {
+            templateUrl: 'components/bed/externalTransfer.view.html',
             controller: 'WardController'
         })
         .when('/view3', {

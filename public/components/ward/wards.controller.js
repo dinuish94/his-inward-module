@@ -78,8 +78,16 @@ angular.module('inward').controller('WardController',
     }
 
     $scope.update = (ward) => {
+        $scope.wardName = ward.name;
+        $scope.wardDesc = ward.description;
+        console.log(ward);
         WardService.getPatients(ward.id).then(beds => {
             $scope.beds = beds;
         })
+    }
+
+    $scope.updateBeds = (ward) => {
+        $scope.selectedWardBeds = ward.beds;
+        console.log(ward);
     }
 }]);

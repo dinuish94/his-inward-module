@@ -1,0 +1,172 @@
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="section">
+                <div class="section-body">
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a data-target="#home" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="false">Internal Transfer</a></li>
+                            <li role="presentation" class=""><a data-target="#profile" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">External Transfer</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <form class="form form-horizontal">
+                                            <div class="section">
+                                                <div class="section-body">
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Patient ID: </label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="patient.id">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Transfer To:</label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <select ng-options="ward as ward.name for ward in wards" class="form-control" placeholder=""
+                                                            ng-model="patient.to" ng-change="updateBeds(patient.to)">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Bed:</label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control" type="text" class="form-control" placeholder="" ng-model="patient.newBed">
+                                                                <option ng-repeat="bed in selectedWardBeds" value="{{bed.bId}}"> {{bed.bId}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Reason for transfer:</label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="ward.description">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Transfer Date & Time</label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="datetime-local" min="0" class="form-control" placeholder="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Remarks</label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <textarea class="form-control" placeholder=""></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-footer">
+                                                <div class="form-group">
+                                                    <div class="col-md-9 col-md-offset-3">
+                                                        <button type="submit" class="btn btn-success" ng-click="addWard(ward)">Transfer</button>
+                                                        <button type="button" class="btn btn-default">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="profile">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <form class="form form-horizontal">
+                                            <div class="section">
+                                                <div class="section-body">
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Patient ID: </label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="ward.description">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Transfer to:</label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="ward.description">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Transfer from:</label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="ward.description">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Reason for transfer:</label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="ward.description">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Transfer Date & Time</label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="datetime-local" min="0" class="form-control" placeholder="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label">Remarks</label>
+                                                            <p class="control-label-help"></p>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <textarea class="form-control" placeholder=""></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-footer">
+                                                <div class="form-group">
+                                                    <div class="col-md-9 col-md-offset-3">
+                                                        <button type="submit" class="btn btn-success" ng-click="addWard(ward)">Transfer</button>
+                                                        <button type="button" class="btn btn-default">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
