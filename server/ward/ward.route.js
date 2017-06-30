@@ -11,7 +11,9 @@ mongoose.set('debug', false);
 const WardModel = mongoose.model('Ward'),
     BedModel = mongoose.model('Bed'),
     PatientModel = mongoose.model('Patient'),
-    DoctorModel = mongoose.model('Doctor');
+    DoctorModel = mongoose.model('Doctor'),
+    ITransferModel = mongoose.model('ITransfer'),
+    ETransferModel = mongoose.model('ETransfer');
 
 const Router = express.Router();
 
@@ -118,5 +120,38 @@ Router.get('/:id/beds', (req, res) => {
         res.sendStatus(500);
     });
 });
+
+/**
+ * Add an Internal Transfer
+ * Allocate new bed and make the current bed available
+ */
+Router.post('/itransfers', (req,res) => {
+    let transfer = new ITransferModel(req.body);
+    transfer.save().then(transfer => {
+        PatientModel.findOne({'pid':req.body.patientId}).then(patient => {
+            return BedModel.findOneAndUpdate({'_id':patient.bed},{$set: {"available": true, "patient":null}});
+        }).then(() => {
+            PatientModel.findOne({'pid':req.body.patientId}).then(patient => {
+                return BedModel.findOneAndUpdate({'bId':req.body.toBed},{$set: {"patient": patient._id, "available":false }});
+            }).then( bed => {
+                return PatientModel.findOneAndUpdate({'pid':req.body.patientId},{$set: {"bed": bed._id }})
+            }).then( patient => {
+                return PatientModel.findById(patient._id).populate('bed');
+            }).then( patient => {
+                res.json(patient);
+            })
+        })
+    }) 
+})
+
+/**
+ * Add an External Transfer
+ */
+Router.post('/etransfers', (req,res) => {
+    let transfer = new ETransferModel(req.body);
+    transfer.save().then(transfer => {
+        res.json(transfer);
+    }) 
+})
 
 module.exports = Router;

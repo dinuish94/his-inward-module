@@ -9,6 +9,7 @@ angular.module('inward').controller('BedController',
     let wardId = $routeParams.wardId;
     $scope.id = wardId;
 
+    // Retrieve all beds
     function getBeds(wardId) {
 
         BedService.getBeds(wardId).then(ward =>{
@@ -20,6 +21,8 @@ angular.module('inward').controller('BedController',
     if(wardId!= undefined){
         getBeds(wardId);
     }
+
+    // Add new bed
     $scope.addBed = (bed) => {
         BedService.add(wardId, bed).then(() => {
             getBeds(wardId);
@@ -28,6 +31,7 @@ angular.module('inward').controller('BedController',
         $route.reload();
     }
 
+    // Delete bed
     $scope.deleteBed = (bedId) => {
         BedService.delete(wardId, bedId).then(() => {
             getBeds(wardId);
@@ -35,25 +39,21 @@ angular.module('inward').controller('BedController',
         ngNotify.set('Bed deleted successfully!','error');
     }
 
+    // Filters the available beds
     $scope.completedFilter = (object) => {
         return object.available === true;
     }
 
+    // Retrieves bed by ID
     $scope.getBed = (bedId) => {
         $location.path('/assignPatient/'+$scope.id+'/beds/'+bedId);
-         
-        // BedService.getBedById(id).then( bed => {
-        //     // $scope.thisBed = bed.bId;
-        //     // $scope.patientBed.bedId = bed.bId;
-            
-        // })
     }
 
     $scope.patientBed = {};
     $scope.patientBed.bedId = Number($routeParams.bedId);
 
+    // Assigns a patient to a bed
     $scope.assignPatient = (patientBed) => {
-        console.log(patientBed);
         BedService.assignPatient(patientBed,patientBed.bedId).then(patient => {
             console.log(patient);
             ngNotify.set('Patient assigned!','success')
