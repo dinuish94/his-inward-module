@@ -24,10 +24,7 @@ Router.get('/', (req, res) => {
 });
 
 Router.post('/', (req, res) => {
-    var pres = req.body;
-    console.log(pres);
-    const newPresc = new prescriptionModel(pres);
-    newPresc.created_at = new Date();
+    const newPresc = new prescriptionModel(req.body);
     newPresc.save().then(prescription => {
         res.json(prescription);
     }).catch(err => {
@@ -42,6 +39,14 @@ Router.put('/:id',(req,res)=>{
     console.log(req.body);
     prescriptionModel.update(req.params.id,req.body).then(prescription=>{
         res.send(prescription);
+    });
+});
+
+Router.delete('/:id',(req,res)=>{
+    console.log(req.params);
+    prescriptionModel.deleteOne({'presId':req.params.id}).then(()=>{
+        console.log("the record is deleted");
+        res.sendStatus(200);
     });
 });
 
