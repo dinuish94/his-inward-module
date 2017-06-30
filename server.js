@@ -28,8 +28,6 @@ require('./server/prescription/prescription.model.js');
 require('./server/drug/drug.model.js');
 require('./server/patient/patient.model.js');
 require('./server/doctor/doctor.model.js');
-require('./server/BHT/labTest.model.js');
-require('./server/BHT/labTestTypes.model.js');
 require('./server/food/food.model.js');
 require('./server/diet/diet.model.js');
 require('./server/laboratory/labTest.model.js');
