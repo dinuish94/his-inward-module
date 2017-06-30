@@ -7,6 +7,7 @@ const patientSchema = new Schema({
     name: String,
     age: Number,
     gender:String,
+    admitDate:Date,
     phoneNumber:String,
     allergies: String,
     gName:String,
@@ -14,7 +15,6 @@ const patientSchema = new Schema({
     gRelationship:String,
     gAddress:String,
     status:String,
-    altrPhoneNumber:String,
     labTests : [{
         type : Schema.Types.ObjectId,
         ref : 'Lab'

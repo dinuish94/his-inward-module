@@ -66,9 +66,7 @@ Router.get('/:id', (req, res) => {
 
 Router.put('/updatePatient/:id', (req, res) => {
     const data = req.body;
-    console.log("data is:");
     //delete data._id;
-   // const dataId = req.params.id;
     const query = {"pid":req.params.id};
     patientModel.findOneAndUpdate(query, {$set: data}).then(dataDb => {
         res.status(201).json({success:true});

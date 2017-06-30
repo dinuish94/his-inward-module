@@ -1,37 +1,31 @@
 var patient = angular.module('inward');
 
 patient.controller('patientController', function(patientService, sharedProperties, $location, $scope, ngNotify, $mdDialog,SweetAlert, ngDialog ) {
-// patient.controller('patientController',['patientService','sharedProperties','$location', '$scope', 'ngNotify','$mdDialog','ngDialog','SweetAlert', 'ngDialog', 
-// function(patientService,sharedProperties,$location, $scope, ngNotify, $mdDialog, SweetAlert, ngDialog) {
-    console.log('asjjahfijsdfj');
+
     var vm=this;
 
     $scope.show = function(){
-        console.log("du da da");
+        console.log("inside!!");
     }
 
     $scope.addPatient = (data) => {
         data.status = 'in';
         patientService.add(data).then(data=>{
-            ngNotify.set('successful','success');
-             data = {};
+            data = {};
+            ngNotify.set('Patient Add Successfully!','success');
             sharedProperties.setPid(data.pid);
         })
     }
 
     $scope.clickToOpen = function (patient) {
-        console.log("click");
         $scope.selectedPatient = angular.copy(patient);
 
         ngDialog.openConfirm({
             template: 'templateUpdate',
             className: 'ngdialog-theme-default dialogwidth1000',
             scope: $scope
-            // appendClassName: 'ngdialog-custom',
-            // width:'800px'
         }).then(
         function (value) {
-            //patientService.update()
             console.log("confirm");
         }, function (reason) {
             console.log('Modal promise rejected. Reason: ', reason);
@@ -41,17 +35,15 @@ patient.controller('patientController', function(patientService, sharedPropertie
 
 
 $scope.updatePatient = function (id,patient) {
-        console.log("sdsdsd"+id);
         console.log(patient);
         patientService.update(id,patient).then(function (data) {
             console.log("sdsdsd1");
             if(data.success){
-                console.log("sdsdsd2");
-                alert("Successfully updated");
+                alert("Successfully updated!");
                 getPatients();
 
             }else{
-                alert("Error");
+                alert("Error!");
             }
 
         })
@@ -65,7 +57,7 @@ $scope.updatePatient = function (id,patient) {
 
     getPatients();
     
-    $scope.goToAdd = () => {
+    $scope.navigatePatientRegi = () => {
         $location.path('/viewPatient');
     }
 
@@ -73,12 +65,12 @@ $scope.updatePatient = function (id,patient) {
         console.log('hjhjhjhjahsjhajsh')
         "use strict";
         SweetAlert.swal({
-            title: "Are you sure you want to Discharged?", 
-            text: "You will not be able to recover this record!", 
+            title: "Are you sure discharge this patient?", 
+            text: "Patient will be discharged!", 
             type: "warning", 
             showCancelButton: true, 
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Discharged",
+            confirmButtonText: "Discharged!",
             closeOnConfirm: false,
             closeOnCancel: true
         }, 
