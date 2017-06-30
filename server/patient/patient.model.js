@@ -15,7 +15,6 @@ const patientSchema = new Schema({
     gAddress:String,
     status:String,
     altrPhoneNumber:String,
-    allergies: String,
     labTests : [{
         type : Schema.Types.ObjectId,
         ref : 'Lab'
