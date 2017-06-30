@@ -39,11 +39,18 @@ angular.module('inward').controller('BedController',
         return object.available === true;
     }
 
-    $scope.getBed = (id) => {
-        BedService.getBedById(id).then( bed => {
-            $scope.patientBed.bedId = bed.bId;
-        })
+    $scope.getBed = (bedId) => {
+        $location.path('/assignPatient/'+$scope.id+'/beds/'+bedId);
+         
+        // BedService.getBedById(id).then( bed => {
+        //     // $scope.thisBed = bed.bId;
+        //     // $scope.patientBed.bedId = bed.bId;
+            
+        // })
     }
+
+    $scope.patientBed = {};
+    $scope.patientBed.bedId = Number($routeParams.bedId);
 
     $scope.assignPatient = (patientBed) => {
         console.log(patientBed);

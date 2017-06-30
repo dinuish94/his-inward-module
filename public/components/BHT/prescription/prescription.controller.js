@@ -7,9 +7,7 @@ angular.module('inward').controller('prescriptionController', ['$scope', 'prescr
 
     function getPres() {
         prescriptionService.get().then(prescriptions => {
-            console.log(prescriptions);
             $scope.prescriptions = prescriptions;
-            console.log("dum dum");
         });
     }
 
@@ -27,8 +25,17 @@ angular.module('inward').controller('prescriptionController', ['$scope', 'prescr
         ngNotify.set('Prescription added successfully!', 'success');
     };
 
+    $scope.removePres = (index) => {
+        prescriptionService.delete(index).then(()=>{
+            getPres();
+            console.log("kashif");
+            ngNotify.set('Prescription deleted successfully!', 'danger');
+        });
+        
+    }
+
     $scope.saveUser = function (data, id) {
-        console.log(data);
+        console.log("data");
         prescriptionService.update(id, data).then((updatePres) => {
             getPres();
         });

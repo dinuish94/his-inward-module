@@ -1,8 +1,8 @@
-<div ng-controller="prescriptionController">
+<div>
     <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            Prescriptions
+            Diets
         </div>
         <div class="card-body no-padding">
             <div class="row" style="padding-top:15px">
@@ -24,21 +24,21 @@
                         <tr>
                             <th>
                                 <a href="" ng-click="sortType = 'drugName'; sortReverse = !sortReverse">
-                                    Drug
+                                    Food
                                     <span ng-show="sortType == 'drugName' && !sortReverse" class="fa fa-caret-down"></span>
                                     <span ng-show="sortType == 'drugName' && sortReverse" class="fa fa-caret-up"></span>
                                 </a>
                             </th>
                             <th>
                                 <a href="" ng-click="sortType = 'dosage'; sortReverse = !sortReverse">
-                                    Dosage
+                                    Meal
                                     <span ng-show="sortType == 'dosage' && !sortReverse" class="fa fa-caret-down"></span>
                                     <span ng-show="sortType == 'dosage' && sortReverse" class="fa fa-caret-up"></span>
                                 </a>
                             </th>
                             <th>
                                 <a href="" ng-click="sortType = 'frequency'; sortReverse = !sortReverse">
-                                    Frequency
+                                    Quantity
                                     <span ng-show="sortType == 'frequency' && !sortReverse" class="fa fa-caret-down"></span>
                                     <span ng-show="sortType == 'frequency' && sortReverse" class="fa fa-caret-up"></span>
                                 </a>
@@ -47,27 +47,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr dir-paginate="prescription in prescriptions | orderBy:sortType:sortReverse | filter:searchFish|itemsPerPage:5">
-                            <td>{{prescription.drug[0].drugName}}</td>
-                            <td><span editable-text="prescription.dosage" e-name="dosage" e-form="rowform">{{ prescription.dosage || 'empty' }}</span></td>
-                            <td><span class="badge badge-success badge-icon" editable-text="prescription.frequency" e-name="frequency"
-                                    e-form="rowform"><i class="fa fa-check" aria-hidden="true"></i><span>{{prescription.frequency || 'empty'}}</span></td>
+                        <tr dir-paginate="diet in diets | orderBy:sortType:sortReverse | filter:searchFish|itemsPerPage:5">
+                            <td>{{diet.food[0].name}}</td>
+                            <td><span editable-text="diet.meal" e-name="meal" e-form="rowform">{{ diet.meal || 'empty' }}</span></td>
+                            <td><span editable-text="diet.quantity" e-name="quantity"
+                                    e-form="rowform"><span>{{diet.quantity || 'empty'}}</span></td>
                             <td style="padding-top:5px;padding-bottom:0%">
-                                <form editable-form name="rowform" onbeforesave="saveUser($data, prescription.presId)" ng-show="rowform.$visible" class="form-buttons form-inline"
+                                <form editable-form name="rowform" onbeforesave="updateDiet($data, diet.dietId)" ng-show="rowform.$visible" class="form-buttons form-inline"
                                     shown="inserted == prescriptions">
                                     <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary btn-sm">save</button>
                                     <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default btn-sm">cancel</button>
                                 </form>
                                 <div class="buttons" ng-show="!rowform.$visible">
                                     <button type="button" class="btn btn-primary btn-sm" ng-click="rowform.$show()">edit</button>
-                                    <button type="button" class="btn btn-danger btn-sm" ng-click="removePres(prescription.presId)">delete</button>
+                                    <button type="button" class="btn btn-danger btn-sm" ng-click="removeDiet(diet.dietId)">delete</button>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Prescription</button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Diets</button></td>
                             <td></td>
                             <td></td>
                             <td>
@@ -81,17 +81,17 @@
     </div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog">
-            <div class="modal-content" ng-controller="drugController">
+        <div class="modal-dialog" style="margin-left:-15%">
+            <div class="modal-content" ng-controller="foodController">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Add Card</h4>
+                    <h4 class="modal-title">Add Diet</h4>
                 </div>
                 <form name="prescriptionForm">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="drug">Drug</label>
-                            <input type="text" id="drug" name="drug" ng-change="onedit()" class="form-control" ng-model="pres.drug" uib-typeahead="drug as drug.drugName for drug in drugs | filter:$viewValue | limitTo:8"
+                            <label for="food">Food</label>
+                            <input type="text" id="food" name="food" ng-change="onedit()" class="form-control" ng-model="diet.food" uib-typeahead="food as food.name for food in foods | filter:$viewValue | limitTo:8"
                                 typeahead-loading="loadingLocations" typeahead-no-results="noResults" required>
                             <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
                             <div ng-show="noResults" class="alert alert-danger" role="alert">
@@ -99,20 +99,20 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="dosage">Dosage</label>
-                            <input type="number" id="dosage" name="dosage" ng-model="pres.dosage" class="form-control input-small" required>
+                            <label for="meal">Meal</label>
+                            <input type="text" id="meal" name="meal" ng-model="diet.meal" class="form-control input-small" required>
                         </div>
                         <div class="form-group">
-                            <label for="frequency">Frequency</label>
-                            <input type="text" id="frequency" name="frequency" ng-model="pres.frequency" class="form-control" required>
+                            <label for="quantity">Quantity</label>
+                            <input type="text" id="quantity" name="quantity" ng-model="diet.quantity" class="form-control" required>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-sm btn-success" ng-disabled="prescriptionForm.$invalid" ng-click="addPres(pres)">Save changes</button>
+                        <button type="button" class="btn btn-sm btn-success" ng-disabled="prescriptionForm.$invalid" ng-click="addDiet(diet)">Save changes</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
+</div>>

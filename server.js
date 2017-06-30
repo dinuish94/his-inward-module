@@ -7,7 +7,7 @@ const app =  express();
 app.use(bodyParser.json());
 
 
-mongoose.connect('localhost:27017/wardss', err => {
+mongoose.connect('localhost:27017/wards', err => {
     if (err) {
         console.log(err);
         process.exit(1);
@@ -28,6 +28,8 @@ require('./server/prescription/prescription.model.js');
 require('./server/drug/drug.model.js');
 require('./server/patient/patient.model.js');
 require('./server/doctor/doctor.model.js');
+require('./server/food/food.model.js');
+require('./server/diet/diet.model.js');
 require('./server/laboratory/labTest.model.js');
 require('./server/laboratory/labTestTypes.model.js');
 require('./server/operationTheatre/slot.model.js');
@@ -39,10 +41,13 @@ const patientRouter = require('./server/patient/patient.route.js');
 const BedRouter = require('./server/bed/bed.route.js');
 const DoctorRouter = require('./server/doctor/doctor.route.js');
 const drugRouter = require('./server/drug/drug.route.js');
+
 const LabRouter = require('./server/laboratory/labTest.route.js');
 const LabTypesRouter = require('./server/laboratory/labTestTypes.route.js');
 const SlotRouter = require('./server/operationTheatre/slot.route.js');
 const TheatreRouter = require('./server/operationTheatre/theatre.route.js');
+const foodRouter = require('./server/food/food.route.js');
+const dietRouter = require('./server/diet/diet.route.js');
 
 app.get('/', function(req,res){
     res.sendFile(__dirname + '/public/index.html');
@@ -58,6 +63,8 @@ app.use('/prescriptions', presRouter);
 app.use('/drugs',drugRouter);
 app.use('/patients',patientRouter);
 app.use('/beds', BedRouter);
+app.use('/foods',foodRouter);
+app.use('/diets',dietRouter);
 
 app.get('/app/*', function(req,res){
     res.sendFile(__dirname + '/public/index.html');

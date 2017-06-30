@@ -27,7 +27,7 @@
         <div class="card">
             <div class="card-body">
                 <div ng-repeat="labRequest in labRequests | filter:checkStatus" class="alert alert-dismissible fade in" ng-class="labRequest.priority == 'High' ? 'alert-danger' : (labRequest.priority == 'Medium') ? 'alert-warning' : 'alert-success'" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" ng-click="cancelRequest(labRequest._id,labRequest)" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <button type="button" class="close" data-dismiss="" ng-click="cancelRequest(labRequest._id,labRequest)" aria-label="Close"><span aria-hidden="true">×</span></button>
                     <h4 id="oh-snap!-you-got-an-error!"><b>{{labRequest.testName}}</b><a class="anchorjs-link" href="#oh-snap!-you-got-an-error!"><span class="anchorjs-icon"></span></a></h4>
                     <div class="row">
                         <div class="col-md-3">

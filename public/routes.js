@@ -28,17 +28,37 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/bed/patientBed.view.html',
             controller: 'BedController'
         })
+        .when('/assignPatient/:wardId/beds/:bedId', {
+            templateUrl: 'components/bed/assignPatient.view.html',
+            controller: 'BedController'
+        })
         .when('/allocations', {
             templateUrl: 'components/bed/allocations.view.html',
+            controller: 'WardController'
+        })
+        .when('/transfers', {
+            templateUrl: 'components/bed/transfer.view.html',
+            controller: 'WardController'
+        })
+        .when('/transfers#profile', {
+            templateUrl: 'components/bed/internalTransfer.view.html',
+            controller: 'WardController'
+        })
+        .when('/externalTransfers', {
+            templateUrl: 'components/bed/externalTransfer.view.html',
             controller: 'WardController'
         })
         .when('/view3', {
             templateUrl: 'components/BHT/feverChart.html',
             controller: 'lineChartController'
         })
-        .when('/view4', {
+        .when('/prescription', {
             templateUrl: 'components/BHT/prescription/prescription.html',
             controller: "prescriptionController"
+        })
+        .when('/diet',{
+          templateUrl:'components/BHT/Diet Plan/diet.view.html',
+          controller: 'dietController'  
         })
         .when('/patient', {
             templateUrl: 'components/patient/patient.html',
@@ -71,9 +91,9 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/BHT/laboratory/laboratoryTest.requests.view.html',
             controller: 'LabRequestList'
         })
-        .when('/theatreList', {
+        .when('/theatreList/:id', {
             templateUrl: 'components/BHT/operationTheatre/operation.list.view.html',
-            controller: 'LabRequestList'
+            controller: 'OperationTheatreController'
         })
         .when('/test', {
             templateUrl: 'components/BHT/home.view.html',
