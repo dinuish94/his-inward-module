@@ -91,9 +91,9 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/BHT/laboratory/laboratoryTest.requests.view.html',
             controller: 'LabRequestList'
         })
-        .when('/theatreList', {
+        .when('/theatreList/:id', {
             templateUrl: 'components/BHT/operationTheatre/operation.list.view.html',
-            controller: 'LabRequestList'
+            controller: 'OperationTheatreController'
         })
         .when('/test', {
             templateUrl: 'components/BHT/home.view.html',

@@ -7,12 +7,19 @@ const Schema = mongoose.Schema;
 
 // create a schema
 const theatreSchema = new Schema({
-    theatreName: String,
-    slots : [{
+    dueDate : Date,
+    time : String,
+    activeFlag : Number,
+    doctor : {
         type : Schema.Types.ObjectId,
-        ref : 'Slot'
-    }],
-    activeFlag:Number
+        ref : 'Doctor'
+    },
+    patient: {
+        type : Schema.Types.ObjectId,
+        ref : 'Patient'
+    },
+    status : String,
+    priority : String
 });
 
 theatreSchema.plugin(AutoIncrement, {inc_field: 'theatreId'});
