@@ -47,19 +47,33 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         .when('/modal',{
             templateUrl:'components/BHT/prescription/modal.html'
         })
-        .when('/addLabTest', {
-            templateUrl: 'components/BHT/addLaboratoryTest.view.html',
+        .when('/addLabTest/:id', {
+            templateUrl: 'components/BHT/laboratory/laboratoryTest.list.view.html',
             controller: 'LabTestController'
         })
         .when('/diabeticChart', {
             templateUrl: 'components/BHT/diabeticChart.view.html',
             controller: 'diabeticChartController'
         })
-        .when('/bhtOptions', {
-            templateUrl: 'components/BHT/bhtOptions.view.html',
+        .when('/bht/:id', {
+            templateUrl: 'components/BHT/bht.view.html',
+            controller: 'BHTController'
         })
-        .when('/viewAvailableTests', {
-            templateUrl: 'components/BHT/labTestTypes.view.html',
+        .when('/viewTestTypes', {
+            templateUrl: 'components/BHT/laboratory/labTestTypes.view.html',
+            controller: 'LabTestTypeController'
+        })
+        .when('/viewLabRequests/:id', {
+            templateUrl: 'components/BHT/laboratory/laboratoryTest.requests.view.html',
+            controller: 'LabRequestList'
+        })
+        .when('/theatreList', {
+            templateUrl: 'components/BHT/operationTheatre/operation.list.view.html',
+            controller: 'LabRequestList'
+        })
+        .when('/test', {
+            templateUrl: 'components/BHT/home.view.html',
+            controller: 'Home'
         })
         .otherwise({redirectTo: '/view1'});
 }]);
