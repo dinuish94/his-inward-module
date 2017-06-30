@@ -1,3 +1,6 @@
+/**
+ * Created by dinuksha on 5/2/17.
+ */
 
 'use strict';
 
@@ -11,6 +14,9 @@ const PatientModel = mongoose.model('Patient'),
 
 const Router = express.Router();
 
+/**
+ * Retrieves bed by ID
+ */
 Router.get('/:bId', (req, res) => {
     BedModel.findOne({'bId':req.params.bId}).then(bed => {
         res.json(bed);
@@ -20,12 +26,12 @@ Router.get('/:bId', (req, res) => {
     });
 });
 
+/**
+ * Assigns a patient to a bed
+ */
 Router.post('/patients', (req, res) => {
     let bedId = req.body.bedId;
     let patientId = req.body.patientId;
-
-    console.log(bedId);
-    console.log(patientId);
 
     BedModel.findOne({'bId':bedId}).then(bed => {
         bed.available=false;
