@@ -13,10 +13,21 @@ const patientSchema = new Schema({
     gContactNumber:Number,
     gRelationship:String,
     gAddress:String,
-    status:String
+    status:String,
+    altrPhoneNumber:String,
+    allergies: String,
+    labTests : [{
+        type : Schema.Types.ObjectId,
+        ref : 'Lab'
+    }],
+    bed: {
+        type: Schema.Types.ObjectId,
+        ref: 'Bed'
+    }
 });
 
 patientSchema.plugin(AutoIncrement, {inc_field: 'pid'});
+patientSchema.plugin(AutoIncrement, {inc_field: 'bht'});
 
 const Patient = mongoose.model('Patient', patientSchema);
 

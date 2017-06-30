@@ -10,6 +10,7 @@ mongoose.set('debug', false);
 
 const WardModel = mongoose.model('Ward'),
     BedModel = mongoose.model('Bed'),
+    PatientModel = mongoose.model('Patient'),
     DoctorModel = mongoose.model('Doctor');
 
 const Router = express.Router();
@@ -94,6 +95,24 @@ Router.delete('/:id/beds/:bedId', (req, res) => {
     
     BedModel.findOneAndRemove({'bId':bedId}).then(bed =>{
         res.sendStatus(200);
+    }).catch(err => {
+        console.error(err);
+        res.sendStatus(500);
+    });
+});
+
+/**
+ * Get beds for a given ward
+ */
+Router.get('/:id/beds', (req, res) => {
+    WardModel.findOne({'id':req.params.id}).populate('beds').exec().then(ward => {
+        let beds = ward.beds;
+        let patients = [];
+
+        const bedIds = ward.beds.map((bedId => bedId));
+        return BedModel.find({'_id': {$in: bedIds}}).populate('patient').exec();
+    }).then(beds => {
+        res.json(beds || {});
     }).catch(err => {
         console.error(err);
         res.sendStatus(500);

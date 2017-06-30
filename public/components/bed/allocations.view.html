@@ -1,0 +1,47 @@
+<div class="col-md-12" style="padding-bottom:15px">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="section-body">
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <label class="control-label">Select Ward: </label>
+                            <p class="control-label-help"></p>
+                        </div>
+                        <div class="col-md-8">
+                            <select ng-options="ward as ward.name for ward in wards"  class="form-control" type="text" class="form-control" placeholder="" ng-model="ward" ng-change="update(ward)">
+                                <!--<option ng-repeat="ward in wards" value="{{ward.id}}"> {{ward.name}}</option>-->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12 col-xs-12">
+    <div class="card">
+        <div class="card-body">
+            <table datatable="ng" class="datatable table table-striped primary dataTable no-footer" cellspacing="0" width="100%" id="DataTables_Table_0"
+                role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
+                <thead>
+                    <tr role="row">
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">BHT No</th>
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Patient Name</th>
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Bed No</th>
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 200px;">Admitted Date</th>
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 200px;">Admitted Time</th>
+                </thead>
+                <tbody>
+                    <tr role="row" ng-repeat="bed in beds | filter:patientFilter">
+                        <td></td>
+                        <td>{{ bed.patient.name }}</td>
+                        <td>{{ bed.bId }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

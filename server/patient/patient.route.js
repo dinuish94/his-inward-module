@@ -39,6 +39,7 @@ Router.delete('/:id', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
 Router.put('/:id', (req, res) => {
     console.log(req.params.id)
     patientModel.findOne({ pid: req.params.id }, function (err, reponse) {
@@ -53,9 +54,19 @@ Router.put('/:id', (req, res) => {
         });
     });
 });
+=======
+// Router.get('/:id', (req, res) => {
+//     patientModel.findOne({'id':req.params.id}).then(patient => {
+//         res.json(patient || {});
+//     }).catch(err => {
+//         console.error(err);
+//         res.sendStatus(500);
+//     });
+// });
+>>>>>>> 968dd5aee1057e3df70dc6705d41b5accfe4802f
 
 Router.get('/:id', (req, res) => {
-    patientModel.findOne({'id':req.params.id}).then(patient => {
+    patientModel.findById(req.params.id).populate('labTests').exec().then(patient => {
         res.json(patient || {});
     }).catch(err => {
         console.error(err);
