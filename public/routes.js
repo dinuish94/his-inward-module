@@ -36,9 +36,13 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/BHT/feverChart.html',
             controller: 'lineChartController'
         })
-        .when('/view4', {
+        .when('/prescription', {
             templateUrl: 'components/BHT/prescription/prescription.html',
             controller: "prescriptionController"
+        })
+        .when('/diet',{
+          templateUrl:'components/BHT/Diet Plan/diet.view.html',
+          controller: 'dietController'  
         })
         .when('/patient', {
             templateUrl: 'components/patient/patient.html',

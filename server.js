@@ -28,6 +28,8 @@ require('./server/patient/patient.model.js');
 require('./server/doctor/doctor.model.js');
 require('./server/BHT/labTest.model.js');
 require('./server/BHT/labTestTypes.model.js');
+require('./server/food/food.model.js');
+require('./server/diet/diet.model.js');
 
 const WardRouter = require('./server/ward/ward.route.js');
 const presRouter = require('./server/prescription/prescription.route.js');
@@ -36,6 +38,8 @@ const BedRouter = require('./server/bed/bed.route.js');
 const DoctorRouter = require('./server/doctor/doctor.route.js');
 const drugRouter = require('./server/drug/drug.route.js');
 const LabRouter = require('./server/BHT/labTest.route.js');
+const foodRouter = require('./server/food/food.route.js');
+const dietRouter = require('./server/diet/diet.route.js');
 
 app.get('/', function(req,res){
     res.sendFile(__dirname + '/public/index.html');
@@ -48,6 +52,8 @@ app.use('/prescriptions', presRouter);
 app.use('/drugs',drugRouter);
 app.use('/patients',patientRouter);
 app.use('/beds', BedRouter);
+app.use('/foods',foodRouter);
+app.use('/diets',dietRouter);
 
 app.get('/app/*', function(req,res){
     res.sendFile(__dirname + '/public/index.html');
