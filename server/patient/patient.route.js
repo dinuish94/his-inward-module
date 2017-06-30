@@ -39,6 +39,21 @@ Router.delete('/:id', (req, res) => {
     });
 });
 
+Router.put('/:id', (req, res) => {
+    console.log(req.params.id)
+    patientModel.findOne({ pid: req.params.id }, function (err, reponse) {
+        console.log(reponse.data);
+        var patient = new patientModel(reponse);
+        patient.status = "out";
+        patient.save().then(patients => {
+            res.json(patients);
+        }).catch(err => {
+            console.error(err);
+            res.sendStatus(500);
+        });
+    });
+});
+
 Router.get('/:id', (req, res) => {
     patientModel.findOne({'id':req.params.id}).then(patient => {
         res.json(patient || {});

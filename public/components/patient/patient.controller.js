@@ -11,6 +11,7 @@ patient.controller('patientController', function(patientService, sharedPropertie
     }
 
     $scope.addPatient = (data) => {
+        data.status = 'in';
         patientService.add(data).then(data=>{
             ngNotify.set('successful','success');
             sharedProperties.setPid(data.pid);
@@ -63,9 +64,9 @@ patient.controller('patientController', function(patientService, sharedPropertie
         }, 
         function(isConfirm){
             if(isConfirm){
-                patientService.delete(id).then(()=>{
+                patientService.discharge(id).then(()=>{
                     ngNotify.set('Patient Discharged!','error');
-                    getWards();
+                     getPatients();
                 })
                 SweetAlert.swal("Discharged!");
             }
