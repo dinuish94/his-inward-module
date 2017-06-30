@@ -16,44 +16,48 @@
             </div>-->
                 <form>
                     <div>
+                        <label class="col-md-1 control-label">PatientID</label>
+                        <input type="text" class="form-control" value="{{selectedPatient.pid}}" ng-model="selectedPatient.pid"/><br>
+                    </div>
+                    <div>
                         <label class="col-md-1 control-label">Patient</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.name}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.name}}"  ng-model="selectedPatient.name"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">Age</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.age}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.age}}" ng-model="selectedPatient.age"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">Gender</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.gender}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.gender}}"ng-model="selectedPatient.gender"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">PhoneNo</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.phoneNumber}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.phoneNumber}}" ng-model="selectedPatient.phoneNumber"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">Allergies</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.allergies}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.allergies}}" ng-model="selectedPatient.allergies"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">GName</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.gName}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.gName}}" ng-model="selectedPatient.gName"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">GContactNumber</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.gContactNumber}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.gContactNumber}}" ng-model="selectedPatient.gContactNumber"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">GRelationship</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.gRelationship}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.gRelationship}}" ng-model="selectedPatient.gRelationship"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">GAddress</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.gAddress}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.gAddress}}" ng-model="selectedPatient.gAddress"/><br>
                     </div>
             </div>
             <div class="ngdialog-buttons">
-                <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('OK')">Confirm</button>
+                <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="updatePatient(selectedPatient.pid,selectedPatient)">Confirm</button>
                 <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('button')">Cancel</button>
             </div>
             </form>

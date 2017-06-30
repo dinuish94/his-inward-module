@@ -39,6 +39,24 @@ patient.controller('patientController', function(patientService, sharedPropertie
     };
 
 
+
+$scope.updatePatient = function (id,patient) {
+        console.log("sdsdsd"+id);
+        console.log(patient);
+        patientService.update(id,patient).then(function (data) {
+            console.log("sdsdsd1");
+            if(data.success){
+                console.log("sdsdsd2");
+                alert("Successfully updated");
+                getPatients();
+
+            }else{
+                alert("Error");
+            }
+
+        })
+    };
+
      function getPatients() {
         patientService.get().then(patients =>{
             vm.patients = patients;

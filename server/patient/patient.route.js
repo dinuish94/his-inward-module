@@ -64,12 +64,17 @@ Router.get('/:id', (req, res) => {
     });
 });
 
-Router.put('/updatePatient/:id',(req,res)=>{
-    console.log("the id is "+req.params.id);
-    console.log('data are');
-    console.log(req.body);
-    patientModel.update(req.params.id,req.body).then(patients=>{
-        res.send(patients);
+Router.put('/updatePatient/:id', (req, res) => {
+    const data = req.body;
+    console.log("data is:");
+    //delete data._id;
+   // const dataId = req.params.id;
+    const query = {"pid":req.params.id};
+    patientModel.findOneAndUpdate(query, {$set: data}).then(dataDb => {
+        res.status(201).json({success:true});
+    }).catch(err => {
+        console.error(err);
+        res.sendStatus(500);
     });
 });
 
