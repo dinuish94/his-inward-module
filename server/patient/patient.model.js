@@ -8,7 +8,6 @@ const patientSchema = new Schema({
     age: Number,
     gender:String,
     phoneNumber:String,
-    // altrPhoneNumber:String,
     allergies: String,
     gName:String,
     gContactNumber:Number,
