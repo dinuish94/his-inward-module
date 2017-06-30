@@ -3,58 +3,97 @@
 
 <div class="card card-mini">
       <div class="card-header">
-        <div class="card-title">Last Statuses</div>
-        <ul class="card-action">
-          <li>
-            <a href="/">
-              <i class="fa fa-refresh"></i>
-            </a>
-          </li>
-        </ul>
+        <div class="card-title">Operation Theatre Schedule for Patient
+        </div>
       </div>
       <div class="card-body no-padding table-responsive">
         <table class="table card-table">
           <thead>
             <tr>
-              <th>Products</th>
-              <th class="right">Amount</th>
-              <th>Status</th>
+              <th>ID</th>
+              <th>Due Date</th>
+              <th>Time</th>
+              <th>Priority</th>
+              <th>Doctor</th>
+              <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestTheatreModal">Add</button></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>MicroSD 64Gb</td>
-              <td class="right">12</td>
-              <td><span class="badge badge-success badge-icon"><i class="fa fa-check" aria-hidden="true"></i><span>Complete</span></span></td>
-            </tr>
-            <tr>
-              <td>MiniPC i5</td>
-              <td class="right">5</td>
-              <td><span class="badge badge-warning badge-icon"><i class="fa fa-clock-o" aria-hidden="true"></i><span>Pending</span></span></td>
-            </tr>
-            <tr>
-              <td>Mountain Bike</td>
-              <td class="right">1</td>
-              <td><span class="badge badge-info badge-icon"><i class="fa fa-credit-card" aria-hidden="true"></i><span>Confirm Payment</span></span></td>
-            </tr>
-            <tr>
-              <td>Notebook</td>
-              <td class="right">10</td>
-              <td><span class="badge badge-danger badge-icon"><i class="fa fa-times" aria-hidden="true"></i><span>Cancelled</span></span></td>
-            </tr>
-            <tr>
-              <td>Raspberry Pi2</td>
-              <td class="right">6</td>
-              <td><span class="badge badge-primary badge-icon"><i class="fa fa-truck" aria-hidden="true"></i><span>Shipped</span></span></td>
-            </tr>
-            <tr>
-              <td>Flashdrive 128Mb</td>
-              <td class="right">40</td>
-              <td><span class="badge badge-info badge-icon"><i class="fa fa-credit-card" aria-hidden="true"></i><span>Confirm Payment</span></span></td>
+            <tr ng-repeat="operation in operations | filter:checkStatus">
+              <td>{{operation.theatreId}}</td>
+              <td>{{operation.dueDate| date: 'yyyy-MM-dd'}}</td>
+              <td>{{operation.time}}</td>
+              <td>{{operation.priority}}</td>
+              <td>{{operation.doctor.name}}</td>
+              <td><button type="button" class="btn btn-danger" data-target="" ng-click="deleteOperation(operation._id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+    </div>
+</div>
+
+<div class="modal fade" id="requestTheatreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" style="display: block; margin-left: -15%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Theatre Request</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form form-horizontal ng-pristine ng-valid">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Due date&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <input type="date" class="form-control" aria-label="Patient Name" placeholder="Due date" ng-model="theatre.dueDate">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Time Slot&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <select class="form-control" id="exampleSelect322" ng-model="theatre.time">
+                                    <option>07:00 AM</option>
+                                    <option>10:00 AM</option>
+                                    <option>01:00 PM</option>
+                                    <option>04:00 PM</option>
+                                    <option>08:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Priority&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <select class="form-control" id="exampleSelect322" ng-model="theatre.priority">
+                                    <option>Low</option>
+                                    <option>Medium</option>
+                                    <option>Urgent</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Doctor&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <select class="form-control" id="exampleSelect1" ng-model="theatre.doctor">
+                                    <option ng-repeat="doctor in doctors" value="{{doctor._id}}">Dr. {{doctor.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="addTheatreOperation(patient._id,theatre)" data-dismiss="modal" class="btn btn-sm btn-success">Send Request</button>
+            </div>
+        </div>
     </div>
 </div>

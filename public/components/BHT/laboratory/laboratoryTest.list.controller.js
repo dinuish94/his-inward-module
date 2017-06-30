@@ -9,7 +9,6 @@ angular.module('inward').controller('LabTestController',
         //get all details of the patient
         function getPatientLabTests() {
             LabTestService.getPatientById($routeParams.id).then(patient =>{
-                console.log("LOADING 123");
                 $scope.labTests = patient.labTests;
                 $scope.patient = patient;
             });
@@ -31,7 +30,6 @@ angular.module('inward').controller('LabTestController',
             lab.status="Pending";
             lab.remarks="Pending";
             lab.activeFlag=1;
-            console.log(lab);
             LabTestService.add(patientId,lab).then(patient => {
                 $scope.labTests = "";
                 $scope.patient = "";

@@ -49,7 +49,13 @@ Router.delete('/:id', (req, res) => {
 // });
 
 Router.get('/:id', (req, res) => {
-    patientModel.findById(req.params.id).populate('labTests').exec().then(patient => {
+    patientModel.findById(req.params.id).populate('labTests').populate('operations').populate({ 
+     path: 'operations',
+     populate: {
+       path: 'doctor',
+       model: 'Doctor'
+     } 
+  }).exec().then(patient => {
         res.json(patient || {});
     }).catch(err => {
         console.error(err);
