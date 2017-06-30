@@ -18,6 +18,10 @@ const BedSchema = new Schema({
     ward: {
         type: Schema.Types.ObjectId,
         ref: 'Ward'
+    },
+    patient: {
+        type: Schema.Types.ObjectId,
+        ref: 'Patient'
     }
 });
 

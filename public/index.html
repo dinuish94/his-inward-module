@@ -6,7 +6,7 @@
   <title>Inward System Dashboard</title>
   <base href="/app/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">-->
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./assets/css/vendor.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/flat-admin.css">
 
@@ -56,7 +56,8 @@
 
   <!--pagination-->
   <script src="./modules/angularUtils-pagination/dirPagination.js"></script>
-<!--bootstrap ui-->
+
+  <!--bootstrap ui-->
   <script src="./modules/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
   <!--x-editable-->
@@ -67,14 +68,13 @@
 
 <body>
 
-  <div class="app app-blue-sky">
+  <div class="app app-green">
     <div ng-include src="'./includes/sidebar.html'"></div>
     <div class="app-container">
       <nav ng-include="'./includes/navbar.html'"></nav>
       <div class="row">
       <div ng-view></div>
       </div>
-      <div ng-include="'./includes/footer.html'"></div>
     </div>
   </div>
 
@@ -85,12 +85,19 @@
   <script type="text/javascript" src="components/ward/wards.controller.js"></script>
   <script type="text/javascript" src="components/bed/bed.service.js"></script>
   <script type="text/javascript" src="components/bed/bed.controller.js"></script>
+  <script src="./components/BHT/charts.controller.js"></script>
+  <script src="./components/BHT/diabeticChart.controller.js"></script>
+  <script src="./components/BHT/laboratoryTest.controller.js"></script>
+  <script src="./components/BHT/labTestTypes.controller.js"></script>
+  <script src="./components/BHT/laboratoryTest.service.js"></script>
   <script type="text/javascript" src="./components/BHT/prescription/prescription.service.js"></script>
   <script type="text/javascript" src="./components/BHT/prescription/prescription.controller.js"></script>
   <script type="text/javascript" src="./components/BHT/chart/charts.controller.js"></script>
   <script type="text/javascript" src="./components/BHT/drug/drug.service.js"></script>
   <script type="text/javascript" src="./components/BHT/drug/drug.controller.js"></script>
   <script type="text/javascript" src="./components/BHT/prescription/modal.controller.js"></script>
+  <script type="text/javascript" src="components/patient/patient.controller.js"></script>
+  <script type="text/javascript" src="components/patient/patient.service.js"></script>
 
 </body>
 
