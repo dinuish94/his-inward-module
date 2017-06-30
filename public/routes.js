@@ -10,7 +10,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         // })
         .when('/ward',{
             templateUrl:'components/ward/allWards.view.html',
-            controller: 'WardController'
+            controller: 'WardController'    
         })
         .when('/addWard', {
             templateUrl: 'components/ward/addWard.view.html',
@@ -28,8 +28,24 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/bed/patientBed.view.html',
             controller: 'BedController'
         })
+        .when('/assignPatient/:wardId/beds/:bedId', {
+            templateUrl: 'components/bed/assignPatient.view.html',
+            controller: 'BedController'
+        })
         .when('/allocations', {
             templateUrl: 'components/bed/allocations.view.html',
+            controller: 'WardController'
+        })
+        .when('/transfers', {
+            templateUrl: 'components/bed/transfer.view.html',
+            controller: 'WardController'
+        })
+        .when('/transfers#profile', {
+            templateUrl: 'components/bed/internalTransfer.view.html',
+            controller: 'WardController'
+        })
+        .when('/externalTransfers', {
+            templateUrl: 'components/bed/externalTransfer.view.html',
             controller: 'WardController'
         })
         .when('/view3', {
@@ -48,22 +64,40 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/patient/patient.html',
             controller: 'patientController'
         })
+        .when('/viewPatient', {
+            templateUrl: 'components/patient/viewPatient.html',
+            controller: 'patientController'
+        })
         .when('/modal',{
             templateUrl:'components/BHT/prescription/modal.html'
         })
-        .when('/addLabTest', {
-            templateUrl: 'components/BHT/addLaboratoryTest.view.html',
+        .when('/addLabTest/:id', {
+            templateUrl: 'components/BHT/laboratory/laboratoryTest.list.view.html',
             controller: 'LabTestController'
         })
         .when('/diabeticChart', {
             templateUrl: 'components/BHT/diabeticChart.view.html',
             controller: 'diabeticChartController'
         })
-        .when('/bhtOptions', {
-            templateUrl: 'components/BHT/bhtOptions.view.html',
+        .when('/bht/:id', {
+            templateUrl: 'components/BHT/bht.view.html',
+            controller: 'BHTController'
         })
-        .when('/viewAvailableTests', {
-            templateUrl: 'components/BHT/labTestTypes.view.html',
+        .when('/viewTestTypes', {
+            templateUrl: 'components/BHT/laboratory/labTestTypes.view.html',
+            controller: 'LabTestTypeController'
+        })
+        .when('/viewLabRequests/:id', {
+            templateUrl: 'components/BHT/laboratory/laboratoryTest.requests.view.html',
+            controller: 'LabRequestList'
+        })
+        .when('/theatreList', {
+            templateUrl: 'components/BHT/operationTheatre/operation.list.view.html',
+            controller: 'LabRequestList'
+        })
+        .when('/test', {
+            templateUrl: 'components/BHT/home.view.html',
+            controller: 'Home'
         })
         .otherwise({redirectTo: '/view1'});
 }]);

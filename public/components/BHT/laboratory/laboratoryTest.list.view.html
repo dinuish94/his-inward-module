@@ -1,0 +1,199 @@
+<div class="col-xs-12">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-body app-heading">
+                    <div class="icon">
+                        <i class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="app-title">
+                        <div class="row">
+                            <div class="col-xs-3 col-xs-offset-1">
+                                <div class="title"><span class="highlight">Patient ID :</span><span class="highlight">{{patient.pid}}</span></div>
+                            </div>
+                            <div class="col-xs-3 col-xs-offset-1">
+                                <div class="title"><span class="highlight">BHT No :</span><span class="highlight">{{patient.bht}}</span></div>
+                            </div>
+                            <div class="col-xs-3 col-xs-offset-1">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestLabTestModal">
+                                    Schedule Patient Lab Test
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:1%;">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                     Laboratory Test Details of {{patient.name}}
+                </div>
+                <div class="card-body">
+                    <table datatable="ng" class="datatable table table-striped primary dataTable no-footer" cellspacing="0" width="100%" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="width:100%;">
+                        <thead>
+                        <tr role="row">
+                            <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 142px;">ID</th>
+                            <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 142px;">Test Name</th>
+                            <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 223px;">Date</th>
+                            <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 223px;">Priority</th>
+                            <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 223px;">Status</th>
+                            <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 223px;">Option</th>
+                        </thead>
+                        <tbody>
+                            <tr role="row" ng-repeat="lab in labTests">
+                                <td data-toggle="modal" data-target="#testInfo" ng-click="getLab(lab._id)">{{ lab.testId }}</td>
+                                <td data-toggle="modal" data-target="#testInfo" ng-click="getLab(lab._id)">{{ lab.testName }}</td>
+                                <td data-toggle="modal" data-target="#testInfo" ng-click="getLab(lab._id)">{{ lab.dueDate  | date: "MM/dd/yyyy" }}</td>
+                                <td data-toggle="modal" data-target="#testInfo" ng-click="getLab(lab._id)">{{ lab.priority }}</td>
+                                <td><span class="badge badge-icon" ng-class="lab.status == 'Pending' ? 'badge-warning' : (lab.status == 'Cancelled') ? 'badge-danger' : 'badge-success'"><i class="fa fa-times" aria-hidden="true"></i><span>{{ lab.status }}</span></span></td>
+                                <td>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" ng-disabled="lab.status == 'Pending' ? false : true" data-target="#editLab" ng-click="getLab(lab._id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-danger" data-target="" ng-click="deleteLab(lab._id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal to Request new Laboratory Test-->
+<div class="modal fade" id="requestLabTestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" style="display: block; margin-left: -15%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Lab Request</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form form-horizontal ng-pristine ng-valid">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Test Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <select class="form-control" id="exampleSelect1" ng-model="lab.testName">
+                                    <option ng-repeat="item in labTestTypes" >{{item.testType}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Priority&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <select class="form-control" id="exampleSelect322" ng-model="lab.priority">
+                                    <option>Low</option>
+                                    <option>Medium</option>
+                                    <option>High</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Due date&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <input type="date" class="form-control" aria-label="Patient Name" placeholder="Due date" ng-model="lab.dueDate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group  has-warning">
+                                <span class="input-group-addon">Comments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Comments" ng-model="lab.comment"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="addLab(patient._id,lab)" data-dismiss="modal" class="btn btn-sm btn-success">Send Request</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal to see results of the Laboratory Test-->
+<div class="modal fade" id="testInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" style="display: block; width: 760px; margin-left: -380px; margin-top: 100px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Test Details</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{labEdit.remarks}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal to Edit Laboratory Test-->
+<div class="modal fade" id="editLab" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" style="display: block; margin-left: -15%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Edit Lab Request</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form form-horizontal ng-pristine ng-valid">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Test Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <select class="form-control" id="exampleSelect" ng-model="labEdit.testName">
+                                    <option ng-repeat="item in labTestTypes" value="{{item.testType}}">{{item.testType}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Priority&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <select class="form-control" id="exampleSelec322" ng-model="labEdit.priority">
+                                    <option>Low</option>
+                                    <option>Medium</option>
+                                    <option>High</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Due date&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <input type="date" name="username" class="form-control" aria-label="Patient Name" placeholder="Due date" value="{{labEdit.dueDate  | date: 'yyyy-MM-dd'}}" ng-model="labEdit.dueDate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group  has-warning">
+                                <span class="input-group-addon">Comments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <textarea class="form-control" id="exampleTexarea" rows="3" placeholder="Comments"  ng-model="labEdit.comment" ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="updateLabRequest(labEdit._id,labEdit)" data-dismiss="modal" class="btn btn-sm btn-success">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

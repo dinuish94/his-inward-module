@@ -1,0 +1,118 @@
+<div>
+    <div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            Diets
+        </div>
+        <div class="card-body no-padding">
+            <div class="row" style="padding-top:15px">
+                <div class="col-md-8"></div>
+                <div class="col-md-3">
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search" ng-model="searchFish">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table card-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a href="" ng-click="sortType = 'drugName'; sortReverse = !sortReverse">
+                                    Food
+                                    <span ng-show="sortType == 'drugName' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'drugName' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="" ng-click="sortType = 'dosage'; sortReverse = !sortReverse">
+                                    Meal
+                                    <span ng-show="sortType == 'dosage' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'dosage' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="" ng-click="sortType = 'frequency'; sortReverse = !sortReverse">
+                                    Quantity
+                                    <span ng-show="sortType == 'frequency' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'frequency' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="diet in diets | orderBy:sortType:sortReverse | filter:searchFish|itemsPerPage:5">
+                            <td>{{diet.food[0].name}}</td>
+                            <td><span editable-text="diet.meal" e-name="meal" e-form="rowform">{{ diet.meal || 'empty' }}</span></td>
+                            <td><span editable-text="diet.quantity" e-name="quantity"
+                                    e-form="rowform"><span>{{diet.quantity || 'empty'}}</span></td>
+                            <td style="padding-top:5px;padding-bottom:0%">
+                                <form editable-form name="rowform" onbeforesave="updateDiet($data, diet.dietId)" ng-show="rowform.$visible" class="form-buttons form-inline"
+                                    shown="inserted == prescriptions">
+                                    <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary btn-sm">save</button>
+                                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default btn-sm">cancel</button>
+                                </form>
+                                <div class="buttons" ng-show="!rowform.$visible">
+                                    <button type="button" class="btn btn-primary btn-sm" ng-click="rowform.$show()">edit</button>
+                                    <button type="button" class="btn btn-danger btn-sm" ng-click="removeDiet(diet.dietId)">delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Diets</button></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" style="margin-left:-15%">
+            <div class="modal-content" ng-controller="foodController">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Add Diet</h4>
+                </div>
+                <form name="prescriptionForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="food">Food</label>
+                            <input type="text" id="food" name="food" ng-change="onedit()" class="form-control" ng-model="diet.food" uib-typeahead="food as food.name for food in foods | filter:$viewValue | limitTo:8"
+                                typeahead-loading="loadingLocations" typeahead-no-results="noResults" required>
+                            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                            <div ng-show="noResults" class="alert alert-danger" role="alert">
+                                <i class="glyphicon glyphicon-remove"></i> <strong>No Results Found</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="meal">Meal</label>
+                            <input type="text" id="meal" name="meal" ng-model="diet.meal" class="form-control input-small" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="text" id="quantity" name="quantity" ng-model="diet.quantity" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-sm btn-success" ng-disabled="prescriptionForm.$invalid" ng-click="addDiet(diet)">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>>

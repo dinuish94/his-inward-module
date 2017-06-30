@@ -1,0 +1,90 @@
+<div class="row" style="margin-top:1%;">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-body app-heading">
+                        <div class="icon">
+                            <i class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="app-title">
+                            <div class="row">
+                                <div class="col-xs-3 col-xs-offset-1">
+                                    <div class="title"><span class="highlight">Patient ID : </span><span class="highlight">{{patient.pid}}</span></div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="title">&nbsp&nbsp&nbsp<span class="highlight"><b>Lab Requests</b></div>
+                                </div>
+                                <div class="col-xs-4 col-xs-offset-1">
+                                    <div class="title"><span class="highlight">BHT No : </span><span class="highlight">{{patient.bht}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div ng-repeat="labRequest in labRequests | filter:checkStatus" class="alert alert-dismissible fade in" ng-class="labRequest.priority == 'High' ? 'alert-danger' : (labRequest.priority == 'Medium') ? 'alert-warning' : 'alert-success'" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" ng-click="cancelRequest(labRequest._id,labRequest)" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 id="oh-snap!-you-got-an-error!"><b>{{labRequest.testName}}</b><a class="anchorjs-link" href="#oh-snap!-you-got-an-error!"><span class="anchorjs-icon"></span></a></h4>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p>Due Date : <span>{{labRequest.dueDate | date: "MM/dd/yyyy"}}</span> 
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <p>Priority : <span>{{labRequest.priority}}</span>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#assignTestResults" ng-click="getTestDetails(labRequest._id)">Add Remarks</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal to assign Test Results-->
+<div class="modal fade" id="assignTestResults" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" style="display: block; margin-left: -15%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Lab Request</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form form-horizontal ng-pristine ng-valid">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group  has-warning">
+                                <span class="input-group-addon">Test Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <input type="text" class="form-control" value="{{lab.testName}}" readonly/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group  has-warning">
+                                <span class="input-group-addon">Comment&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <textarea class="form-control" rows="3" placeholder="Remarks" readonly>{{lab.comment}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group  has-warning">
+                                <span class="input-group-addon">Remarks&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <textarea class="form-control" id="results" rows="3" placeholder="Remarks" ng-model="lab.remarks"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="addRemarks(lab._id,lab)" data-dismiss="modal" class="btn btn-sm btn-success">Assign Results</button>
+            </div>
+        </div>
+    </div>
+</div>

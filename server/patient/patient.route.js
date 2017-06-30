@@ -39,8 +39,34 @@ Router.delete('/:id', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
+Router.put('/:id', (req, res) => {
+    console.log(req.params.id)
+    patientModel.findOne({ pid: req.params.id }, function (err, reponse) {
+        console.log(reponse.data);
+        var patient = new patientModel(reponse);
+        patient.status = "out";
+        patient.save().then(patients => {
+            res.json(patients);
+        }).catch(err => {
+            console.error(err);
+            res.sendStatus(500);
+        });
+    });
+});
+=======
+// Router.get('/:id', (req, res) => {
+//     patientModel.findOne({'id':req.params.id}).then(patient => {
+//         res.json(patient || {});
+//     }).catch(err => {
+//         console.error(err);
+//         res.sendStatus(500);
+//     });
+// });
+>>>>>>> 968dd5aee1057e3df70dc6705d41b5accfe4802f
+
 Router.get('/:id', (req, res) => {
-    patientModel.findOne({'id':req.params.id}).then(patient => {
+    patientModel.findById(req.params.id).populate('labTests').exec().then(patient => {
         res.json(patient || {});
     }).catch(err => {
         console.error(err);
@@ -48,20 +74,13 @@ Router.get('/:id', (req, res) => {
     });
 });
 
-// Router.post('/:id/beds', (req, res) => {
-//     let bed = new BedModel(req.body);
-//     const wardId = req.params.id;
-//     bed.id = wardId;
-//     bed.save().then(bedDb => {
-//         return patientModel.findOneAndUpdate({'id':req.params.id}, {$push: {"beds": bedDb._id}})
-//     }).then(() => {
-//         return patientModel.findOne({'id':req.params.id}).populate('beds').exec();
-//     }).then(wardDb => {
-//         res.json(wardDb);
-//     }).catch(err => {
-//         console.error(err);
-//     res.sendStatus(500);
-//     });
-// });
+Router.put('/updatePatient/:id',(req,res)=>{
+    console.log("the id is "+req.params.id);
+    console.log('data are');
+    console.log(req.body);
+    patientModel.update(req.params.id,req.body).then(patients=>{
+        res.send(patients);
+    });
+});
 
 module.exports = Router;

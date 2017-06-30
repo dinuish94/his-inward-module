@@ -4,39 +4,35 @@
       Ward Registration Form
     </div>
     <div class="card-body">
-      <form class="form form-horizontal">
+      <form class="form form-horizontal" name="patientForm" novalidate>
         <div class="section">
           <div class="section-title">Patient Details</div>
           <div class="section-body">
             <div class="form-group">
-              <label class="col-md-3 control-label">PID</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="">
-              </div>
-            </div>
-            <div class="form-group">
               <label class="col-md-3 control-label">Patient Name</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="" ng-model="patient.name">
+                <input type="text" class="form-control" name="pname" placeholder="" ng-model="patient.pname" ng-required="true">
+                 <span class="help-block" ng-show="patientForm.pname.$dirty && (patientForm.pname.$invalid || patientForm.pname.$error.required)">Please enter name </span>
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label">Age</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="" ng-model="patient.age">
+                <input type="number" class="form-control" name="page" placeholder="" ng-model="patient.age" ng-required="true">
+                <span class="help-block" ng-show="patientForm.page.$dirty && (patientForm.page.$invalid || patientForm.page.$error.required)">Please enter age </span>
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label">Gender</label>
               <div class="col-md-9">
                 <div class="radio radio-inline">
-                  <input type="radio" name="radio4" id="radio10" value="option10" ng-model="patient.gender">
+                  <input type="radio" name="radio4" id="radio10" value="option10" ng-model="patient.gender" ng-required="true">   
                   <label for="radio10">
                 Male
               </label>
                 </div>
                 <div class="radio radio-inline">
-                  <input type="radio" name="radio4" id="radio11" value="option11" checked ng-model="patient.gender">
+                  <input type="radio" name="radio4" id="radio11" value="option11" checked ng-model="patient.gender" ng-required="true">
                   <label for="radio11">
                 Female
               </label>
@@ -44,15 +40,10 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-3 control-label">Patient Home Phone Number</label>
+              <label class="col-md-3 control-label">Patient Phone Number</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="" ng-model="patient.phoneNumber">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label">Alternative Phone Number</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="" ng-model="patient.altrPhoneNumber">
+                <input type="number" class="form-control" name="pnumber" placeholder="" ng-model="patient.phoneNumber" ng-maxlength="10" ng-minlength="10">
+                <span class="help-block" ng-show="patientForm.pnumber.$dirty && (patientForm.pnumber.$invalid)"></span>
               </div>
             </div>
             <div class="form-group">
@@ -61,18 +52,10 @@
                 <p class="control-label-help">( description )</p>
               </div>
               <div class="col-md-9">
-                <textarea class="form-control" ng-model="patient.allergies"></textarea>
+                <textarea class="form-control" name="allergies" ng-model="patient.allergies" ng-required="true"></textarea>
+                <span class="help-block" ng-show="patientForm.allergies.$dirty && (patientForm.allergies.$invalid || patientForm.allergies.$error.required)">Enter allergies</span>
               </div>
             </div>
-            <!--<div class="form-group">
-        <label class="col-md-3 control-label">Price</label>
-        <div class="col-md-9">
-          <div class="input-group">
-            <span class="input-group-addon">$</span>
-            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-          </div>
-        </div>
-      </div>-->
           </div>
         </div>
         <div class="section">
@@ -81,19 +64,22 @@
             <div class="form-group">
               <label class="col-md-3 control-label">Guardian Name</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="">
+                <input type="text" class="form-control" name="gname" placeholder="" ng-model="patient.gName" ng-required="true">
+                 <span class="help-block" ng-show="patientForm.gname.$dirty && patientForm.gname.$invalid">Enter gurdian name</span>
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label">Emergency Contact Number</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="">
+                <input type="number" class="form-control" name="gphoneno" placeholder="" ng-model="patient.gContactNumber" ng-required="true" ng-maxlength="10" ng-minlength="10">
+                 <span class="help-block" ng-show="patientForm.gphoneno.$dirty && (patientForm.gphoneno.$invalid || patientForm.gphoneno.$error.minlength || patientForm.gphoneno.$error.maxlength || patientForm.gphoneno.$error.required)">Enter phoneNo</span>
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label">Relationship to Patient</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="">
+                <input type="text" class="form-control" name="grelationship" placeholder="" ng-model="patient.gRelationship"> 
+                 <span class="help-block" ng-show="patientForm.gphoneno.$dirty && patientForm.gphoneno.$invalid"></span>
               </div>
             </div>
             <div class="form-group">
@@ -101,29 +87,16 @@
                 <label class="control-label">Address</label>
               </div>
               <div class="col-md-9">
-                <textarea class="form-control"></textarea>
+                <textarea class="form-control" name="gaddress" ng-model="patient.gAddress"></textarea>
+                <span class="help-block" ng-show="patientForm.gaddress.$dirty && patientForm.gaddress.$invalid"></span>
               </div>
             </div>
-            <!--<div class="form-group">
-        <label class="col-md-3 control-label">Cover</label>
-        <div class="col-md-4">
-          <div class="input-group">
-            <select class="select2">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-            <span class="input-group-addon">Years</span>
-          </div>
-        </div>
-      </div>-->
           </div>
         </div>
         <div class="form-footer">
           <div class="form-group">
             <div class="col-md-9 col-md-offset-3">
-              <button type="button" class="btn btn-primary" ng-click="addPatient(patient)">Save</button>
+              <button type="button" class="btn btn-primary" ng-click="addPatient(patient)" ng-disabled="patientForm.$invalid">Save</button>
               <button type="button" class="btn btn-default">Cancel</button>
             </div>
           </div>
