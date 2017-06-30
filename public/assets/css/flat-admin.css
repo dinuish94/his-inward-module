@@ -5129,6 +5129,29 @@ div.section {
   stroke-width: 0.5px;
   stroke-dasharray: 0; }
 
+.card .numbers {
+    font-size: 4em;
+    text-align: right;
+}
+
+.card .content {
+    padding: 15px 15px 10px 15px;
+}
+
+.card .icon-big {
+    font-size: 5em;
+    min-height: 64px;
+}
+
+.icon-warning {
+    color: #3ec15a;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.4em;
+}
+
 .card-banner .ct-series-a .ct-bar, .card-banner .ct-series-a .ct-line, .card-banner .ct-series-a .ct-point {
   stroke: #FFF; }
 

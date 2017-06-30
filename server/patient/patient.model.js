@@ -14,6 +14,10 @@ const patientSchema = new Schema({
         type : Schema.Types.ObjectId,
         ref : 'Lab'
     }]
+    bed: {
+        type: Schema.Types.ObjectId,
+        ref: 'Bed'
+    }
 });
 
 patientSchema.plugin(AutoIncrement, {inc_field: 'pid'});
