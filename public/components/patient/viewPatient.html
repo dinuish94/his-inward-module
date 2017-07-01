@@ -73,8 +73,8 @@
                         <td>{{ patient.age }}</td>
                         <td>{{ patient.allergies }}</td>
                         <td>{{ patient.status }}</td>
-                        <td><button type="button" class="btn btn-success" ng-click="clickToOpen(patient)"><i class="fa fa-bed" aria-hidden="true"></i></button></td>
-                        <td><button type="button" class="btn btn-danger" ng-click="dischargePatient(patient.pid)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        <td><button type="button" class="btn btn-success" ng-click="clickToOpen(patient)">Edit</button></td>
+                        <td><button type="button" class="btn btn-danger" ng-click="dischargePatient(patient.pid)">Discharge</button></td>
                     </tr>
                 </tbody>
             </table>

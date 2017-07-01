@@ -37,7 +37,6 @@ patient.controller('patientController', function(patientService, sharedPropertie
 $scope.updatePatient = function (id,patient) {
         console.log(patient);
         patientService.update(id,patient).then(function (data) {
-            console.log("sdsdsd1");
             if(data.success){
                 alert("Successfully updated!");
                 getPatients();
@@ -62,7 +61,6 @@ $scope.updatePatient = function (id,patient) {
     }
 
     $scope.dischargePatient = (id) =>{
-        console.log('hjhjhjhjahsjhajsh')
         "use strict";
         SweetAlert.swal({
             title: "Are you sure discharge this patient?", 
