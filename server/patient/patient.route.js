@@ -56,6 +56,17 @@ Router.put('/:id', (req, res) => {
     });
 });
 
+
+// Router.get('/:id', (req, res) => {
+//     patientModel.findOne({'id':req.params.id}).then(patient => {
+//         res.json(patient || {});
+//     }).catch(err => {
+//         console.error(err);
+//         res.sendStatus(500);
+//     });
+// });
+
+
 Router.get('/:id', (req, res) => {
     patientModel.findById(req.params.id).populate('labTests').populate('operations').populate({ 
      path: 'operations',
