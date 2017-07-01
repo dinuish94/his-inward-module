@@ -49,11 +49,11 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/BHT/feverChart.html',
             controller: 'lineChartController'
         })
-        .when('/prescription', {
+        .when('/prescription/:id', {
             templateUrl: 'components/BHT/prescription/prescription.html',
             controller: "prescriptionController"
         })
-        .when('/diet',{
+        .when('/diet/:id',{
           templateUrl:'components/BHT/Diet Plan/diet.view.html',
           controller: 'dietController'  
         })

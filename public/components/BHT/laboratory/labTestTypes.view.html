@@ -5,11 +5,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-xs-10">
-                            Patient Laboratory Test Information
+                          Laboratory Test Types
                         </div>
                         <div class="col-xs-2">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewTestModal">
-                                    Add new Type of Lab Test
+                                    Add New Test Type
                             </button>
                         </div>
                     </div>
@@ -48,12 +48,12 @@
                 <h4 class="modal-title">Lab Test Types</h4>
             </div>
             <div class="modal-body">
-                <form class="form form-horizontal ng-pristine ng-valid">
+                <form class="form form-horizontal ng-pristine ng-valid" name="labTestType">
                     <div class="form-group">
                         <div class="col-xs-12">
                             <div class="input-group  has-warning">
                                 <span class="input-group-addon">Lab Test Name &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
-                                <input type="text" class="form-control" id="testType" placeholder="Lab Test Type" ng-model="labType.testType"></input>
+                                <input type="text" class="form-control" id="testType" placeholder="Lab Test Type" ng-model="labType.testType" required></input>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                <button type="button" ng-click="addLabTestType(labType)" data-dismiss="modal" class="btn btn-sm btn-success">Add Test Type</button>
+                <button type="button" ng-click="addLabTestType(labType)" data-dismiss="modal" class="btn btn-sm btn-success" ng-disabled="labTestType.$invalid">Add Test Type</button>
             </div>
         </div>
     </div>
