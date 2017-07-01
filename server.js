@@ -1,4 +1,3 @@
-
 const bodyParser = require('body-parser'),
     express = require('express'),
     mongoose = require('mongoose'),
@@ -59,7 +58,6 @@ mongoose.connect('localhost:27017/wards', err => {
     }
 });
 
-
 app.use('/app',express.static(__dirname + "/public"));
 app.use('/',express.static(__dirname + "/public"));
 app.use('/app/modules',express.static(__dirname + "/node_modules"));
@@ -97,6 +95,7 @@ const SlotRouter = require('./server/operationTheatre/slot.route.js');
 const TheatreRouter = require('./server/operationTheatre/theatre.route.js');
 const foodRouter = require('./server/food/food.route.js');
 const dietRouter = require('./server/diet/diet.route.js');
+<<<<<<< HEAD
 const userRouter = require('./server/user/user.route.js');
 const feverRouter = require('./server/charts/feverChart.route.js');
 const diabeticRouter = require('./server/charts/diabetic.route.js');
@@ -105,9 +104,12 @@ const lbRouter = require('./server/charts/liquidBalance.route.js');
 app.get('/',ensureAuthenticated, function(req,res){
     res.send({name:'kashif rosen'});
 });
+=======
+const userRouter = require('./user.route.js');
+>>>>>>> master
 
-app.get('/kashif',ensureAuthenticated,(req,res) => {
-    res.send({name:'kashif'});
+app.get('/app/*',ensureAuthenticated, function(req,res){
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 function ensureAuthenticated(req,res,next) {
@@ -116,7 +118,7 @@ function ensureAuthenticated(req,res,next) {
         return next();
     } else {
         req.flash('error_msg','You are not logged in');
-        res.redirect('/users/login');
+        res.sendFile(__dirname+'/public/login.html');
     }
 }
 
@@ -132,10 +134,10 @@ app.use('/patients',patientRouter);
 app.use('/beds', BedRouter);
 app.use('/foods',foodRouter);
 app.use('/diets',dietRouter);
-app.use('/users',userRouter);
 app.use('/fevers',feverRouter);
 app.use('/diabetes',diabeticRouter);
 app.use('/lBalance',lbRouter);
+app.use('/',userRouter);
 
 // app.get('/app/*',ensureAuthenticated, function(req,res){
 //     res.sendFile(__dirname + '/public/index.html');

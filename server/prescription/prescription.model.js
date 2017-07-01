@@ -3,6 +3,10 @@ const autoIncrement = require('mongoose-sequence');
 const Schema = mongoose.Schema;
 
 const prescriptionSchema = new Schema ({
+    patient: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Patient'
+    }],
     drug: [{
         type: Schema.Types.ObjectId,
         ref: 'Drug'

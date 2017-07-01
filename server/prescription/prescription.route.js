@@ -9,6 +9,7 @@ const express = require('express'),
 mongoose.set('debug', false);
 
 const prescriptionModel = mongoose.model('Prescription');
+const patientModel = mongoose.model('Patient');
 
 const drugModel = mongoose.model('Drug');
 
@@ -24,8 +25,8 @@ Router.get('/', (req, res) => {
 });
 
 Router.get('/:id', (req, res) => {
-    patientModel.findOne({ pid: req.params.id }).then(patient => {
-        prescriptionModel.find({ 'patient': patient._id }).populate('patient').exec().then(prescription => {
+    patientModel.findById(req.params.id).then(patient => {
+        prescriptionModel.find({ 'patient': patient._id }).populate('patient').populate('drug').exec().then(prescription => {
             res.json(prescription);
         }).catch(err => {
             console.error(err);
@@ -45,38 +46,31 @@ Router.post('/', (req, res) => {
 });
 
 Router.post('/:id', (req, res) => {
-    patientModel.findOne({ 'pid': req.params.id }).then(patient => {
-        var dietParams = {
-            patient: patient._id,
-            meal: req.body.meal,
-            quantity: req.body.quantity
-        }
 
-        const newDiet = new dietModel(dietParams);
+    const newPres = new prescriptionModel(req.body);
 
-        newDiet.save().then(diet => {
-            res.json(diet);
+    newPres.save().then(pres => {
+        res.json(pres);
 
-        }).catch(err => {
-            console.error(err);
-            res.sendStatus(500);
-        });
+    }).catch(err => {
+        console.error(err);
+        res.sendStatus(500);
     });
 });
 
 
-Router.put('/:id',(req,res)=>{
-    console.log("the id is "+req.params.id);
+Router.put('/:id', (req, res) => {
+    console.log("the id is " + req.params.id);
     console.log('data are');
     console.log(req.body);
-    prescriptionModel.update(req.params.id,req.body).then(prescription=>{
+    prescriptionModel.update(req.params.id, req.body).then(prescription => {
         res.send(prescription);
     });
 });
 
-Router.delete('/:id',(req,res)=>{
+Router.delete('/:id', (req, res) => {
     console.log(req.params);
-    prescriptionModel.deleteOne({'presId':req.params.id}).then(()=>{
+    prescriptionModel.deleteOne({ 'presId': req.params.id }).then(() => {
         console.log("the record is deleted");
         res.sendStatus(200);
     });

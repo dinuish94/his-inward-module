@@ -5,11 +5,11 @@ const express = require('express'),
     LocalStrategy = require('passport-local').Strategy;
 
 Router.get('/register', (req, res) => {
-    res.sendFile('/his-inward-module/public/register.html');
+    res.sendFile(__dirname+'/public/register.html');
 });
 
 Router.get('/login', (req, res) => {
-    res.sendFile('/his-inward-module/public/login.html');
+    res.sendFile(__dirname+'/public/login.html');
 });
 
 Router.post('/register', (req, res) => {
@@ -22,7 +22,7 @@ Router.post('/register', (req, res) => {
         console.log(newUser);
     });
     req.flash('success_msg', 'you are registered and can login');
-    res.sendFile('/his-inward-module/public/login.html');
+    res.sendFile(__dirname+'/public/login.html');
 });
 
 passport.use(new LocalStrategy((username, password, done) => {

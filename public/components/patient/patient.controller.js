@@ -1,17 +1,23 @@
 var patient = angular.module('inward');
 
-patient.controller('patientController', function(patientService, sharedProperties, $location, $scope, ngNotify, $mdDialog,SweetAlert, ngDialog ) {
+patient.controller('patientController', [ 'patientService', 'sharedProperties', '$location', '$scope', 'ngNotify', '$mdDialog', 'SweetAlert', 'ngDialog', '$window' ,function(patientService, sharedProperties, $location, $scope, ngNotify, $mdDialog,SweetAlert, ngDialog, $window ) {
 
     var vm=this;
-
+$scope.user = $window.sessionStorage.getItem("loggedInUser");
+    console.log($scope.user)
+    if($scope.user != "true"){
+        alert();
+        $window.location.href = "/login";
+    }
     $scope.show = function(){
-        console.log("inside!!");
+        $scope.user = $window.sessionStorage.getItem("loggedInUser");
+        console.log("inside!! "+$scope.user);
     }
 
     $scope.addPatient = (data) => {
         data.status = 'in';
         patientService.add(data).then(data=>{
-            data = {};
+            $scope.patient = {};
             ngNotify.set('Patient Add Successfully!','success');
             sharedProperties.setPid(data.pid);
         })
@@ -84,4 +90,4 @@ $scope.updatePatient = function (id,patient) {
         
     }
 
-});
+}]);

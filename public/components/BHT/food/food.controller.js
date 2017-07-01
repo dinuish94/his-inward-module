@@ -4,7 +4,6 @@ angular.module('inward').controller('foodController', ['$scope', 'foodService', 
 
   foodService.get().then(foods => {
     $scope.foods = foods;
-    console.log(foods);
   });
 
 }]);
