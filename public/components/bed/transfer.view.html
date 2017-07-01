@@ -23,7 +23,7 @@
                                                             <p class="control-label-help"></p>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="" ng-model="patient.id">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="transfer.patientId">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -33,7 +33,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <select ng-options="ward as ward.name for ward in wards" class="form-control" placeholder=""
-                                                            ng-model="patient.to" ng-change="updateBeds(patient.to)">
+                                                            ng-model="transfer.to" ng-change="updateBeds(transfer.to)">
                                                             </select>
                                                         </div>
                                                     </div>
@@ -43,7 +43,7 @@
                                                             <p class="control-label-help"></p>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <select class="form-control" type="text" class="form-control" placeholder="" ng-model="patient.newBed">
+                                                            <select class="form-control" type="text" class="form-control" placeholder="" ng-model="transfer.toBed">
                                                                 <option ng-repeat="bed in selectedWardBeds" value="{{bed.bId}}"> {{bed.bId}}</option>
                                                             </select>
                                                         </div>
@@ -54,7 +54,7 @@
                                                             <p class="control-label-help"></p>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="" ng-model="ward.description">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="transfer.reason">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -63,7 +63,7 @@
                                                             <p class="control-label-help"></p>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <input type="datetime-local" min="0" class="form-control" placeholder="">
+                                                            <input type="datetime-local" min="0" class="form-control" placeholder="" ng-model="transfer.transferDate">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -72,7 +72,7 @@
                                                             <p class="control-label-help"></p>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <textarea class="form-control" placeholder=""></textarea>
+                                                            <textarea class="form-control" placeholder="" ng-model="transfer.remarks"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -80,7 +80,7 @@
                                             <div class="form-footer">
                                                 <div class="form-group">
                                                     <div class="col-md-9 col-md-offset-3">
-                                                        <button type="submit" class="btn btn-success" ng-click="addWard(ward)">Transfer</button>
+                                                        <button type="submit" class="btn btn-success" ng-click="addTransfer(transfer)">Transfer</button>
                                                         <button type="button" class="btn btn-default">Cancel</button>
                                                     </div>
                                                 </div>
@@ -101,7 +101,7 @@
                                                             <p class="control-label-help"></p>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="" ng-model="ward.description">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="etransfer.patientId">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -110,7 +110,7 @@
                                                             <p class="control-label-help"></p>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="" ng-model="ward.description">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="etransfer.to">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -119,7 +119,7 @@
                                                             <p class="control-label-help"></p>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="" ng-model="ward.description">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="etransfer.from">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -128,7 +128,7 @@
                                                             <p class="control-label-help"></p>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="" ng-model="ward.description">
+                                                            <input type="text" class="form-control" placeholder="" ng-model="etransfer.reason">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -137,7 +137,7 @@
                                                             <p class="control-label-help"></p>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <input type="datetime-local" min="0" class="form-control" placeholder="">
+                                                            <input type="datetime-local" min="0" class="form-control" placeholder="" ng-model="etransfer.transferDate">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -146,7 +146,7 @@
                                                             <p class="control-label-help"></p>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <textarea class="form-control" placeholder=""></textarea>
+                                                            <textarea class="form-control" placeholder="" ng-model="etransfer.remarks"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -154,7 +154,7 @@
                                             <div class="form-footer">
                                                 <div class="form-group">
                                                     <div class="col-md-9 col-md-offset-3">
-                                                        <button type="submit" class="btn btn-success" ng-click="addWard(ward)">Transfer</button>
+                                                        <button type="submit" class="btn btn-success" ng-click="externalTransfer(etransfer)">Transfer</button>
                                                         <button type="button" class="btn btn-default">Cancel</button>
                                                     </div>
                                                 </div>
