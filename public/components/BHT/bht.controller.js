@@ -36,7 +36,7 @@ angular.module('inward').controller('BHTController',
          $scope.imageData = e;
      }
 
-        $scope.downloadPDF = (patient,dat) =>{
+        $scope.downloadPDF = (patient,dat) =>{ 
              var docDefinition = {
                 content: [
                         {
@@ -93,8 +93,8 @@ angular.module('inward').controller('BHTController',
 
                                 body: [
                                 [ 'Bed Head Ticket No', patient.bht ],
-                                [ 'Discharge Date', '-'],
-                                [ 'Admitted Date', '05-06-2017']
+                                [ 'Status', patient.status],
+                                [ 'Admitted Date', patient.admitDate]
                                 ]
                             }
                         },
@@ -111,7 +111,7 @@ angular.module('inward').controller('BHTController',
 
                                 body: [
                                 [ 'Allergy Name', patient.allergies ],
-                                [ 'Allergy Drug', 'drug1' ]
+                                [ 'Allergy Drug', 'drug 1' ]
                                 ]
                             }
                         }
