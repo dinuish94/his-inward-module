@@ -11,7 +11,7 @@ const patientModel = mongoose.model('Patient');
 
 const Router = express.Router();
 
-Router.get('/', (req, res) => {
+Router.get('/', ensureAuthenticated,(req, res) => {
     patientModel.find().then(patients => {
         res.json(patients);
     }).catch(err => {
@@ -93,5 +93,16 @@ Router.put('/updatePatient/:id', (req, res) => {
         res.sendStatus(500);
     });
 });
+
+
+function ensureAuthenticated(req,res,next) {
+    
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        req.flash('error_msg','You are not logged in');
+        res.send(403);
+    }
+}
 
 module.exports = Router;
