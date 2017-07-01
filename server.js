@@ -68,13 +68,8 @@ app.use('/app/modules',express.static(__dirname + "/bower_components"));
 mongoose.Promise = global.Promise;
 
 require('./server/ward/ward.model.js');
-<<<<<<< HEAD
-//require('./server/ward/internalTransfer.model.js');
-//require('./server/ward/externalTransfer.model.js');
-=======
 require('./server/ward/internalTransfer.model.js');
 require('./server/ward/externalTransfer.model.js');
->>>>>>> master
 require('./server/bed/bed.model.js');
 require('./server/doctor/doctor.model.js');
 require('./server/prescription/prescription.model.js');
@@ -87,6 +82,7 @@ require('./server/laboratory/labTest.model.js');
 require('./server/laboratory/labTestTypes.model.js');
 require('./server/operationTheatre/slot.model.js');
 require('./server/operationTheatre/theatre.model.js');
+require('./server/charts/feverChart.model.js');
 
 const WardRouter = require('./server/ward/ward.route.js');
 const presRouter = require('./server/prescription/prescription.route.js');
@@ -102,6 +98,9 @@ const TheatreRouter = require('./server/operationTheatre/theatre.route.js');
 const foodRouter = require('./server/food/food.route.js');
 const dietRouter = require('./server/diet/diet.route.js');
 const userRouter = require('./server/user/user.route.js');
+const feverRouter = require('./server/charts/feverChart.route.js');
+const diabeticRouter = require('./server/charts/diabetic.route.js');
+const lbRouter = require('./server/charts/liquidBalance.route.js');
 
 app.get('/',ensureAuthenticated, function(req,res){
     res.send({name:'kashif rosen'});
@@ -134,6 +133,9 @@ app.use('/beds', BedRouter);
 app.use('/foods',foodRouter);
 app.use('/diets',dietRouter);
 app.use('/users',userRouter);
+app.use('/fevers',feverRouter);
+app.use('/diabetes',diabeticRouter);
+app.use('/lBalance',lbRouter);
 
 // app.get('/app/*',ensureAuthenticated, function(req,res){
 //     res.sendFile(__dirname + '/public/index.html');

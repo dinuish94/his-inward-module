@@ -76,8 +76,16 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             controller: 'LabTestController'
         })
         .when('/diabeticChart', {
-            templateUrl: 'components/BHT/diabeticChart.view.html',
+            templateUrl: 'components/BHT/chart/diabeticChart.view.html',
             controller: 'diabeticChartController'
+        })
+        .when('/feverChart', {
+            templateUrl: 'components/BHT/chart/feverChart.view.html',
+            controller: 'feverChartController'
+        })
+        .when('/lbChart', {
+            templateUrl: 'components/BHT/chart/liquidBalance.view.html',
+            controller: 'liquidBalanceController'
         })
         .when('/bht/:id', {
             templateUrl: 'components/BHT/bht.view.html',

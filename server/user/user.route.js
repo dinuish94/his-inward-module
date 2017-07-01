@@ -15,11 +15,11 @@ Router.get('/login', (req, res) => {
 Router.post('/register', (req, res) => {
     var newUser = new User(req.body);
 
-    user.createUser(newUser, (err, user) => {
+    User.createUser(newUser, (err, user) => {
         if (err) {
             throw (err);
         }
-        console.log(user);
+        console.log(newUser);
     });
     req.flash('success_msg', 'you are registered and can login');
     res.sendFile('/his-inward-module/public/login.html');
