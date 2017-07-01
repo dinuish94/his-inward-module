@@ -5,9 +5,6 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     $locationProvider.hashPrefix('!');
 
     $routeProvider
-        // .when('/', {
-        //     templateUrl: 'components/dashboard/dashboard.html'
-        // })
         .when('/ward',{
             templateUrl:'components/ward/allWards.view.html',
             controller: 'WardController'    
@@ -99,7 +96,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/BHT/home.view.html',
             controller: 'Home'
         })
-        // .otherwise({redirectTo: '/view1'});
+        .otherwise({redirectTo: '/viewPatient'});
 
 }]);
 

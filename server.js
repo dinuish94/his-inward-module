@@ -1,4 +1,3 @@
-
 const bodyParser = require('body-parser'),
     express = require('express'),
     mongoose = require('mongoose'),
@@ -59,7 +58,6 @@ mongoose.connect('localhost:27017/wards', err => {
     }
 });
 
-
 app.use('/app',express.static(__dirname + "/public"));
 app.use('/',express.static(__dirname + "/public"));
 app.use('/app/modules',express.static(__dirname + "/node_modules"));
@@ -68,13 +66,8 @@ app.use('/app/modules',express.static(__dirname + "/bower_components"));
 mongoose.Promise = global.Promise;
 
 require('./server/ward/ward.model.js');
-<<<<<<< HEAD
-//require('./server/ward/internalTransfer.model.js');
-//require('./server/ward/externalTransfer.model.js');
-=======
 require('./server/ward/internalTransfer.model.js');
 require('./server/ward/externalTransfer.model.js');
->>>>>>> master
 require('./server/bed/bed.model.js');
 require('./server/doctor/doctor.model.js');
 require('./server/prescription/prescription.model.js');
@@ -101,14 +94,10 @@ const SlotRouter = require('./server/operationTheatre/slot.route.js');
 const TheatreRouter = require('./server/operationTheatre/theatre.route.js');
 const foodRouter = require('./server/food/food.route.js');
 const dietRouter = require('./server/diet/diet.route.js');
-const userRouter = require('./server/user/user.route.js');
+const userRouter = require('./user.route.js');
 
-app.get('/',ensureAuthenticated, function(req,res){
-    res.send({name:'kashif rosen'});
-});
-
-app.get('/kashif',ensureAuthenticated,(req,res) => {
-    res.send({name:'kashif'});
+app.get('/app/*',ensureAuthenticated, function(req,res){
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 function ensureAuthenticated(req,res,next) {
@@ -133,7 +122,7 @@ app.use('/patients',patientRouter);
 app.use('/beds', BedRouter);
 app.use('/foods',foodRouter);
 app.use('/diets',dietRouter);
-app.use('/users',userRouter);
+app.use('/',userRouter);
 
 // app.get('/app/*',ensureAuthenticated, function(req,res){
 //     res.sendFile(__dirname + '/public/index.html');

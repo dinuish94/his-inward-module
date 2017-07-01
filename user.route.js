@@ -5,24 +5,24 @@ const express = require('express'),
     LocalStrategy = require('passport-local').Strategy;
 
 Router.get('/register', (req, res) => {
-    res.sendFile('/his-inward-module/public/register.html');
+    res.sendFile(__dirname+'/public/register.html');
 });
 
 Router.get('/login', (req, res) => {
-    res.sendFile('/his-inward-module/public/login.html');
+    res.sendFile(__dirname+'/public/login.html');
 });
 
 Router.post('/register', (req, res) => {
     var newUser = new User(req.body);
 
-    user.createUser(newUser, (err, user) => {
+    User.createUser(newUser, (err, user) => {
         if (err) {
             throw (err);
         }
-        console.log(user);
+        console.log(newUser);
     });
     req.flash('success_msg', 'you are registered and can login');
-    res.sendFile('/his-inward-module/public/login.html');
+    res.sendFile(__dirname+'/public/login.html');
 });
 
 passport.use(new LocalStrategy((username, password, done) => {
