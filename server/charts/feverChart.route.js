@@ -16,14 +16,23 @@ const Router = express.Router();
 
 Router.get('/:id', (req, res) => {
 
-    patientModel.findOne({ pid: req.params.id }).then(patient => {
-        feverModel.find({ 'patient': patient._id }).populate('patient').exec().then(chart => {
-            res.json(chart);
-        }).catch(err => {
-            console.error(err);
-            res.sendStatus(500);
-        });
-    });
+    let chartVariables = {
+        'x' : ['Monday','Tuesday','Wednesday','Thurseday','Friday','Saturday','Sunday'],
+        'y' : [96,92,94,97,105,96,107]
+    }
+
+    res.json(chartVariables);
+
+
+
+    // patientModel.findOne({ pid: req.params.id }).then(patient => {
+    //     feverModel.find({ 'patient': patient._id }).populate('patient').exec().then(chart => {
+    //         res.json(chart);
+    //     }).catch(err => {
+    //         console.error(err);
+    //         res.sendStatus(500);
+    //     });
+    // });
 });
 
 Router.post('/', (req, res) => {
