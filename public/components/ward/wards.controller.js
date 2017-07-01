@@ -3,7 +3,7 @@
  */
 
 angular.module('inward').controller('WardController',
-    ['WardService', '$location', '$scope', 'ngNotify','$mdDialog','SweetAlert', function( WardService, $location, $scope, ngNotify, $mdDialog, SweetAlert) {
+    ['WardService', '$location', '$scope', 'ngNotify','$mdDialog','SweetAlert', '$route', function( WardService, $location, $scope, ngNotify, $mdDialog, SweetAlert, $route) {
     var vm = this;
 
     // Retrieve all wards
@@ -64,6 +64,13 @@ angular.module('inward').controller('WardController',
         ngNotify.set('Ward added successfully!','success');
     };
 
+    // Update a ward
+    $scope.updateWard = (wardId, ward) => {
+        WardService.update(wardId, ward).then(ward => {
+            $route.reload();
+        })
+    }
+
     // Retrieve all doctors
     WardService.getDoctors().then(doctors =>{
         $scope.doctors = doctors;
@@ -82,7 +89,7 @@ angular.module('inward').controller('WardController',
 
     // Filters beds that have patients assigned
     $scope.patientFilter = (object) => {
-        return object.patient != null;
+        return object.patient != null ;
     }
 
     // Updates the data according to the ward selected
