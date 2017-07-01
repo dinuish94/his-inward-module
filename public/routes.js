@@ -99,6 +99,6 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/BHT/home.view.html',
             controller: 'Home'
         })
-        .otherwise({redirectTo: '/view1'});
+        .otherwise({redirectTo: '/viewPatient'});
 }]);
 

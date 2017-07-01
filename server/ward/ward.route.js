@@ -48,6 +48,22 @@ Router.post('/', (req, res) => {
 });
 
 /**
+ * Update ward
+ */
+Router.put('/:id',(req,res)=>{
+    let wardId = req.params.id;
+    let ward = req.body;
+    WardModel.findOneAndUpdate({'id':wardId},{$set : ward}).then(ward =>{
+        return WardModel.findOne({'id':wardId}).populate('beds').exec();
+    }).then(ward=>{
+        res.json(ward);
+    }).catch(err => {
+        console.error(err);
+        res.sendStatus(500);
+    });
+});
+
+/**
  * Delete ward
  */
 Router.delete('/:id', (req, res) => {
