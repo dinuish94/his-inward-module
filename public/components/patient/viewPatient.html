@@ -1,59 +1,48 @@
 <div class="col-xs-12">
-
     <div class="card">
-
-
         <script type="text/ng-template" id="templateUpdate">
             <div class="ngdialog-message">
-                <h3>Do you want to remove this ?</h3>
-                <p>All data will be lost.</p>
-                <!--<form class="form form-horizontal">
-                     <div class="form-group">
-              <label class="col-md-3 control-label">Patient Name</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="" ng-model="patient.name">
-              </div>
-            </div>-->
+                <h3>Manage Patient Details</h3>
                 <form>
                     <div>
                         <label class="col-md-1 control-label">Patient</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.name}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.name}}"  ng-model="selectedPatient.name"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">Age</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.age}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.age}}" ng-model="selectedPatient.age"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">Gender</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.gender}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.gender}}"ng-model="selectedPatient.gender"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">PhoneNo</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.phoneNumber}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.phoneNumber}}" ng-model="selectedPatient.phoneNumber"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">Allergies</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.allergies}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.allergies}}" ng-model="selectedPatient.allergies"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">GName</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.gName}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.gName}}" ng-model="selectedPatient.gName"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">GContactNumber</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.gContactNumber}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.gContactNumber}}" ng-model="selectedPatient.gContactNumber"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">GRelationship</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.gRelationship}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.gRelationship}}" ng-model="selectedPatient.gRelationship"/><br>
                     </div>
                     <div>
                         <label class="col-md-1 control-label">GAddress</label>
-                        <input type="text" class="form-control" value="{{selectedPatient.gAddress}}" /><br>
+                        <input type="text" class="form-control" value="{{selectedPatient.gAddress}}" ng-model="selectedPatient.gAddress"/><br>
                     </div>
             </div>
             <div class="ngdialog-buttons">
-                <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('OK')">Confirm</button>
+                <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="updatePatient(selectedPatient.pid,selectedPatient)">Confirm</button>
                 <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('button')">Cancel</button>
             </div>
             </form>
@@ -61,7 +50,7 @@
 
         <div class="card-body" ng-controller="patientController as showCase">
 
-            <button type="button" class="btn btn-primary" ng-click="goToAdd()">Add new Patient</button>
+            <button type="button" class="btn btn-primary" ng-click="navigatePatientRegi()">Add new Patient</button>
             <table datatable="ng" class="datatable table table-striped primary dataTable no-footer" cellspacing="0" width="100%" id="DataTables_Table_0"
                 role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
                 <thead>
@@ -71,14 +60,9 @@
                         <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Gender</th>
                         <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Age</th>
                         <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Allergies</th>
+                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Status</th>
                         <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Update</th>
                         <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Discharge</th>
-                        <!--<th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Phone Number</th>
-                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 105px;">Gurdian Name</th>
-                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 105px;">Gurdian contactNo.</th>
-                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">gRelationship</th>
-                    <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">gAddress</th>-->
-
                     </tr>
                 </thead>
                 <tbody>
@@ -88,15 +72,9 @@
                         <td>{{ patient.gender }}</td>
                         <td>{{ patient.age }}</td>
                         <td>{{ patient.allergies }}</td>
-                        <!--
-                    <td>{{ patient.phoneNumber }}</td>
-                    <td>{{ patient.gName }}</td>
-                    <td>{{ patient.gContactNumber }}</td>
-                    <td>{{ patient.gRelationship }}</td>
-                    <td>{{ patient.gAddress }}</td>-->
-                        <!--<td><button type="button" class="btn btn-danger" ng-click="deletePatient(patient.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>-->
-                        <td><button type="button" class="btn btn-success" ng-click="clickToOpen(patient)"><i class="fa fa-bed" aria-hidden="true"></i></button></td>
-                        <td><button type="button" class="btn btn-danger" ng-click="dischargePatient(patient.pid)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        <td>{{ patient.status }}</td>
+                        <td><button type="button" class="btn btn-success" ng-click="clickToOpen(patient)">Edit</button></td>
+                        <td><button type="button" class="btn btn-danger" ng-click="dischargePatient(patient.pid)">Discharge</button></td>
                     </tr>
                 </tbody>
             </table>

@@ -68,8 +68,13 @@ app.use('/app/modules',express.static(__dirname + "/bower_components"));
 mongoose.Promise = global.Promise;
 
 require('./server/ward/ward.model.js');
+<<<<<<< HEAD
 //require('./server/ward/internalTransfer.model.js');
 //require('./server/ward/externalTransfer.model.js');
+=======
+require('./server/ward/internalTransfer.model.js');
+require('./server/ward/externalTransfer.model.js');
+>>>>>>> master
 require('./server/bed/bed.model.js');
 require('./server/doctor/doctor.model.js');
 require('./server/prescription/prescription.model.js');

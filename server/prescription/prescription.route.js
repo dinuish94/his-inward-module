@@ -44,6 +44,26 @@ Router.post('/', (req, res) => {
     });
 });
 
+Router.post('/:id', (req, res) => {
+    patientModel.findOne({ 'pid': req.params.id }).then(patient => {
+        var dietParams = {
+            patient: patient._id,
+            meal: req.body.meal,
+            quantity: req.body.quantity
+        }
+
+        const newDiet = new dietModel(dietParams);
+
+        newDiet.save().then(diet => {
+            res.json(diet);
+
+        }).catch(err => {
+            console.error(err);
+            res.sendStatus(500);
+        });
+    });
+});
+
 
 Router.put('/:id',(req,res)=>{
     console.log("the id is "+req.params.id);

@@ -3,7 +3,7 @@
  */
 
 angular.module('inward').controller('LabRequestList',
-    ['LabTestService', '$location', '$scope', 'ngNotify', '$mdDialog','$routeParams',function( LabTestService, $location, $scope, ngNotify, $mdDialog,$routeParams) {
+    ['LabTestService', '$location', '$scope', 'ngNotify', '$mdDialog','$routeParams','SweetAlert',function( LabTestService, $location, $scope, ngNotify, $mdDialog,$routeParams,SweetAlert) {
 
         function getLabRequests() {
             let id = $routeParams.id;
@@ -32,6 +32,7 @@ angular.module('inward').controller('LabRequestList',
                 $scope.labRequests = "";
                 $scope.patient = "";
                 $scope.lab = "";
+                ngNotify.set('Remark added successfully!','success');
                 getLabRequests();
             });
         }
@@ -45,13 +46,31 @@ angular.module('inward').controller('LabRequestList',
         }
 
         $scope.cancelRequest = (labRequestId,lab) =>{
-            lab.status = "Cancelled";
-            lab.activeFlag = 0;
-            LabTestService.updateLabRequest(labRequestId,lab).then(lab =>{
-                $scope.labRequests = "";
-                $scope.patient = "";
-                $scope.lab = "";
-                getLabRequests();
-            });
+            
+            SweetAlert.swal({
+            title: "Are you sure you want to delete?", 
+            text: "You will not be able to recover this record!", 
+            type: "warning", 
+            showCancelButton: true, 
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Delete",
+            closeOnConfirm: false,
+            closeOnCancel: true
+            }, 
+            function(isConfirm){
+                if(isConfirm){
+                    lab.status = "Cancelled";
+                    lab.activeFlag = 0;
+                    LabTestService.updateLabRequest(labRequestId,lab).then(lab =>{
+                        $scope.labRequests = "";
+                        $scope.patient = "";
+                        $scope.lab = "";
+                    });
+                    
+                    SweetAlert.swal("Deleted!", "The Request has been deleted.", "success");
+                    getLabRequests();
+                }
+            }); 
+
         }
     }]);
