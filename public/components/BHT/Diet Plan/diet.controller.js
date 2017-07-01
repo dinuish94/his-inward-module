@@ -1,4 +1,4 @@
-angular.module('inward').controller('dietController', ['$scope', 'prescriptionService', 'ngNotify','dietService', function prescriptionCtrl($scope, prescriptionService, ngNotify,dietService) {
+angular.module('inward').controller('dietController', ['$scope', 'prescriptionService', 'ngNotify','dietService','$routeParams', function prescriptionCtrl($scope, prescriptionService, ngNotify,dietService,$routeParams) {
     $scope.sortType = 'dosage'; // set the default sort type
     $scope.sortReverse = false;  // set the default sort order
     $scope.searchFish = '';
@@ -11,7 +11,8 @@ angular.module('inward').controller('dietController', ['$scope', 'prescriptionSe
         });
     }
 
-    function getDiets(id) {
+    function getDiets() {
+        let id = $routeParams.id;
         dietService.get(id).then(diets => {
             $scope.diets = diets;
             console.log(diets);
@@ -19,9 +20,10 @@ angular.module('inward').controller('dietController', ['$scope', 'prescriptionSe
     }
 
     getPres();
-    getDiets(1);
+    getDiets();
 
     $scope.addDiet = (diet) => {
+        let id = $routeParams.id;
         console.log(diet);
 
         var newDiet = {
@@ -30,8 +32,10 @@ angular.module('inward').controller('dietController', ['$scope', 'prescriptionSe
             quantity:diet.quantity
         }
 
-        dietService.add(1,newDiet).then(diet => {
-            getDiets(1);
+        console.log(newDiet);
+
+        dietService.add(id,newDiet).then(diet => {
+            getDiets();
         });
     }
 
