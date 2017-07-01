@@ -53,10 +53,15 @@ Router.post('/', (req, res) => {
 Router.put('/:id',(req,res)=>{
     let wardId = req.params.id;
     let ward = req.body;
+    
     WardModel.findOneAndUpdate({'id':wardId},{$set : ward}).then(ward =>{
         return WardModel.findOne({'id':wardId}).populate('beds').exec();
     }).then(ward=>{
-        res.json(ward);
+        DoctorModel.findOne({'docId':req.body.docId}).then(docDb=>{
+            return WardModel.findByIdAndUpdate(ward._id, {$set: {'head': docDb._id}});
+        }).then(ward => {
+            res.json(ward);
+        });
     }).catch(err => {
         console.error(err);
         res.sendStatus(500);
@@ -79,7 +84,7 @@ Router.delete('/:id', (req, res) => {
  * Get ward by unique ID
  */
 Router.get('/:id', (req, res) => {
-    WardModel.findOne({'id':req.params.id}).populate('beds').exec().then(ward => {
+    WardModel.findOne({'id':req.params.id}).populate('beds').populate('head').exec().then(ward => {
         res.json(ward || {});
     }).catch(err => {
         console.error(err);

@@ -79,6 +79,7 @@ angular.module('inward').controller('WardController',
     // Retrieve ward by given ID
     $scope.getWard = (id) => {
         WardService.getWardById(id).then(ward => {
+            console.log(ward);
             $scope.editWard = ward;
         })
     }
