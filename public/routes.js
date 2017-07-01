@@ -99,6 +99,16 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             templateUrl: 'components/BHT/home.view.html',
             controller: 'Home'
         })
-        .otherwise({redirectTo: '/view1'});
+        // .otherwise({redirectTo: '/view1'});
 }]);
+
+function ensureAuthenticated(req,res,next) {
+    
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        req.flash('error_msg','You are not logged in');
+        res.redirect('/users/login');
+    }
+}
 

@@ -23,6 +23,17 @@ Router.get('/', (req, res) => {
     });
 });
 
+Router.get('/:id', (req, res) => {
+    patientModel.findOne({ pid: req.params.id }).then(patient => {
+        prescriptionModel.find({ 'patient': patient._id }).populate('patient').exec().then(prescription => {
+            res.json(prescription);
+        }).catch(err => {
+            console.error(err);
+            res.sendStatus(500);
+        });
+    });
+});
+
 Router.post('/', (req, res) => {
     const newPresc = new prescriptionModel(req.body);
     newPresc.save().then(prescription => {
@@ -32,6 +43,7 @@ Router.post('/', (req, res) => {
         res.sendStatus(500);
     });
 });
+
 
 Router.put('/:id',(req,res)=>{
     console.log("the id is "+req.params.id);
