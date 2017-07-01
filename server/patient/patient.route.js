@@ -32,7 +32,7 @@ Router.post('/', (req, res) => {
 });
 
 Router.delete('/:id', (req, res) => {
-    patientModel.deleteOne({'id':req.params.id}).then(() => {
+    patientModel.deleteOne({"pid":req.params.id}).then(() => {
         res.sendStatus(200);
     }).catch(err => {
         console.error(err);
