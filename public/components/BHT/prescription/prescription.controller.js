@@ -1,4 +1,4 @@
-angular.module('inward').controller('prescriptionController', ['$scope', 'prescriptionService', 'ngNotify', function prescriptionCtrl($scope, prescriptionService, ngNotify) {
+angular.module('inward').controller('prescriptionController', ['$scope', 'prescriptionService', 'ngNotify','$routeParams', function prescriptionCtrl($scope, prescriptionService, ngNotify,$routeParams) {
     $scope.sortType = 'dosage'; // set the default sort type
     $scope.sortReverse = false;  // set the default sort order
     $scope.searchFish = '';
@@ -6,20 +6,24 @@ angular.module('inward').controller('prescriptionController', ['$scope', 'prescr
 
 
     function getPres() {
-        prescriptionService.get().then(prescriptions => {
+        let id = $routeParams.id;
+        prescriptionService.get(id).then(prescriptions => {
             $scope.prescriptions = prescriptions;
+            console.log(prescriptions);
         });
     }
 
     getPres();
 
     $scope.addPres = (pres) => {
+        let id = $routeParams.id;
         var newPres = {
+            patient:id,
             drug: pres.drug._id,
             dosage: pres.dosage,
             frequency: pres.frequency
         }
-        prescriptionService.add(newPres).then((addedPres) => {
+        prescriptionService.add(id,newPres).then((addedPres) => {
             getPres();
         });
         ngNotify.set('Prescription added successfully!', 'success');

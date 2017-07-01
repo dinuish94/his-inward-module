@@ -48,6 +48,7 @@ angular.module('inward').controller('BHTController',
                         { text: '   ', fontSize: 10, bold: true  },
                         { text: 'Patient Details', fontSize: 20, bold: true, alignment: 'center' },
                         { text: '   ', fontSize: 10, bold: true  },
+
                         { text: 'Patient Basic Details', fontSize: 15, bold: true  },
                         { text: '   ', fontSize: 10, bold: true  },
                         {
@@ -58,9 +59,24 @@ angular.module('inward').controller('BHTController',
 
                                 body: [
                                 [ 'Full Name', patient.name ],
-                                [ 'NIC', '999999'],
                                 [ 'Gender', patient.gender],
-                                [ 'Date of Birth', 'Val 2']
+                                [ 'Age', patient.age]
+                                ]
+                            }
+                        },
+
+                        { text: 'Patient Guardian Details', fontSize: 15, bold: true  },
+                        { text: '   ', fontSize: 10, bold: true  },
+                        {
+                            layout: 'lightHorizontalLines',
+                            table: {
+                                headerRows: 0,
+                                widths: [ 150, '*'],
+
+                                body: [
+                                [ 'Name', patient.gName ],
+                                [ 'Contact No ', patient.gContactNumber],
+                                [ 'Relationship', patient.gRelationship]
                                 ]
                             }
                         },
@@ -76,9 +92,9 @@ angular.module('inward').controller('BHTController',
                                 widths: [ 150, '*'],
 
                                 body: [
-                                [ 'Bed Head Ticket No', 'Second' ],
-                                [ 'Discharge Date', 'Value 2'],
-                                [ 'Admitted Date', 'Val 2']
+                                [ 'Bed Head Ticket No', patient.bht ],
+                                [ 'Discharge Date', '-'],
+                                [ 'Admitted Date', '05-06-2017']
                                 ]
                             }
                         },
@@ -94,8 +110,8 @@ angular.module('inward').controller('BHTController',
                                 widths: [ 150, '*'],
 
                                 body: [
-                                [ 'Allergy Name', 'Second' ],
-                                [ 'Allergy Drug', 'Second' ]
+                                [ 'Allergy Name', patient.allergies ],
+                                [ 'Allergy Drug', 'drug1' ]
                                 ]
                             }
                         }

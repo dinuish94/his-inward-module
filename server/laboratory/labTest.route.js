@@ -44,7 +44,6 @@ Router.put('/:id',(req,res)=>{
     });
 });
 
-
 Router.post('/:id', (req, res) => {
     let patientId = req.params.id;
     const newLab = new LabModel(req.body);

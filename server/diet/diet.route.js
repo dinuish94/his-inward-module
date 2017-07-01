@@ -27,7 +27,7 @@ Router.get('/', (req, res) => {
 
 Router.get('/:id', (req, res) => {
 
-    patientModel.findOne({ pid: req.params.id }).then(patient => {
+    patientModel.findById(req.params.id).then(patient => {
         dietModel.find({ 'patient': patient._id }).populate('patient').populate('food').exec().then(diet => {
             res.json(diet);
         }).catch(err => {
@@ -48,7 +48,7 @@ Router.post('/', (req, res) => {
 });
 
 Router.post('/:id', (req, res) => {
-    patientModel.findOne({ 'pid': req.params.id }).then(patient => {
+    patientModel.findById(req.params.id).then(patient => {
         var dietParams = {
             patient: patient._id,
             food: req.body.foodId,
