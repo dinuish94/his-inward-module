@@ -46,15 +46,13 @@
                         <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Patient Name</th>
                         <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;">Bed No</th>
                         <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 200px;">Admitted Date</th>
-                        <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 200px;">Admitted Time</th>
                 </thead>
                 <tbody>
                     <tr role="row" ng-repeat="bed in beds | filter:patientFilter">
-                        <td></td>
+                        <td>{{ bed.patient.bht }}</td>
                         <td>{{ bed.patient.name }}</td>
                         <td>{{ bed.bId }}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ bed.patient.admitDate }}</td>
                     </tr>
                 </tbody>
             </table>

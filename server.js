@@ -95,8 +95,6 @@ const SlotRouter = require('./server/operationTheatre/slot.route.js');
 const TheatreRouter = require('./server/operationTheatre/theatre.route.js');
 const foodRouter = require('./server/food/food.route.js');
 const dietRouter = require('./server/diet/diet.route.js');
-<<<<<<< HEAD
-const userRouter = require('./server/user/user.route.js');
 const feverRouter = require('./server/charts/feverChart.route.js');
 const diabeticRouter = require('./server/charts/diabetic.route.js');
 const lbRouter = require('./server/charts/liquidBalance.route.js');
@@ -104,9 +102,7 @@ const lbRouter = require('./server/charts/liquidBalance.route.js');
 app.get('/',ensureAuthenticated, function(req,res){
     res.send({name:'kashif rosen'});
 });
-=======
 const userRouter = require('./user.route.js');
->>>>>>> master
 
 app.get('/app/*',ensureAuthenticated, function(req,res){
     res.sendFile(__dirname + '/public/index.html');

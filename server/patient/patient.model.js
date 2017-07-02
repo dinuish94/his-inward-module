@@ -9,7 +9,7 @@ const patientSchema = new Schema({
     gender:String,
     admitDate:Date,
     dischargeDate:Date,
-    phoneNumber:String,
+    phoneNumber:Number,
     allergies: String,
     gName:String,
     gContactNumber:Number,

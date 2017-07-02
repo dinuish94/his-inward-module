@@ -26,8 +26,6 @@ Router.post('/register', (req, res) => {
 });
 
 passport.use(new LocalStrategy((username, password, done) => {
-    console.log(username);
-    console.log(password);
 
     User.findOne({'email':username}, (err, user) => {
         if (err) throw err;
